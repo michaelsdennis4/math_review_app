@@ -4,7 +4,7 @@ class CreateResponses < ActiveRecord::Migration
     	t.integer :test_question_id
     	t.integer :student_id
     	t.string :student_answer
-    	t.integer :score
+    	t.integer :student_score
     	t.timestamps
     end
   end

@@ -5,7 +5,7 @@ class CreateTestQuestions < ActiveRecord::Migration
     	t.string :question_text
     	t.string :test_question_uid
     	t.integer :points, null: false, default: 1
-    	t.string :correct_answer, null: false
+    	t.string :correct_answer
     	t.timestamps
     end
   end
