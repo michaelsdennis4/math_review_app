@@ -11,9 +11,9 @@ Rails.application.routes.draw do
   get '/sessions/new_teacher' => 'sessions#new_teacher'
   get '/sessions/new_student' => 'sessions#new_student'
 
-  get '/teacher_login' => 'sessions#create_teacher'
-  get '/student_login' => 'sessions#create_student'
-  get '/logout' => 'sessions#destroy'
+  post '/teacher_login' => 'sessions#create_teacher'
+  post '/student_login' => 'sessions#create_student'
+  delete '/logout' => 'sessions#destroy'
 
   resources :sessions, only: [:new, :destroy]
 
