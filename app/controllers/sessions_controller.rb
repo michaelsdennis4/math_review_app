@@ -4,6 +4,14 @@ class SessionsController < ApplicationController
   def new 
   end
 
+  def new_teacher
+    render :new_teacher
+  end
+
+  def new_student
+    render :new_student
+  end
+
   #creates a session
   def create_teacher
     user = Teacher.find_by({email: params[:email]})

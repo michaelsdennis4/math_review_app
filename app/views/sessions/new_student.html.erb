@@ -1,0 +1,12 @@
+<h1>Student Login</h1>
+
+	<form action="/student_login" method="post">
+		<label for="email">E-mail</label><br>
+		<input type="text" name="email" placeholder="Email address"/><br>
+		<br>
+		<label for="password">Password</label><br>
+		<input type="password" name="password" placeholder="Password"/><br>
+		<br>
+		<input type="submit" value="Login"/>
+		<input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
+	</form>

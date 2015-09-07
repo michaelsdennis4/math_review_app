@@ -8,6 +8,9 @@ Rails.application.routes.draw do
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
+  get '/sessions/new_teacher' => 'sessions#new_teacher'
+  get '/sessions/new_student' => 'sessions#new_student'
+
   get '/teacher_login' => 'sessions#create_teacher'
   get '/student_login' => 'sessions#create_student'
   get '/logout' => 'sessions#destroy'

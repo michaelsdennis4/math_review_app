@@ -1,3 +1,16 @@
+# == Schema Information
+#
+# Table name: sessions
+#
+#  id                :integer          not null, primary key
+#  course_id         :integer
+#  teacher_id        :integer
+#  title             :string           not null
+#  total_test_points :integer
+#  created_at        :datetime
+#  updated_at        :datetime
+#
+
 class Session < ActiveRecord::Base
 
 	validates :title, presence: true
