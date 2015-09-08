@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'welcome#index'
 
+  get '/dashboard' => 'welcome#dashboard'
+  
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
@@ -16,6 +18,8 @@ Rails.application.routes.draw do
   delete '/logout' => 'sessions#destroy'
 
   resources :sessions, only: [:new, :destroy]
+
+  resources :courses
 
   # Example of named route that can be invoked with purchase_url(id: product.id)
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase

@@ -19,7 +19,7 @@ class SessionsController < ApplicationController
       session[:user_id] = user.id
       session[:user_name] = "#{user.first_name} #{user.last_name}"
       session[:is_teacher] = true
-      redirect_to "/" #dashboard
+      redirect_to "/dashboard" #dashboard
     else
       redirect_to '/teacher_login'
     end
@@ -31,7 +31,7 @@ class SessionsController < ApplicationController
       session[:user_id] = user.id
       session[:user_name] = "#{user.first_name} #{user.last_name}"
       session[:is_teacher] = false
-      redirect_to "/" #dashboard
+      redirect_to "/dashboard" #dashboard
     else
       redirect_to '/student_login'
     end
