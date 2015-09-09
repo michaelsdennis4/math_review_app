@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: sessions
+# Table name: review_sessions
 #
 #  id                :integer          not null, primary key
 #  course_id         :integer

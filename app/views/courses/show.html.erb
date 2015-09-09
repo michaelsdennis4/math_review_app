@@ -9,7 +9,7 @@
 	<h4>Review Sessions</h4>
 
 	<ul>
-		<% @sessions.each do |session| %>
+		<% @course.review_sessions.each do |session| %>
 
 			<li><a href="/review_sessions/<%= session.id %>"><%= session.title %></a></li>
 

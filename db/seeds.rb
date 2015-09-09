@@ -57,22 +57,65 @@ c4 = Course.create({ name: 'Trigonometry' })
 
 ReviewSession.destroy_all
 
-rs1 = ReviewSession.create({course: c1, teacher: t1, title: 'Geometry Review 1'})
-rs2 = ReviewSession.create({course: c1, teacher: t1, title: 'Geometry Review 2'})
-rs3 = ReviewSession.create({course: c1, teacher: t1, title: 'Geometry Review 3'})
-rs4 = ReviewSession.create({course: c1, teacher: t1, title: 'Geometry Review 4'})
+Unit.destroy_all
 
-rs5 = ReviewSession.create({course: c2, teacher: t1, title: 'Algebra Review 1'})
-rs6 = ReviewSession.create({course: c2, teacher: t1, title: 'Algebra Review 2'})
-rs7 = ReviewSession.create({course: c2, teacher: t1, title: 'Algebra Review 3'})
-rs8 = ReviewSession.create({course: c2, teacher: t1, title: 'Algebra Review 4'})
+Topic.destroy_all
 
-rs9 = ReviewSession.create({course: c3, teacher: t1, title: 'Calculus Review 1'})
-rs10 = ReviewSession.create({course: c3, teacher: t1, title: 'Calculus Review 2'})
-rs11 = ReviewSession.create({course: c3, teacher: t1, title: 'Calculus Review 3'})
-rs12 = ReviewSession.create({course: c3, teacher: t1, title: 'Calculus Review 4'})
+ReviewQuestion.destroy_all
 
-rs13 = ReviewSession.create({course: c4, teacher: t1, title: 'Trigonometry Review 1'})
-rs14 = ReviewSession.create({course: c4, teacher: t1, title: 'Trigonometry Review 2'})
-rs15 = ReviewSession.create({course: c4, teacher: t1, title: 'Trigonometry Review 3'})
-rs16 = ReviewSession.create({course: c4, teacher: t1, title: 'Trigonometry Review 4'})
+4.times do |i|
+	rs = ReviewSession.create({course: c1, teacher: t1, title: "Geometry Review #{i+1}"})
+	10.times do |j|
+		u = Unit.create({review_session_id: rs.id, title: "Geometry Unit #{j+1}"})
+		10.times do |k|
+			t = Topic.create({unit: u, title: "Geometry Unit #{j+1} Topic #{k+1}"})
+			10.times do |q|
+				rq = ReviewQuestion.create({topic: t, question_text: "Geometry Unit #{j+1} Topic #{k+1} Question #{q+1}"})
+			end
+		end
+	end
+end
+
+4.times do |i|
+	rs = ReviewSession.create({course: c2, teacher: t1, title: "Algebra Review #{i+1}"})
+	10.times do |j|
+		u = Unit.create({review_session_id: rs.id, title: "Algebra Unit #{j+1}"})
+		10.times do |k|
+			t = Topic.create({unit: u, title: "Algebra Unit #{j+1} Topic #{k+1}"})
+			10.times do |q|
+				rq = ReviewQuestion.create({topic: t, question_text: "Algebra Unit #{j+1} Topic #{k+1} Question #{q+1}"})
+			end
+		end
+	end
+end
+
+4.times do |i|
+	rs = ReviewSession.create({course: c3, teacher: t1, title: "Calculus Review #{i+1}"})
+	10.times do |j|
+		u = Unit.create({review_session_id: rs.id, title: "Calculus Unit #{j+1}"})
+		10.times do |k|
+			t = Topic.create({unit: u, title: "Calculus Unit #{j+1} Topic #{k+1}"})
+			10.times do |q|
+				rq = ReviewQuestion.create({topic: t, question_text: "Calculus Unit #{j+1} Topic #{k+1} Question #{q+1}"})
+			end
+		end
+	end
+end
+
+4.times do |i|
+	rs = ReviewSession.create({course: c4, teacher: t1, title: "Trigonometry Review #{i+1}"})
+	10.times do |j|
+		u = Unit.create({review_session_id: rs.id, title: "Trigonometry Unit #{j+1}"})
+		10.times do |k|
+			t = Topic.create({unit: u, title: "Trigonometry Unit #{j+1} Topic #{k+1}"})
+			10.times do |q|
+				rq = ReviewQuestion.create({topic: t, question_text: "Trigonometry Unit #{j+1} Topic #{k+1} Question #{q+1}"})
+			end
+		end
+	end
+end
+
+
+
+
+

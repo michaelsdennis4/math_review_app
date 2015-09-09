@@ -8,6 +8,18 @@
 	<h3>Created by: <%= @session.teacher.first_name %> <%= @session.teacher.last_name %></h3>
 	<h3>Title: <%= @session.title %></h3>
 
+	<h4>Units</h4>
+
+	<ul>
+		<% @session.units.each do |unit| %>
+		
+			<li><a href="/units/<%= unit.id %>"><%= unit.title %></a></li>
+
+		<% end %>
+
+
+	</ul>
+
 <% else %>
 
 	<h1>Sorry, you are not authorized to view this page.</h1>

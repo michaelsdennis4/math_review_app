@@ -1,0 +1,2 @@
+class ReviewQuestionsController < ApplicationController
+end

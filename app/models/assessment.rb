@@ -4,7 +4,7 @@
 #
 #  id                 :integer          not null, primary key
 #  student_id         :integer
-#  session_id         :integer
+#  review_session_id  :integer
 #  student_test_score :integer
 #  status             :string           default("assigned"), not null
 #  date_assigned      :date
@@ -17,6 +17,6 @@ class Assessment < ActiveRecord::Base
 	validates :status, presence: true
 
 	belongs_to :student
-	belongs_to :session
+	belongs_to :review_session
 
 end

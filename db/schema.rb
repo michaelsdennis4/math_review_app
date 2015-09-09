@@ -11,14 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150908233204) do
+ActiveRecord::Schema.define(version: 20150909172430) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "assessments", force: :cascade do |t|
     t.integer  "student_id"
-    t.integer  "session_id"
+    t.integer  "review_session_id"
     t.integer  "student_test_score"
     t.string   "status",             default: "assigned", null: false
     t.date     "date_assigned"
@@ -88,7 +88,7 @@ ActiveRecord::Schema.define(version: 20150908233204) do
   end
 
   create_table "test_questions", force: :cascade do |t|
-    t.integer  "session_id"
+    t.integer  "review_session_id"
     t.string   "question_text"
     t.string   "test_question_uid"
     t.integer  "points",            default: 1, null: false
@@ -107,8 +107,8 @@ ActiveRecord::Schema.define(version: 20150908233204) do
   end
 
   create_table "units", force: :cascade do |t|
-    t.integer  "session_id"
-    t.string   "title",       null: false
+    t.integer  "review_session_id"
+    t.string   "title",             null: false
     t.string   "description"
     t.datetime "created_at"
     t.datetime "updated_at"
