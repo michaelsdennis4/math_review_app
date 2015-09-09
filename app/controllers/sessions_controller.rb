@@ -21,7 +21,7 @@ class SessionsController < ApplicationController
       session[:is_teacher] = true
       redirect_to "/dashboard" #dashboard
     else
-      redirect_to '/teacher_login'
+      redirect_to '/sessions/new_teacher'
     end
   end
 
@@ -33,7 +33,7 @@ class SessionsController < ApplicationController
       session[:is_teacher] = false
       redirect_to "/dashboard" #dashboard
     else
-      redirect_to '/student_login'
+      redirect_to '/sessions/new_student'
     end
   end
 

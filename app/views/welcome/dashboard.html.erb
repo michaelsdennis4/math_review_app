@@ -11,14 +11,12 @@
 	<!-- list of courses -->
 	<a href="/courses">Courses</a>
 
-
-	<!-- button to create a course -->
-
-
 	<!-- link to own profile -->
-
+	<a href="/teachers/<%= session[:user_id] %>">My Profile</a>
 
 	<!-- link to student profiles -->
+	<a href="/students">Students</a>
+
 
 <% else %>
 
@@ -27,6 +25,7 @@
 	<!-- list of review sessions assigned -->
 
 	<!-- link to own profile -->
+	<a href="/students/<%= session[:user_id] %>">My Profile</a>
 
 
 

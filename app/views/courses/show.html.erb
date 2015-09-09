@@ -1,0 +1,25 @@
+<a href="/courses">Courses</a>
+
+<% if (session[:is_teacher]) %>
+
+	<h1>COURSE SHOW</h1>
+
+	<h3><%= @course.name %></h3>
+
+	<h4>Review Sessions</h4>
+
+	<ul>
+		<% @sessions.each do |session| %>
+
+			<li><a href="/review_sessions/<%= session.id %>"><%= session.title %></a></li>
+
+		<% end %>
+
+	</ul>
+	
+
+<% else %>
+
+	<h1>Sorry, you are not authorized to view this page.</h1>
+
+<% end %>

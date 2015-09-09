@@ -1,11 +1,24 @@
-<h1>COURSES INDEX</h1>
+<a href="/dashboard">Dashboard</a>
 
-<ul>
+<% if (session[:is_teacher]) %>
 
-<% @courses.each do |course| %>
+	<h1>COURSES INDEX</h1>
 
-	<li>course.name</li>
+	<ul>
+
+	<% @courses.each do |course| %>
+
+		<li><a href="/courses/<%= course.id %>"><%= course.name %></a></li>
+
+	<% end %>
+
+	</ul>
+
+<% else %>
+
+	<h1>Sorry, you are not authorized to view this page.</h1>
 
 <% end %>
 
-</ul>
+
+<!-- create, edit, and delete courses from this page -->

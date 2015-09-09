@@ -1,0 +1,23 @@
+<a href="/dashboard">Dashboard</a>
+
+<% if (session[:is_teacher]) %>
+
+	<h1>STUDENT INDEX</h1>
+
+	<ul>
+
+		<% @students.each do |student| %>
+
+			<li><%= student.first_name %> <%= student.last_name %> </li>
+
+		<% end %>
+
+	</ul>
+
+<% else %>
+
+	<h1>Sorry, you are not authorized to view this page.</h1>
+
+<% end %>
+
+

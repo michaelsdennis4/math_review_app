@@ -11,7 +11,7 @@
 #  updated_at        :datetime
 #
 
-class Session < ActiveRecord::Base
+class ReviewSession < ActiveRecord::Base
 
 	validates :title, presence: true
 

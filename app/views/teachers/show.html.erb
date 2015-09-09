@@ -1,0 +1,15 @@
+<a href="/dashboard">Dashboard</a>
+
+<% if (session[:is_teacher]) %>
+
+	<h1>TEACHER SHOW</h1>
+
+	<h3>First Name: <%= @teacher.first_name %></h3>
+	<h3>Last Name: <%= @teacher.last_name %></h3>
+	<h3>Email: <%= @teacher.email %></h3>
+
+<% else %>
+
+	<h1>Sorry, you are not authorized to view this page.</h1>
+
+<% end %>

@@ -1,0 +1,15 @@
+<a href="/courses/<%= @session.course.id %>"><%= @session.course.name %></a>
+
+<% if (session[:is_teacher]) %>
+
+	<h1>REVIEW SESSION SHOW</h1>
+
+	<h3>Course: <%= @session.course.name %></h3>
+	<h3>Created by: <%= @session.teacher.first_name %> <%= @session.teacher.last_name %></h3>
+	<h3>Title: <%= @session.title %></h3>
+
+<% else %>
+
+	<h1>Sorry, you are not authorized to view this page.</h1>
+
+<% end %>
