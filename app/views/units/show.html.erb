@@ -1,28 +1,20 @@
 <a href="/review_sessions/<%= @unit.review_session.id %>"><%= @unit.review_session.title %></a>
 
-<% if (session[:is_teacher]) %>
+<h1>UNIT SHOW</h1>
 
-	<h1>UNIT SHOW</h1>
+<h3>Course: <%= @unit.review_session.course.name %></h3>
+<h3>Created by: <%= @unit.review_session.teacher.first_name %> <%= @unit.review_session.teacher.last_name %></h3>
+<h3>Review Session Title: <%= @unit.review_session.title %></h3>
+<h3>Unit Title: <%= @unit.title %></h3>
+<p>Description: <%= @unit.description %></p>
 
-	<h3>Course: <%= @unit.review_session.course.name %></h3>
-	<h3>Created by: <%= @unit.review_session.teacher.first_name %> <%= @unit.review_session.teacher.last_name %></h3>
-	<h3>Review Session Title: <%= @unit.review_session.title %></h3>
-	<h3>Unit Title: <%= @unit.title %></h3>
-	<p>Description: <%= @unit.description %></p>
+<h4>Topics</h4>
 
-	<h4>Topics</h4>
+<ul>
+	<% @unit.topics.each do |topic| %>
+	
+		<li><a href="/topics/<%= topic.id %>"><%= topic.title %></a></li>
 
-	<ul>
-		<% @unit.topics.each do |topic| %>
-		
-			<li><a href="/topics/<%= topic.id %>"><%= topic.title %></a></li>
+	<% end %>
 
-		<% end %>
-
-	</ul>
-
-<% else %>
-
-	<h1>Sorry, you are not authorized to view this page.</h1>
-
-<% end %>
+</ul>

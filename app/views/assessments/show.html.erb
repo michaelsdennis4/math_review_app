@@ -1,0 +1,10 @@
+<a href="/review_sessions/<%= @assessment.review_session.id %>"><%= @assessment.review_session.title %></a>
+
+<h1>ASSESSMENT SHOW</h1>
+
+<h3>Course: <%= @assessment.review_session.course.name %></h3>
+<h3>Created by: <%= @assessment.review_session.teacher.first_name %> <%= @assessment.review_session.teacher.last_name %></h3>
+<h3>Review Session Title: <%= @assessment.review_session.title %></h3>
+<h3>Student Name: <%= @assessment.student.first_name %> <%= @assessment.student.last_name %></h3>
+<h3>Status: <%= @assessment.status %></h3>
+<h3>Date Assigned: <%= @assessment.date_assigned %></h3>

@@ -1,0 +1,26 @@
+<a href="/review_sessions/<%= @question.review_session.id %>"><%= @question.review_session.title %></a>
+
+<h1>TEST QUESTION SHOW</h1>
+
+<h3>Points: <%= @question.points %></h3>
+
+<p>Question: <%= @question.question_text %></p>
+
+<!-- question image -->
+
+<h4>Choices</h4>
+
+<ul>
+	<% @question.choices.each do |choice| %>
+
+		<li><%= choice.choice_key %>) <%= choice.choice_text %></li>
+
+	<% end %>
+
+</ul>
+
+
+
+<p>Answer: <%= @question.correct_answer %></p>
+
+

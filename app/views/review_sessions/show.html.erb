@@ -1,27 +1,41 @@
 <a href="/courses/<%= @session.course.id %>"><%= @session.course.name %></a>
 
-<% if (session[:is_teacher]) %>
+<h1>REVIEW SESSION SHOW</h1>
 
-	<h1>REVIEW SESSION SHOW</h1>
+<h3>Course: <%= @session.course.name %></h3>
+<h3>Created by: <%= @session.teacher.first_name %> <%= @session.teacher.last_name %></h3>
+<h3>Title: <%= @session.title %></h3>
 
-	<h3>Course: <%= @session.course.name %></h3>
-	<h3>Created by: <%= @session.teacher.first_name %> <%= @session.teacher.last_name %></h3>
-	<h3>Title: <%= @session.title %></h3>
+<h4>Units</h4>
 
-	<h4>Units</h4>
+<ul>
+	<% @session.units.each do |unit| %>
+	
+		<li><a href="/units/<%= unit.id %>"><%= unit.title %></a></li>
 
-	<ul>
-		<% @session.units.each do |unit| %>
-		
-			<li><a href="/units/<%= unit.id %>"><%= unit.title %></a></li>
+	<% end %>
 
-		<% end %>
+</ul>
 
+<h4>Assessments</h4>
 
-	</ul>
+<ul>
+	<% @session.assessments.each do |assessment| %>
+	
+		<li><a href="/assessments/<%= assessment.id %>"><%= assessment.student.first_name %> <%= assessment.student.last_name %></a></li>
 
-<% else %>
+	<% end %>
 
-	<h1>Sorry, you are not authorized to view this page.</h1>
+</ul>
 
-<% end %>
+<h4>Test Questions</h4>
+
+<ul>
+	<% @session.test_questions.each do |question| %>
+	
+		<li><a href="/test_questions/<%= question.id %>"><%= question.id %></a></li>
+
+	<% end %>
+
+</ul>
+

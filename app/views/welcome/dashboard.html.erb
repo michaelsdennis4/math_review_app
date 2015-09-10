@@ -17,16 +17,19 @@
 	<!-- link to student profiles -->
 	<a href="/students">Students</a>
 
+	<!-- student assessments -->
+
+
 
 <% else %>
 
 	<h1>STUDENT DASHBOARD</h1>
 
 	<!-- list of review sessions assigned -->
+	<a href="/student_assessments/<%= session[:user_id] %>">My Review Sessions</a>
 
 	<!-- link to own profile -->
 	<a href="/students/<%= session[:user_id] %>">My Profile</a>
-
 
 
 <% end %>

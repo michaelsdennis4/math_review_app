@@ -1,0 +1,19 @@
+<h1>ASSESSMENT INDEX</h1>
+
+<ul>
+	<% @assessments.each do |assessment| %>
+
+		<li>
+			Student: <%= assessment.student.first_name %> <%= assessment.student.last_name %><br>
+			Course: <%= assessment.review_session.course.name %><br>
+			Session: <%= assessment.review_session.title %><br>
+			Teacher: <%= assessment.review_session.teacher.first_name %> <%= assessment.review_session.teacher.last_name %><br>
+			Status: <%= assessment.status %><br>
+			Date Assigned: <%= assessment.date_assigned %><br>
+		</li>
+		<br>
+
+	<% end %>
+
+
+</ul>

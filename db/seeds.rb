@@ -63,10 +63,29 @@ Topic.destroy_all
 
 ReviewQuestion.destroy_all
 
+Assessment.destroy_all
+
+TestQuestion.destroy_all
+
+Choice.destroy_all
+
+Response.destroy_all
+
+
 4.times do |i|
 	rs = ReviewSession.create({course: c1, teacher: t1, title: "Geometry Review #{i+1}"})
+	Assessment.create({student: s1, review_session: rs})
+	Assessment.create({student: s2, review_session: rs})
 	10.times do |j|
-		u = Unit.create({review_session_id: rs.id, title: "Geometry Unit #{j+1}"})
+		tq = TestQuestion.create({review_session: rs, question_text: "sample question", correct_answer: 'a'})
+		Choice.create({test_question: tq, choice_key: 'a', choice_text: 'choice a'})
+		Choice.create({test_question: tq, choice_key: 'b', choice_text: 'choice b'})
+		Choice.create({test_question: tq, choice_key: 'c', choice_text: 'choice c'})
+		Choice.create({test_question: tq, choice_key: 'd', choice_text: 'choice d'})
+		Choice.create({test_question: tq, choice_key: 'e', choice_text: 'choice e'})
+	end
+	10.times do |j|
+		u = Unit.create({review_session: rs, title: "Geometry Unit #{j+1}"})
 		10.times do |k|
 			t = Topic.create({unit: u, title: "Geometry Unit #{j+1} Topic #{k+1}"})
 			10.times do |q|
@@ -78,8 +97,18 @@ end
 
 4.times do |i|
 	rs = ReviewSession.create({course: c2, teacher: t1, title: "Algebra Review #{i+1}"})
+	Assessment.create({student: s1, review_session: rs})
+	Assessment.create({student: s2, review_session: rs})
 	10.times do |j|
-		u = Unit.create({review_session_id: rs.id, title: "Algebra Unit #{j+1}"})
+		tq = TestQuestion.create({review_session: rs, question_text: "sample question", correct_answer: 'b'})
+		Choice.create({test_question: tq, choice_key: 'a', choice_text: 'choice a'})
+		Choice.create({test_question: tq, choice_key: 'b', choice_text: 'choice b'})
+		Choice.create({test_question: tq, choice_key: 'c', choice_text: 'choice c'})
+		Choice.create({test_question: tq, choice_key: 'd', choice_text: 'choice d'})
+		Choice.create({test_question: tq, choice_key: 'e', choice_text: 'choice e'})
+	end
+	10.times do |j|
+		u = Unit.create({review_session: rs, title: "Algebra Unit #{j+1}"})
 		10.times do |k|
 			t = Topic.create({unit: u, title: "Algebra Unit #{j+1} Topic #{k+1}"})
 			10.times do |q|
@@ -91,8 +120,18 @@ end
 
 4.times do |i|
 	rs = ReviewSession.create({course: c3, teacher: t1, title: "Calculus Review #{i+1}"})
+	Assessment.create({student: s1, review_session: rs})
+	Assessment.create({student: s2, review_session: rs})
 	10.times do |j|
-		u = Unit.create({review_session_id: rs.id, title: "Calculus Unit #{j+1}"})
+		tq = TestQuestion.create({review_session: rs, question_text: "sample question", correct_answer: 'c'})
+		Choice.create({test_question: tq, choice_key: 'a', choice_text: 'choice a'})
+		Choice.create({test_question: tq, choice_key: 'b', choice_text: 'choice b'})
+		Choice.create({test_question: tq, choice_key: 'c', choice_text: 'choice c'})
+		Choice.create({test_question: tq, choice_key: 'd', choice_text: 'choice d'})
+		Choice.create({test_question: tq, choice_key: 'e', choice_text: 'choice e'})
+	end
+	10.times do |j|
+		u = Unit.create({review_session: rs, title: "Calculus Unit #{j+1}"})
 		10.times do |k|
 			t = Topic.create({unit: u, title: "Calculus Unit #{j+1} Topic #{k+1}"})
 			10.times do |q|
@@ -104,8 +143,18 @@ end
 
 4.times do |i|
 	rs = ReviewSession.create({course: c4, teacher: t1, title: "Trigonometry Review #{i+1}"})
+	Assessment.create({student: s1, review_session: rs})
+	Assessment.create({student: s2, review_session: rs})
 	10.times do |j|
-		u = Unit.create({review_session_id: rs.id, title: "Trigonometry Unit #{j+1}"})
+		tq = TestQuestion.create({review_session: rs, question_text: "sample question", correct_answer: 'd'})
+		Choice.create({test_question: tq, choice_key: 'a', choice_text: 'choice a'})
+		Choice.create({test_question: tq, choice_key: 'b', choice_text: 'choice b'})
+		Choice.create({test_question: tq, choice_key: 'c', choice_text: 'choice c'})
+		Choice.create({test_question: tq, choice_key: 'd', choice_text: 'choice d'})
+		Choice.create({test_question: tq, choice_key: 'e', choice_text: 'choice e'})
+	end
+	10.times do |j|
+		u = Unit.create({review_session: rs, title: "Trigonometry Unit #{j+1}"})
 		10.times do |k|
 			t = Topic.create({unit: u, title: "Trigonometry Unit #{j+1} Topic #{k+1}"})
 			10.times do |q|
@@ -114,6 +163,13 @@ end
 		end
 	end
 end
+
+
+
+
+
+
+
 
 
 

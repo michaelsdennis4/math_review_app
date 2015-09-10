@@ -33,6 +33,16 @@ Rails.application.routes.draw do
 
   resources :review_questions
 
+  get 'student_assessments/:student_id' => 'assessments#student'
+
+  resources :assessments
+
+  resources :test_questions
+
+  resources :choices
+
+  resources :responses
+
   # Example of named route that can be invoked with purchase_url(id: product.id)
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
 
