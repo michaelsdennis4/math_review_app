@@ -9,16 +9,17 @@
 	<h1>TEACHER DASHBOARD</h1>
 
 	<!-- list of courses -->
-	<a href="/courses">Courses</a>
-
-	<!-- link to own profile -->
-	<a href="/teachers/<%= session[:user_id] %>">My Profile</a>
+	<a href="/courses">Courses</a><br><br>
 
 	<!-- link to student profiles -->
-	<a href="/students">Students</a>
+	<a href="/students">Students</a><br><br>
 
-	<!-- student assessments -->
+	<!-- link to own profile -->
+	<a href="/teachers/<%= session[:user_id] %>">My Profile</a><br><br>
 
+	<!-- open student assessments -->
+	<a href="/teacher_assessments/<%= session[:user_id] %>">My Open Assessments</a><br><br>
+	<!-- this will link to assessments index showing only open assessments for current user -->
 
 
 <% else %>
@@ -26,10 +27,10 @@
 	<h1>STUDENT DASHBOARD</h1>
 
 	<!-- list of review sessions assigned -->
-	<a href="/student_assessments/<%= session[:user_id] %>">My Review Sessions</a>
+	<a href="/student_assessments/<%= session[:user_id] %>">My Review Sessions</a><br><br>
 
 	<!-- link to own profile -->
-	<a href="/students/<%= session[:user_id] %>">My Profile</a>
+	<a href="/students/<%= session[:user_id] %>">My Profile</a><br><br>
 
 
 <% end %>

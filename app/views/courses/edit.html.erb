@@ -1,0 +1,25 @@
+<a href="/courses/<%= @course.id %>">Back to <%= @course.name %></a>
+
+<% if (session[:is_teacher]) %>
+
+	<h1>COURSE EDIT</h1>
+
+	<form action="/courses/<%= @course.id %>" method="post">
+		<input type="text" name="name" value="<%= @course.name %>"/>
+		<input type="submit" value="Update Course"/>
+		<input type="hidden" name="_method" value="patch"/>
+		<input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
+	</form>
+
+	<form action="/courses/<%= @course.id %>" method="post">
+		<input type="submit" value="Delete Course"/>
+		<input type="hidden" name="_method" value="delete"/>
+		<input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
+	</form>
+
+	
+<% else %>
+
+	<h1>Sorry, you are not authorized to view this page.</h1>
+
+<% end %>

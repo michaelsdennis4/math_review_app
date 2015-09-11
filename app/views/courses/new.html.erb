@@ -1,0 +1,17 @@
+<a href="/courses">Back to Courses</a>
+
+<% if (session[:is_teacher]) %>
+
+	<h1>NEW COURSE</h1>
+
+	<form action="/courses" method="post">
+		<input type="text" name="name" placeholder="Enter Course Name..."/>
+		<input type="submit" value="Create Course"/>
+		<input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
+	</form>
+	
+<% else %>
+
+	<h1>Sorry, you are not authorized to view this page.</h1>
+
+<% end %>
