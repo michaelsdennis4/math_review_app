@@ -19,11 +19,13 @@ Rails.application.routes.draw do
 
   resources :sessions, only: [:new, :destroy]
 
-  resources :courses
-
   resources :teachers
 
   resources :students
+
+  resources :courses do
+    resources :review_sessions, only: [:new, :create]
+  end
 
   resources :review_sessions
 

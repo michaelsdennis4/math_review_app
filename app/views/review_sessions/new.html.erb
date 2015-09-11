@@ -1,0 +1,17 @@
+<a href="/courses/<%= @course.id %>">Back to <%= @course.name %> Review Sessions</a>
+
+<% if (session[:is_teacher]) %>
+
+	<h1>NEW REVIEW SESSION</h1>
+
+	<form action="/courses/<%= @course.id %>/review_sessions" method="post">
+		<input type="text" name="title" placeholder="Enter Session Title..."/>
+		<input type="submit" value="Create Review Session"/>
+		<input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
+	</form>
+	
+<% else %>
+
+	<h1>Sorry, you are not authorized to view this page.</h1>
+
+<% end %>

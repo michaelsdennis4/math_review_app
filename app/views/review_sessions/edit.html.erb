@@ -1,0 +1,25 @@
+<a href="/review_sessions/<%= @session.id %>">Back to <%= @session.title %></a>
+
+<% if (session[:is_teacher]) %>
+
+	<h1>REVIEW SESSION EDIT</h1>
+
+	<form action="/review_sessions/<%= @session.id %>" method="post">
+		<input type="text" name="title" value="<%= @session.title %>"/>
+		<input type="submit" value="Update Review Session"/>
+		<input type="hidden" name="_method" value="patch"/>
+		<input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
+	</form>
+
+	<form action="/review_sessions/<%= @session.id %>" method="post">
+		<input type="submit" value="Delete Review Session"/>
+		<input type="hidden" name="_method" value="delete"/>
+		<input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
+	</form>
+
+	
+<% else %>
+
+	<h1>Sorry, you are not authorized to view this page.</h1>
+
+<% end %>
