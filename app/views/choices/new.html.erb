@@ -1,0 +1,20 @@
+<a href="/test_questions/<%= @question.id %>">Back to <%= @question.id %></a>
+
+<% if (session[:is_teacher]) %>
+
+	<h1>NEW CHOICE</h1>
+
+	<form action="/test_questions/<%= @question.id %>/choices" method="post">
+		<label for="choice_key">Choice Key</label>
+		<input type="text" name="choice_key" placeholder="Enter Choice Key..."/><br>
+		<label for="choice_text">Choice Test</label>
+		<input type="text" name="choice_text" placeholder="Enter Choice Text..."/><br>
+		<input type="submit" value="Create Choice"/>
+		<input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
+	</form>
+	
+<% else %>
+
+	<h1>Sorry, you are not authorized to view this page.</h1>
+
+<% end %>

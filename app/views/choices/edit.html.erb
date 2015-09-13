@@ -1,0 +1,28 @@
+<a href="/test_questions/<%= @choice.test_question.id %>">Back to <%= @choice.test_question.id %></a>
+
+<% if (session[:is_teacher]) %>
+
+	<h1>CHOICE EDIT</h1>
+
+	<form action="/choices/<%= @choice.id %>" method="post">
+		<label for="choice_key">Choice Key</label>
+		<input type="text" name="choice_key" value="<%= @choice.choice_key %>"/><br>
+		<label for="choice_text">Choice Test</label>
+		<input type="text" name="choice_text" value="<%= @choice.choice_text %>"/><br>
+		<input type="submit" value="Update Choice"/>
+		<input type="hidden" name="_method" value="patch"/>
+		<input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
+	</form>
+
+	<form action="/choices/<%= @choice.id %>" method="post">
+		<input type="submit" value="Delete Choice"/>
+		<input type="hidden" name="_method" value="delete"/>
+		<input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
+	</form>
+
+	
+<% else %>
+
+	<h1>Sorry, you are not authorized to view this page.</h1>
+
+<% end %>

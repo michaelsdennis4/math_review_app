@@ -15,11 +15,13 @@
 <ul>
 	<% @question.choices.each do |choice| %>
 
-		<li><%= choice.choice_key %>) <%= choice.choice_text %></li>
+		<li><a href="/choices/<%= choice.id %>/edit"><%= choice.choice_key %>) <%= choice.choice_text %></a></li>
 
 	<% end %>
 
 </ul>
+
+<a href="/test_questions/<%= @question.id %>/choices/new">Add a Choice</a>
 
 
 

@@ -20,7 +20,7 @@ class TestQuestionsController < ApplicationController
 		question = TestQuestion.create
 		review_session = ReviewSession.find(params[:review_session_id])
 		if (question.update({review_session: review_session, question_text: params[:question_text], points: params[:points]}))
-			redirect_to "/review_sessions/#{review_session.id}"
+			redirect_to "/test_questions/#{question.id}/edit"
 		else
 			redirect_to "/review_sessions/#{review_session.id}/test_questions/new"
 		end
