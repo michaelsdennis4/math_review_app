@@ -1,0 +1,28 @@
+<a href="/review_questions/<%= @question.id %>">Back to <%= @question.id %></a>
+
+<% if (session[:is_teacher]) %>
+
+	<h1>REVIEW QUESTION EDIT</h1>
+
+	<form action="/review_questions/<%= @question.id %>" method="post">
+		<label for="question_text">Question Text</label>
+		<input type="text" name="question_text" value="<%= @question.question_text %>"/><br>
+		<label for="answer_text">Answer Text</label>
+		<input type="text" name="answer_text" value="<%= @question.answer_text %>"/><br>
+		<input type="submit" value="Update Question"/>
+		<input type="hidden" name="_method" value="patch"/>
+		<input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
+	</form>
+
+	<form action="/review_questions/<%= @question.id %>" method="post">
+		<input type="submit" value="Delete Question"/>
+		<input type="hidden" name="_method" value="delete"/>
+		<input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
+	</form>
+
+	
+<% else %>
+
+	<h1>Sorry, you are not authorized to view this page.</h1>
+
+<% end %>

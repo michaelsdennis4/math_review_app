@@ -35,9 +35,11 @@ Rails.application.routes.draw do
     resources :topics, only: [:new, :create]
   end
 
-  resources :topics, except: [:new, :create]
+  resources :topics, except: [:new, :create] do
+    resources :review_questions, only: [:new, :create]
+  end
 
-  resources :review_questions
+  resources :review_questions, except: [:new, :create]
 
   get 'student_assessments/:student_id' => 'assessments#student'
 
