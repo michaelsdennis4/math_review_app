@@ -1,0 +1,35 @@
+<a href="/test_questions/<%= @question.id %>">Back to <%= @question.id %></a>
+
+<% if (session[:is_teacher]) %>
+
+	<h1>TEST QUESTION EDIT</h1>
+
+	<form action="/test_questions/<%= @question.id %>" method="post">
+		<label for="question_text">Question Text</label>
+		<input type="text" name="question_text" value="<%= @question.question_text %>"/><br>
+		<!-- answer choices here -->
+		<% @question.choices.each do |choice| %>
+			<% if (@question.correct_answer == choice.choice_key) %>
+				<input type="radio" name="correct_answer" value="<%= choice.choice_key %>" checked="checked"/><%= choice.choice_text %><br>
+			<% else %>
+				<input type="radio" name="correct_answer" value="<%= choice.choice_key %>"/><%= choice.choice_text %><br>
+			<% end %>
+		<% end %>
+		<label for="points">Points Worth</label>
+		<input type="text" name="points" value="<%= @question.points %>"/><br>
+		<input type="submit" value="Update Question"/>
+		<input type="hidden" name="_method" value="patch"/>
+		<input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
+	</form>
+
+	<form action="/test_questions/<%= @question.id %>" method="post">
+		<input type="submit" value="Delete Question"/>
+		<input type="hidden" name="_method" value="delete"/>
+		<input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
+	</form>
+
+<% else %>
+
+	<h1>Sorry, you are not authorized to view this page.</h1>
+
+<% end %>

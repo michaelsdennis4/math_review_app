@@ -1,0 +1,20 @@
+<a href="/review_sessions/<%= @session.id %>">Back to <%= @session.title %></a>
+
+<% if (session[:is_teacher]) %>
+
+	<h1>NEW TEST QUESTION</h1>
+
+	<form action="/review_sessions/<%= @session.id %>/test_questions" method="post">
+		<label for="question_text">Question Text</label>
+		<input type="text" name="question_text" placeholder="Enter Question Text..."/><br>		
+		<label for="points">Points Worth</label>
+		<input type="text" name="points" placeholder="Enter Points Worth..."/><br>
+		<input type="submit" value="Create Question"/>
+		<input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
+	</form>
+	
+<% else %>
+
+	<h1>Sorry, you are not authorized to view this page.</h1>
+
+<% end %>
