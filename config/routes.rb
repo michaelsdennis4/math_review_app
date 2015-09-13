@@ -27,9 +27,11 @@ Rails.application.routes.draw do
     resources :review_sessions, only: [:new, :create]
   end
 
-  resources :review_sessions
+  resources :review_sessions, except: [:new, :create] do
+    resources :units, only: [:new, :create]
+  end
 
-  resources :units
+  resources :units, except: [:new, :create]
 
   resources :topics
 

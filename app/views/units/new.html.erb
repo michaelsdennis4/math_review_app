@@ -1,0 +1,20 @@
+<a href="/review_sessions/<%= @session.id %>">Back to <%= @session.title %></a>
+
+<% if (session[:is_teacher]) %>
+
+	<h1>NEW UNIT</h1>
+
+	<form action="/review_sessions/<%= @session.id %>/units" method="post">
+		<label for="title">Unit Title</label>
+		<input type="text" name="title" placeholder="Enter Unit Title..."/><br>
+		<label for="description">Unit Description</label>
+		<input type="text" name="description" placeholder="Enter Unit Description..."/><br>
+		<input type="submit" value="Create Unit"/>
+		<input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
+	</form>
+	
+<% else %>
+
+	<h1>Sorry, you are not authorized to view this page.</h1>
+
+<% end %>

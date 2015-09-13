@@ -5,6 +5,7 @@
 	<h1>COURSE EDIT</h1>
 
 	<form action="/courses/<%= @course.id %>" method="post">
+		<label for="name">Course Name</label>
 		<input type="text" name="name" value="<%= @course.name %>"/>
 		<input type="submit" value="Update Course"/>
 		<input type="hidden" name="_method" value="patch"/>

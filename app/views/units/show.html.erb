@@ -8,6 +8,8 @@
 <h3>Unit Title: <%= @unit.title %></h3>
 <p>Description: <%= @unit.description %></p>
 
+<a href="/units/<%= @unit.id %>/edit">Edit Unit</a>
+
 <h4>Topics</h4>
 
 <ul>
@@ -18,3 +20,5 @@
 	<% end %>
 
 </ul>
+
+
