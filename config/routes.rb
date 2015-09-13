@@ -31,9 +31,11 @@ Rails.application.routes.draw do
     resources :units, only: [:new, :create]
   end
 
-  resources :units, except: [:new, :create]
+  resources :units, except: [:new, :create] do
+    resources :topics, only: [:new, :create]
+  end
 
-  resources :topics
+  resources :topics, except: [:new, :create]
 
   resources :review_questions
 

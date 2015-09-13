@@ -1,0 +1,30 @@
+<a href="/topics/<%= @topic.id %>">Back to <%= @topic.title %></a>
+
+<% if (session[:is_teacher]) %>
+
+	<h1>TOPIC EDIT</h1>
+
+	<form action="/topics/<%= @topic.id %>" method="post">
+		<label for="title">Topic Title</label>
+		<input type="text" name="title" value="<%= @topic.title %>"/><br>
+		<label for="description">Topic Description</label>
+		<input type="text" name="description" value="<%= @topic.description %>"/><br>
+		<label for="video_url">Video URL</label>
+		<input type="text" name="video_url" value="<%= @topic.video_url %>"/><br>
+		<input type="submit" value="Update Topic"/>
+		<input type="hidden" name="_method" value="patch"/>
+		<input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
+	</form>
+
+	<form action="/topics/<%= @topic.id %>" method="post">
+		<input type="submit" value="Delete Topic"/>
+		<input type="hidden" name="_method" value="delete"/>
+		<input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
+	</form>
+
+	
+<% else %>
+
+	<h1>Sorry, you are not authorized to view this page.</h1>
+
+<% end %>

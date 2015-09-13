@@ -1,0 +1,22 @@
+<a href="/units/<%= @unit.id %>">Back to <%= @unit.title %></a>
+
+<% if (session[:is_teacher]) %>
+
+	<h1>NEW TOPIC</h1>
+
+	<form action="/units/<%= @unit.id %>/topics" method="post">
+		<label for="title">Topic Title</label>
+		<input type="text" name="title" placeholder="Enter Topic Title..."/><br>
+		<label for="description">Topic Description</label>
+		<input type="text" name="description" placeholder="Enter Topic Description..."/><br>
+		<label for="video_url">Video URL</label>
+		<input type="text" name="video_url" placeholder="Enter Video URL..."/><br>
+		<input type="submit" value="Create Topic"/>
+		<input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
+	</form>
+	
+<% else %>
+
+	<h1>Sorry, you are not authorized to view this page.</h1>
+
+<% end %>
