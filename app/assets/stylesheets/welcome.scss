@@ -1,0 +1,136 @@
+$bgcolor: rgba(89, 41, 129, 1);
+
+body {
+	font-family: 'Open Sans', sans-serif;
+}
+
+.topnav {
+	margin-top: 120px;
+	margin-bottom: 30px;
+	text-align: center;
+	font-size: 16px;
+	color: $bgcolor;
+}
+
+header {
+	position: absolute;
+	width: 100%;
+	top: 0;
+	left: 0;
+	margin: 0;
+	border: 0;
+	padding: 10px;
+	height: 80px;
+	background-color: $bgcolor;
+	text-align: center;
+
+	h5 {
+		margin-top: 10px;
+		margin-bottom: 10px;
+		color: white;
+		font-size: 20px;
+	}
+
+	input[type=submit] {
+		width: 60px;
+		height: 25px;
+		line-height: 20px;
+		border-radius: 5px;	
+		background-color: white;
+		color: $bgcolor;
+		font-size: 12px;
+		font-weight: 700;
+		margin-top: 0;
+		margin-bottom: 10px;
+		cursor: pointer;
+	}
+}
+
+footer {
+	position: fixed;
+	width: 100%;
+	bottom: 0;
+	left: 0;
+	margin: 0;
+	border: 0;
+	height: 50px;
+	background-color: $bgcolor;
+}
+
+.mainbox {
+	margin-top: 20px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 100px;
+	text-align: center;
+	width: 80%;
+	padding: 20px;
+	border: solid 1px; 
+	border-color: $bgcolor;
+	border-radius: 20px;
+
+	h1 {
+		margin-top: 0;
+		margin-bottom: 20px;
+		color: $bgcolor;
+	}
+
+	h2 {
+		margin-top: 0;
+		margin-bottom: 20px;
+		color: $bgcolor;
+	}
+
+	h3 {
+		margin-top: 0;
+		margin-bottom: 20px;
+		color: $bgcolor;
+	}
+
+	label {
+		color: $bgcolor;
+		font-size: 14px;
+		margin-top: 10px;
+		margin-bottom: 5px;
+		text-align: left;
+	}
+
+	input[type=text] {
+		width: 80%;
+		height: 30px;
+		border: solid 1px;
+		border-color: $bgcolor;
+		border-radius: 5px;	
+		color: black;
+		font-size: 12px;
+		margin-top: 10px;
+		margin-bottom: 5px;
+		margin-left: auto;
+		margin-right: auto;
+	}
+
+	input[type=password] {
+		width: 80%;
+		height: 30px;
+		border: solid 1px;
+		border-color: $bgcolor;
+		border-radius: 5px;	
+		color: black;
+		font-size: 12px;
+		margin-top: 10px;
+		margin-bottom: 5px;
+	}
+
+	input[type=submit] {
+		width: 120px;
+		height: 60px;
+		border-radius: 10px;	
+		background-color: $bgcolor;
+		color: white;
+		font-size: 14px;
+		margin-top: 20px;
+		margin-bottom: 20px;
+		cursor: pointer;
+	}
+
+}
