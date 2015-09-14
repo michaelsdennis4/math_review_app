@@ -7,6 +7,13 @@
 	<h3>First Name: <%= @teacher.first_name %></h3>
 	<h3>Last Name: <%= @teacher.last_name %></h3>
 	<h3>Email: <%= @teacher.email %></h3>
+	<% if @teacher.is_active == true %>
+		<h3>Active?: Yes</h3>
+	<% else %>
+		<h3>Active?: No</h3>
+	<% end %>
+
+	<a href="/teachers/<%= @teacher.id %>/edit">Edit My Profile</a>
 
 <% else %>
 
