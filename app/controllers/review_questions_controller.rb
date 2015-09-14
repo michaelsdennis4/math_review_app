@@ -28,7 +28,7 @@ class ReviewQuestionsController < ApplicationController
 
 	def update
 		question = ReviewQuestion.find(params[:id])
-		if (question.update({question_text: params[:question_text], answer_text: params[:answer_text]}))
+		if (question.update({question_text: params[:question_text], answer_text: params[:answer_text], is_active: params[:is_active]}))
 			redirect_to "/review_questions/#{question.id}"
 		else
 			redirect_to "/review_questions/#{question.id}/edit"

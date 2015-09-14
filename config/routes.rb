@@ -19,7 +19,7 @@ Rails.application.routes.draw do
 
   resources :sessions, only: [:new, :destroy]
 
-  resources :teachers
+  resources :teachers, except: [:destroy]
 
   resources :students
 

@@ -10,5 +10,11 @@
 
 <!-- answer image -->
 
+<% if (@question.is_active == true) %>
+	<h3>Active: Yes</h3>
+<% else %>
+	<h3>Active: No</h3>
+<% end %>
+
 
 <a href="/review_questions/<%= @question.id %>/edit">Edit Question</a>

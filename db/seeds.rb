@@ -15,6 +15,7 @@ t1 = Teacher.create({
 	email: 'michaelsdennis4@gmail.com',
 	password: 'juliank',
 	password_confirmation: 'juliank',
+	is_admin: true
 }) 
 
 t2 = Teacher.create({
@@ -23,6 +24,7 @@ t2 = Teacher.create({
 	email: 'michele.dennis@mastersny.org',
 	password: 'pass',
 	password_confirmation: 'pass',
+	is_admin: true
 })
 
 Student.destroy_all
@@ -77,12 +79,13 @@ Response.destroy_all
 	Assessment.create({student: s1, review_session: rs})
 	Assessment.create({student: s2, review_session: rs})
 	10.times do |j|
-		tq = TestQuestion.create({review_session: rs, question_text: "sample question", correct_answer: 'a'})
-		Choice.create({test_question: tq, choice_key: 'a', choice_text: 'choice a'})
-		Choice.create({test_question: tq, choice_key: 'b', choice_text: 'choice b'})
-		Choice.create({test_question: tq, choice_key: 'c', choice_text: 'choice c'})
-		Choice.create({test_question: tq, choice_key: 'd', choice_text: 'choice d'})
-		Choice.create({test_question: tq, choice_key: 'e', choice_text: 'choice e'})
+		tq = TestQuestion.create({review_session: rs, question_text: "sample question"})
+		ch1 = Choice.create({test_question: tq, choice_text: 'choice a'})
+		ch2 = Choice.create({test_question: tq, choice_text: 'choice b'})
+		ch3 = Choice.create({test_question: tq, choice_text: 'choice c'})
+		ch4 = Choice.create({test_question: tq, choice_text: 'choice d'})
+		ch5 = Choice.create({test_question: tq, choice_text: 'choice e'})
+		tq.update({correct_answer: ch1.id});
 	end
 	10.times do |j|
 		u = Unit.create({review_session: rs, title: "Geometry Unit #{j+1}"})
@@ -100,12 +103,13 @@ end
 	Assessment.create({student: s1, review_session: rs})
 	Assessment.create({student: s2, review_session: rs})
 	10.times do |j|
-		tq = TestQuestion.create({review_session: rs, question_text: "sample question", correct_answer: 'b'})
-		Choice.create({test_question: tq, choice_key: 'a', choice_text: 'choice a'})
-		Choice.create({test_question: tq, choice_key: 'b', choice_text: 'choice b'})
-		Choice.create({test_question: tq, choice_key: 'c', choice_text: 'choice c'})
-		Choice.create({test_question: tq, choice_key: 'd', choice_text: 'choice d'})
-		Choice.create({test_question: tq, choice_key: 'e', choice_text: 'choice e'})
+		tq = TestQuestion.create({review_session: rs, question_text: "sample question"})
+		ch1 = Choice.create({test_question: tq, choice_text: 'choice a'})
+		ch2 = Choice.create({test_question: tq, choice_text: 'choice b'})
+		ch3 = Choice.create({test_question: tq, choice_text: 'choice c'})
+		ch4 = Choice.create({test_question: tq, choice_text: 'choice d'})
+		ch5 = Choice.create({test_question: tq, choice_text: 'choice e'})
+		tq.update({correct_answer: ch2.id});
 	end
 	10.times do |j|
 		u = Unit.create({review_session: rs, title: "Algebra Unit #{j+1}"})
@@ -123,12 +127,13 @@ end
 	Assessment.create({student: s1, review_session: rs})
 	Assessment.create({student: s2, review_session: rs})
 	10.times do |j|
-		tq = TestQuestion.create({review_session: rs, question_text: "sample question", correct_answer: 'c'})
-		Choice.create({test_question: tq, choice_key: 'a', choice_text: 'choice a'})
-		Choice.create({test_question: tq, choice_key: 'b', choice_text: 'choice b'})
-		Choice.create({test_question: tq, choice_key: 'c', choice_text: 'choice c'})
-		Choice.create({test_question: tq, choice_key: 'd', choice_text: 'choice d'})
-		Choice.create({test_question: tq, choice_key: 'e', choice_text: 'choice e'})
+		tq = TestQuestion.create({review_session: rs, question_text: "sample question"})
+		ch1 = Choice.create({test_question: tq, choice_text: 'choice a'})
+		ch2 = Choice.create({test_question: tq, choice_text: 'choice b'})
+		ch3 = Choice.create({test_question: tq, choice_text: 'choice c'})
+		ch4 = Choice.create({test_question: tq, choice_text: 'choice d'})
+		ch5 = Choice.create({test_question: tq, choice_text: 'choice e'})
+		tq.update({correct_answer: ch3.id});
 	end
 	10.times do |j|
 		u = Unit.create({review_session: rs, title: "Calculus Unit #{j+1}"})
@@ -146,12 +151,13 @@ end
 	Assessment.create({student: s1, review_session: rs})
 	Assessment.create({student: s2, review_session: rs})
 	10.times do |j|
-		tq = TestQuestion.create({review_session: rs, question_text: "sample question", correct_answer: 'd'})
-		Choice.create({test_question: tq, choice_key: 'a', choice_text: 'choice a'})
-		Choice.create({test_question: tq, choice_key: 'b', choice_text: 'choice b'})
-		Choice.create({test_question: tq, choice_key: 'c', choice_text: 'choice c'})
-		Choice.create({test_question: tq, choice_key: 'd', choice_text: 'choice d'})
-		Choice.create({test_question: tq, choice_key: 'e', choice_text: 'choice e'})
+		tq = TestQuestion.create({review_session: rs, question_text: "sample question"})
+		ch1 = Choice.create({test_question: tq, choice_text: 'choice a'})
+		ch2 = Choice.create({test_question: tq, choice_text: 'choice b'})
+		ch3 = Choice.create({test_question: tq, choice_text: 'choice c'})
+		ch4 = Choice.create({test_question: tq, choice_text: 'choice d'})
+		ch5 = Choice.create({test_question: tq, choice_text: 'choice e'})
+		tq.update({correct_answer: ch4.id});
 	end
 	10.times do |j|
 		u = Unit.create({review_session: rs, title: "Trigonometry Unit #{j+1}"})

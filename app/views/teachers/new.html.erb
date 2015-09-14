@@ -1,0 +1,30 @@
+<a href="/teachers">Back to Teachers</a>
+
+<% if (session[:is_teacher] && session[:is_admin]) %>
+
+	<h1>NEW TEACHER</h1>
+
+	<form action="/teachers" method="post">
+		<label for="first_name">First Name</label>
+		<input type="text" name="first_name" placeholder="Enter First Name..."/><br>
+		<label for="last_name">Last Name</label>
+		<input type="text" name="last_name" placeholder="Enter Last Name..."/><br>
+		<label for="email">Email</label>
+		<input type="text" name="email" placeholder="Enter Email..."/><br>
+		<label for="password">Password</label>
+		<input type="text" name="password" placeholder="Enter Password..."/><br>
+		<label for="password_confirmation">Password Confirmation</label>
+		<input type="text" name="password_confirmation" placeholder="Confirm Password..."/><br>
+		<label for="is_admin">Admin?</label>
+		<input type="radio" name="is_admin" value="true">Yes
+		<input type="radio" name="is_admin" value="false" checked="checked">No
+		<br>
+		<input type="submit" value="Create Teacher"/>
+		<input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
+	</form>
+	
+<% else %>
+
+	<h1>Sorry, you are not authorized to view this page.</h1>
+
+<% end %>

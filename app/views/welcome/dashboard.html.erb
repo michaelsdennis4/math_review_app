@@ -20,7 +20,10 @@
 	<!-- open student assessments -->
 	<a href="/teacher_assessments/<%= session[:user_id] %>">My Open Assessments</a><br><br>
 	<!-- this will link to assessments index showing only open assessments for current user -->
-
+	<% if (session[:is_admin]) %>
+		<a href="/assessments">All Assessments</a><br><br>
+		<a href="/teachers">Teachers</a><br><br>
+	<% end %>
 
 <% else %>
 

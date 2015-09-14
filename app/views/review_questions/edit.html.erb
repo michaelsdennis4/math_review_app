@@ -9,6 +9,14 @@
 		<input type="text" name="question_text" value="<%= @question.question_text %>"/><br>
 		<label for="answer_text">Answer Text</label>
 		<input type="text" name="answer_text" value="<%= @question.answer_text %>"/><br>
+		<% if @question.is_active == true %>
+			<input type="radio" name="is_active" value="true" checked="checked">Yes
+			<input type="radio" name="is_active" value="false">No
+		<% else %>
+			<input type="radio" name="is_active" value="true">Yes
+			<input type="radio" name="is_active" value="false" checked="checked">No
+		<% end %>
+		<br>
 		<input type="submit" value="Update Question"/>
 		<input type="hidden" name="_method" value="patch"/>
 		<input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />

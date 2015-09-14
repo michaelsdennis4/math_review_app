@@ -1,0 +1,25 @@
+<a href="/dashboard">Dashboard</a>
+
+<% if (session[:is_teacher] && session[:is_admin]) %>
+
+	<h1>TEACHER INDEX</h1>
+
+	<ul>
+
+		<% @teachers.each do |teacher| %>
+
+			<li><a href="/teachers/<%= teacher.id %>"><%= teacher.first_name %> <%= teacher.last_name %></a></li>
+
+		<% end %>
+
+	</ul>
+
+<a href = "/teachers/new">Add a New Teacher</a>
+
+<% else %>
+
+	<h1>Sorry, you are not authorized to view this page.</h1>
+
+<% end %>
+
+

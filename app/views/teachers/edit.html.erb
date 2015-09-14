@@ -11,14 +11,26 @@
 		<input type="text" name="last_name" value="<%= @teacher.last_name %>"/><br>
 		<label for="email">Email</label>
 		<input type="text" name="email" value="<%= @teacher.email %>"/><br>
-		<label for="is_active">Active?</label>
-		<% if @teacher.is_active == true %>
-			<input type="radio" name="is_active" value="true" checked="checked">Yes
-			<input type="radio" name="is_active" value="false">No
-		<% else %>
-			<input type="radio" name="is_active" value="true">Yes
-			<input type="radio" name="is_active" value="false" checked="checked">No
+		<% if (@teacher.is_admin == true) %>
+			<label for="is_active">Active?</label>
+			<% if @teacher.is_active == true %>
+				<input type="radio" name="is_active" value="true" checked="checked">Yes
+				<input type="radio" name="is_active" value="false">No
+			<% else %>
+				<input type="radio" name="is_active" value="true">Yes
+				<input type="radio" name="is_active" value="false" checked="checked">No
+			<% end %>
+			<br>
+			<label for="is_admin">Admin?</label>
+			<% if @teacher.is_admin == true %>
+				<input type="radio" name="is_admin" value="true" checked="checked">Yes
+				<input type="radio" name="is_admin" value="false">No
+			<% else %>
+				<input type="radio" name="is_admin" value="true">Yes
+				<input type="radio" name="is_admin" value="false" checked="checked">No
+			<% end %>
 		<% end %>
+		<br>
 		<input type="submit" value="Update Profile"/>
 		<input type="hidden" name="_method" value="patch"/>
 		<input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />

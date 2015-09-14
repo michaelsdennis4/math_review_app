@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150909172430) do
+ActiveRecord::Schema.define(version: 20150914164130) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,7 +28,6 @@ ActiveRecord::Schema.define(version: 20150909172430) do
 
   create_table "choices", force: :cascade do |t|
     t.integer "test_question_id"
-    t.string  "choice_key",       null: false
     t.string  "choice_text"
     t.string  "choice_uid"
   end
@@ -54,6 +53,7 @@ ActiveRecord::Schema.define(version: 20150909172430) do
     t.string   "answer_uid"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "is_active",     default: true, null: false
   end
 
   create_table "review_sessions", force: :cascade do |t|
@@ -78,23 +78,25 @@ ActiveRecord::Schema.define(version: 20150909172430) do
   end
 
   create_table "teachers", force: :cascade do |t|
-    t.string   "first_name",                     null: false
-    t.string   "last_name",                      null: false
-    t.string   "email",                          null: false
-    t.string   "password_digest",                null: false
-    t.boolean  "is_active",       default: true, null: false
+    t.string   "first_name",                      null: false
+    t.string   "last_name",                       null: false
+    t.string   "email",                           null: false
+    t.string   "password_digest",                 null: false
+    t.boolean  "is_active",       default: true,  null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "is_admin",        default: false, null: false
   end
 
   create_table "test_questions", force: :cascade do |t|
     t.integer  "review_session_id"
     t.string   "question_text"
     t.string   "test_question_uid"
-    t.integer  "points",            default: 1, null: false
-    t.string   "correct_answer"
+    t.integer  "points",            default: 1,    null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "is_active",         default: true, null: false
+    t.integer  "correct_answer"
   end
 
   create_table "topics", force: :cascade do |t|

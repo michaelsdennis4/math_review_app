@@ -11,7 +11,7 @@
 
 class Choice < ActiveRecord::Base
 
-	validates :choice_key, presence: true
+	validates :choice_text, presence: true
 
 	belongs_to :test_question
 

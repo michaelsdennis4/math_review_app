@@ -12,8 +12,13 @@
 	<% else %>
 		<h3>Active?: No</h3>
 	<% end %>
+	<% if @teacher.is_admin == true %>
+		<h3>Admin?: Yes</h3>
+	<% else %>
+		<h3>Admin?: No</h3>
+	<% end %>
 
-	<a href="/teachers/<%= @teacher.id %>/edit">Edit My Profile</a>
+	<a href="/teachers/<%= @teacher.id %>/edit">Edit Profile</a>
 
 <% else %>
 

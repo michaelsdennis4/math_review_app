@@ -28,7 +28,7 @@ class TestQuestionsController < ApplicationController
 
 	def update
 		question = TestQuestion.find(params[:id])
-		if (question.update({question_text: params[:question_text], points: params[:points], correct_answer: params[:correct_answer]}))
+		if (question.update({question_text: params[:question_text], points: params[:points], correct_answer: params[:correct_answer], is_active: params[:is_active]}))
 			redirect_to "/test_questions/#{question.id}"
 		else
 			redirect_to "/test_questions/#{question.id}/edit"
