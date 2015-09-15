@@ -1,12 +1,16 @@
-<h1>WELCOME TO THE MATH REVIEW APP</h1>
+<div class="topnav">
+</div>
 
+<div class="mainbox">
 
-<a href="/sessions/new_teacher">Teacher Login</a><br><br>
+	<h1>WELCOME TO MATHEMATICS REVIEW</h1>
 
-<a href="/sessions/new_student">Student Login</a><br><br>
+	<form action="/sessions/new_teacher">
+    <input type="submit" value="Teacher Login">
+	</form>
 
-<form action="/logout" method="post">
-	<input type="submit" value="Logout"/>
-	<input type="hidden" name="_method" value="delete"/>
-	<input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
-</form>
+	<form action="/sessions/new_student">
+    <input type="submit" value="Student Login">
+	</form>
+
+</div>

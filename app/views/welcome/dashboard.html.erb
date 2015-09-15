@@ -1,42 +1,57 @@
-<form action="/logout" method="post">
-	<input type="submit" value="Logout"/>
-	<input type="hidden" name="_method" value="delete"/>
-	<input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
-</form>
+<div class="topnav">
+</div>
 
-<% if (session[:is_teacher]) %>
+<div class="mainbox">
 
-	<h1>TEACHER DASHBOARD</h1>
+	<% if (session[:is_teacher]) %>
 
-	<!-- list of courses -->
-	<a href="/courses">Courses</a><br><br>
+		<h2>Teacher Dashboard</h2>
 
-	<!-- link to student profiles -->
-	<a href="/students">Students</a><br><br>
+		<form action="/courses">
+		  <input type="submit" value="Courses">
+		</form>
 
-	<!-- link to own profile -->
-	<a href="/teachers/<%= session[:user_id] %>">My Profile</a><br><br>
+		<form action="/students">
+      <input type="submit" value="Students">
+	  </form>
 
-	<!-- open student assessments -->
-	<a href="/teacher_assessments/<%= session[:user_id] %>">My Open Assessments</a><br><br>
-	<!-- this will link to assessments index showing only open assessments for current user -->
-	<% if (session[:is_admin]) %>
-		<a href="/assessments">All Assessments</a><br><br>
-		<a href="/teachers">Teachers</a><br><br>
+	  <form action="/teachers/<%= session[:user_id] %>">
+      <input type="submit" value="My Profile">
+	  </form>
+
+	  <form action="/teacher_assessments/<%= session[:user_id] %>">
+      <input type="submit" value="My Assessments">
+	  </form>
+
+		<% if (session[:is_admin]) %>
+
+			<h5>For Administrators Only</h5>
+
+			<form action="/assessments">
+	      <input type="submit" value="All Assessments">
+		  </form>
+
+		  <form action="/teachers">
+	      <input type="submit" value="Teachers">
+		  </form>
+
+		<% end %>
+
+	<% else %>
+
+		<h2>Student Dashboard</h2>
+
+		<form action="/student_assessments/<%= session[:user_id] %>">
+	    <input type="submit" value="My Review Sessions">
+		</form>
+
+		<form action="/students/<%= session[:user_id] %>">
+	    <input type="submit" value="My Profile">
+		</form>
+
 	<% end %>
 
-<% else %>
-
-	<h1>STUDENT DASHBOARD</h1>
-
-	<!-- list of review sessions assigned -->
-	<a href="/student_assessments/<%= session[:user_id] %>">My Review Sessions</a><br><br>
-
-	<!-- link to own profile -->
-	<a href="/students/<%= session[:user_id] %>">My Profile</a><br><br>
-
-
-<% end %>
+</div>
 
 
 

@@ -1,29 +1,37 @@
-<a href="/courses">Back to Courses</a>
+<div class="topnav">
+	<a href="/courses">Back to Courses</a>
+</div>
 
 <% if (session[:is_teacher]) %>
 
-	<h1>COURSE SHOW</h1>
+	<div class="mainbox">
 
-	<h3><%= @course.name %></h3>
+		<h2>Courses</h2>
 
-	<a href="/courses/<%= @course.id %>/edit">Edit Course</a>
+		<h3><%= @course.name %></h3>
 
-	<h4>Review Sessions</h4>
+		<a href="/courses/<%= @course.id %>/edit">Edit Course</a>
 
-	<ul>
-		<% @course.review_sessions.each do |session| %>
+		<h4>Review Sessions</h4>
 
-			<li><a href="/review_sessions/<%= session.id %>"><%= session.title %></a></li>
+		<ul>
+			<% @course.review_sessions.each do |session| %>
 
-		<% end %>
+				<li><a href="/review_sessions/<%= session.id %>"><%= session.title %></a></li>
 
-	</ul>
+			<% end %>
 
-	<a href="/courses/<%= @course.id %>/review_sessions/new">Add a Review Session</a>
+		</ul>
+
+		<a href="/courses/<%= @course.id %>/review_sessions/new">Add a Review Session</a>
 	
+	</div>
 
 <% else %>
 
-	<h1>Sorry, you are not authorized to view this page.</h1>
+	<div class="sorry">
+		<h1>Sorry, you are not authorized to view this page.</h1>
+	</div>
 
 <% end %>
+

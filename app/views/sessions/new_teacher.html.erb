@@ -1,6 +1,10 @@
-<a href="/">Home</a>
+<div class="topnav">
+	<a href="/">Home</a>
+</div>
 
-<h1>Teacher Login</h1>
+<div class="mainbox">
+
+	<h2>Teacher Login</h2>
 
 	<form action="/teacher_login" method="post">
 		<label for="email">E-mail</label><br>
@@ -12,4 +16,6 @@
 		<input type="submit" value="Login"/>
 		<input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
 	</form>
+
+</div>
  

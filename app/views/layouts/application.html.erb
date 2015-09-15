@@ -4,11 +4,28 @@
   <title>MathReviewApp</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
   <%= csrf_meta_tags %>
 </head>
 <body>
 
+	<header>
+
+		<% if (session[:user_id]) %>
+			<h5>Hello, <%= session[:user_name] %></h5>
+			<form action="/logout" method="post">
+				<input type="submit" value="Logout"/>
+				<input type="hidden" name="_method" value="delete"/>
+				<input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
+			</form>
+
+		<% end %>
+
+	</header>
+
 <%= yield %>
+
+	<footer></footer>
 
 </body>
 </html>

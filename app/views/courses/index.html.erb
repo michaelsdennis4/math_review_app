@@ -1,24 +1,32 @@
-<a href="/dashboard">Back to Dashboard</a>
+<div class="topnav">
+	<a href="/dashboard">Back to Dashboard</a>
+</div>
 
 <% if (session[:is_teacher]) %>
 
-	<h1>COURSES INDEX</h1>
+	<div class="mainbox">
 
-	<ul>
+		<h2>Courses</h2>
 
-	<% @courses.each do |course| %>
+		<ul>
 
-		<li><a href="/courses/<%= course.id %>"><%= course.name %></a></li>
+		<% @courses.each do |course| %>
 
-	<% end %>
+			<li><a href="/courses/<%= course.id %>"><%= course.name %></a></li>
 
-	</ul>
+		<% end %>
 
-	<a href="/courses/new">Add a New Course</a>
+		</ul>
+
+		<a href="/courses/new">Add a New Course</a>
+
+	</div>
 
 <% else %>
 
-	<h1>Sorry, you are not authorized to view this page.</h1>
+	<div class="sorry">
+		<h1>Sorry, you are not authorized to view this page.</h1>
+	</div>
 
 <% end %>
 
