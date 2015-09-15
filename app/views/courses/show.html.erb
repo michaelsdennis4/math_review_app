@@ -1,29 +1,32 @@
 <div class="topnav">
-	<a href="/courses">Back to Courses</a>
+	<form action="/courses">
+    <input type="submit" value="Back to Courses">
+	</form>
 </div>
 
 <% if (session[:is_teacher]) %>
 
 	<div class="mainbox">
 
-		<h2>Courses</h2>
-
-		<h3><%= @course.name %></h3>
-
-		<a href="/courses/<%= @course.id %>/edit">Edit Course</a>
+		<h2><%= @course.name %></h2>
 
 		<h4>Review Sessions</h4>
 
-		<ul>
-			<% @course.review_sessions.each do |session| %>
+		<% @course.review_sessions.each do |session| %>
 
-				<li><a href="/review_sessions/<%= session.id %>"><%= session.title %></a></li>
+			<form action="/review_sessions/<%= session.id %>">
+		    <input type="submit" value="<%= session.title %>">
+			</form>
 
-			<% end %>
+		<% end %>
 
-		</ul>
+		<form action="/courses/<%= @course.id %>/review_sessions/new">
+	    <input class="lite" type="submit" value="Add a Review Session">
+		</form>
 
-		<a href="/courses/<%= @course.id %>/review_sessions/new">Add a Review Session</a>
+		<form action="/courses/<%= @course.id %>/edit">
+	    <input class="lite" type="submit" value="Edit Course">
+		</form>
 	
 	</div>
 

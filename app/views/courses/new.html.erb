@@ -1,17 +1,28 @@
-<a href="/courses">Back to Courses</a>
+<div class="topnav">
+	<form action="/courses">
+    <input type="submit" value="Back to Courses">
+	</form>
+</div>
 
 <% if (session[:is_teacher]) %>
 
-	<h1>NEW COURSE</h1>
+	<div class="mainbox">
 
-	<form action="/courses" method="post">
-		<input type="text" name="name" placeholder="Enter Course Name..."/>
-		<input type="submit" value="Create Course"/>
-		<input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
-	</form>
+		<h2>Create New Course</h2>
+
+		<form action="/courses" method="post">
+			<label for="name">Course Name:</label>
+			<input type="text" name="name" placeholder="Enter Course Name..."/>
+			<input type="submit" value="Create Course"/>
+			<input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
+		</form>
+
+	</div>
 	
 <% else %>
 
-	<h1>Sorry, you are not authorized to view this page.</h1>
+	<div class="sorry">
+		<h1>Sorry, you are not authorized to view this page.</h1>
+	</div>
 
 <% end %>

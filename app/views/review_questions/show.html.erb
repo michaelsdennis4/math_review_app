@@ -1,4 +1,8 @@
-<a href="/topics/<%= @question.topic.id %>">Back to <%= @question.topic.title %></a>
+<div class="topnav">
+	<form action="/topics/<%= @question.topic.id %>">
+    <input type="submit" value="Back to <%= @question.topic.title %>">
+	</form>
+</div>
 
 <h1>REVIEW QUESTION SHOW</h1>
 

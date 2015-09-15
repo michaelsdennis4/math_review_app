@@ -1,48 +1,71 @@
-<a href="/courses/<%= @session.course.id %>">Back to <%= @session.course.name %></a>
+<div class="topnav">
+	<form action="/courses/<%= @session.course.id %>">
+    <input type="submit" value="Back to <%= @session.course.name %>">
+	</form>
+</div>
 
-<h1>REVIEW SESSION SHOW</h1>
+<div class="mainbox">
 
-<h3>Course: <%= @session.course.name %></h3>
-<h3>Created by: <%= @session.teacher.first_name %> <%= @session.teacher.last_name %></h3>
-<h3>Title: <%= @session.title %></h3>
-<h3>Total Test Points: <%= @session.total_test_points %></h3>
+	<h2><%= @session.title %></h2>
 
-<a href="/review_sessions/<%= @session.id %>/edit">Edit Review Session</a>
+	<h4>Created by: <%= @session.teacher.first_name %> <%= @session.teacher.last_name %></h4>
+	<h4>Course: <%= @session.course.name %></h4>
+	<% if (@session.total_test_points) %>
+		<h4>Total Test Points: <%= @session.total_test_points %></h4>
+	<% end %>
+	<br>
 
-<h4>Units</h4>
+	<h3>Units</h3>
 
-<ul>
 	<% @session.units.each do |unit| %>
-	
-		<li><a href="/units/<%= unit.id %>"><%= unit.title %></a></li>
+
+		<form action="/units/<%= unit.id %>">
+	    <input type="submit" value="<%= unit.title %>">
+		</form>
 
 	<% end %>
 
-</ul>
+	<form action="/review_sessions/<%= @session.id %>/units/new">
+    <input class="lite" type="submit" value="Add a Unit">
+	</form>
 
-<a href="/review_sessions/<%= @session.id %>/units/new">Add a Unit</a>
+	<br>
 
-<h4>Assessments</h4>
+	<h3>Assessments</h3>
 
-<ul>
-	<% @session.assessments.each do |assessment| %>
-	
-		<li><a href="/assessments/<%= assessment.id %>"><%= assessment.student.first_name %> <%= assessment.student.last_name %></a></li>
+		<% @session.assessments.each do |assessment| %>
 
-	<% end %>
+			<form action="/assessments/<%= assessment.id %>">
+		    <input type="submit" value="<%= assessment.student.first_name %> <%= assessment.student.last_name %>">
+			</form>
+		
+		<% end %>
 
-</ul>
+	<br>
 
-<h4>Test Questions</h4>
+	<h3>Test Questions</h3>
 
-<ul>
+	<% i = 1 %>
+
 	<% @session.test_questions.each do |question| %>
-	
-		<li><a href="/test_questions/<%= question.id %>"><%= question.id %></a></li>
+
+		<form action="/test_questions/<%= question.id %>">
+	    <input type="submit" value="Test Question <%= i %>">
+		</form>
+
+		<% i = i+1 %>
 
 	<% end %>
 
-</ul>
+	<form action="/review_sessions/<%= @session.id %>/test_questions/new">
+    <input class="lite" type="submit" value="Add a Test Question">
+	</form>
 
-<a href="/review_sessions/<%= @session.id %>/test_questions/new">Add a Test Question</a>
+	<br>
+
+	<form action="/review_sessions/<%= @session.id %>/edit">
+    <input class="lite" type="submit" value="Edit Review Session">
+	</form>	
+
+</div>
 

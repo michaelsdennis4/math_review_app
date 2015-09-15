@@ -1,24 +1,26 @@
 <div class="topnav">
-	<a href="/dashboard">Back to Dashboard</a>
+	<form action="/dashboard">
+    <input type="submit" value="Back to Dashboard">
+	</form>
 </div>
 
 <% if (session[:is_teacher]) %>
 
 	<div class="mainbox">
 
-		<h2>Courses</h2>
-
-		<ul>
+		<h2>Choose a Course</h2>
 
 		<% @courses.each do |course| %>
 
-			<li><a href="/courses/<%= course.id %>"><%= course.name %></a></li>
+			<form action="/courses/<%= course.id %>">
+		    <input type="submit" value="<%= course.name %>">
+			</form>
 
 		<% end %>
 
-		</ul>
-
-		<a href="/courses/new">Add a New Course</a>
+		<form action="/courses/new">
+	    <input class="lite" type="submit" value="Add a New Course">
+		</form>
 
 	</div>
 
