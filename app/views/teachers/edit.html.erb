@@ -1,45 +1,56 @@
-<a href="/teachers/<%= @teacher.id %>">Back to <%= @teacher.first_name %> <%= @teacher.last_name %></a>
+<div class="topnav">
+	<form action="/teachers/<%= @teacher.id %>">
+    <input type="submit" value="Back to <%= @teacher.first_name %> <%= @teacher.last_name %>">
+	</form>
+</div>
 
 <% if (session[:is_teacher]) %>
 
-	<h1>TEACHER PROFILE EDIT</h1>
+	<div class="mainbox">
 
-	<form action="/teachers/<%= @teacher.id %>" method="post">
-		<label for="first_name">First Name</label>
-		<input type="text" name="first_name" value="<%= @teacher.first_name %>"/><br>
-		<label for="last_name">Last Name</label>
-		<input type="text" name="last_name" value="<%= @teacher.last_name %>"/><br>
-		<label for="email">Email</label>
-		<input type="text" name="email" value="<%= @teacher.email %>"/><br>
-		<% if (@teacher.is_admin == true) %>
-			<label for="is_active">Active?</label>
-			<% if @teacher.is_active == true %>
-				<input type="radio" name="is_active" value="true" checked="checked">Yes
-				<input type="radio" name="is_active" value="false">No
-			<% else %>
-				<input type="radio" name="is_active" value="true">Yes
-				<input type="radio" name="is_active" value="false" checked="checked">No
-			<% end %>
+		<h2>Edit Teacher Profile</h2>
+
+		<form action="/teachers/<%= @teacher.id %>" method="post">
+			<label for="first_name">First Name</label><br>
+			<input type="text" name="first_name" value="<%= @teacher.first_name %>"/><br>
+			<label for="last_name">Last Name</label><br>
+			<input type="text" name="last_name" value="<%= @teacher.last_name %>"/><br>
+			<label for="email">Email</label><br>
+			<input type="text" name="email" value="<%= @teacher.email %>"/><br>
 			<br>
-			<label for="is_admin">Admin?</label>
-			<% if @teacher.is_admin == true %>
-				<input type="radio" name="is_admin" value="true" checked="checked">Yes
-				<input type="radio" name="is_admin" value="false">No
-			<% else %>
-				<input type="radio" name="is_admin" value="true">Yes
-				<input type="radio" name="is_admin" value="false" checked="checked">No
+			<% if (@teacher.is_admin == true) %>
+				<label for="is_active">Active?</label>
+				<% if @teacher.is_active == true %>
+					<input type="radio" name="is_active" value="true" checked="checked">Yes
+					<input type="radio" name="is_active" value="false">No
+				<% else %>
+					<input type="radio" name="is_active" value="true">Yes
+					<input type="radio" name="is_active" value="false" checked="checked">No
+				<% end %>
+				<br><br>
+				<label for="is_admin">Admin?</label>
+				<% if @teacher.is_admin == true %>
+					<input type="radio" name="is_admin" value="true" checked="checked">Yes
+					<input type="radio" name="is_admin" value="false">No
+				<% else %>
+					<input type="radio" name="is_admin" value="true">Yes
+					<input type="radio" name="is_admin" value="false" checked="checked">No
+				<% end %>
 			<% end %>
-		<% end %>
-		<br>
-		<input type="submit" value="Update Profile"/>
-		<input type="hidden" name="_method" value="patch"/>
-		<input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
-	</form>
+			<br><br>
+			<input type="submit" value="Update Profile"/>
+			<input type="hidden" name="_method" value="patch"/>
+			<input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
+		</form>
 
-	<!-- need form to change password -->
+		<!-- need form to change password -->
+
+	</div>
 	
 <% else %>
 
-	<h1>Sorry, you are not authorized to view this page.</h1>
+	<div class="sorry">
+		<h1>Sorry, you are not authorized to view this page.</h1>
+	</div>
 
 <% end %>

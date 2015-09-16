@@ -1,20 +1,30 @@
-<a href="/review_sessions/<%= @session.id %>">Back to <%= @session.title %></a>
+<div class="topnav">
+	<form action="/review_sessions/<%= @session.id %>">
+    <input type="submit" value="Back to <%= @session.title %>">
+	</form>
+</div>
 
 <% if (session[:is_teacher]) %>
 
-	<h1>NEW UNIT</h1>
+	<div class="mainbox">
 
-	<form action="/review_sessions/<%= @session.id %>/units" method="post">
-		<label for="title">Unit Title</label>
-		<input type="text" name="title" placeholder="Enter Unit Title..."/><br>
-		<label for="description">Unit Description</label>
-		<input type="text" name="description" placeholder="Enter Unit Description..."/><br>
-		<input type="submit" value="Create Unit"/>
-		<input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
-	</form>
+		<h2>Create New Unit</h2>
+
+		<form action="/review_sessions/<%= @session.id %>/units" method="post">
+			<label for="title">Unit Title</label>
+			<input type="text" name="title" placeholder="Enter Unit Title..."/><br>
+			<label for="description">Unit Description</label>
+			<textarea name="description" placeholder="Enter Unit Description..."></textarea><br>
+			<input type="submit" value="Create Unit"/>
+			<input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
+		</form>
+
+	</div>
 	
 <% else %>
 
-	<h1>Sorry, you are not authorized to view this page.</h1>
+	<div class="sorry">
+		<h1>Sorry, you are not authorized to view this page.</h1>
+	</div>
 
 <% end %>

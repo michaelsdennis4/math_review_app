@@ -1,28 +1,35 @@
-<a href="/test_questions/<%= @choice.test_question.id %>">Back to <%= @choice.test_question.id %></a>
+<div class="topnav">
+	<form action="/test_questions/<%= @choice.test_question.id %>">
+    <input type="submit" value="Back to <%= @choice.test_question.id %>">
+	</form>
+</div>
 
 <% if (session[:is_teacher]) %>
 
-	<h1>CHOICE EDIT</h1>
+	<div class="mainbox">
 
-	<form action="/choices/<%= @choice.id %>" method="post">
-		<label for="choice_key">Choice Key</label>
-		<input type="text" name="choice_key" value="<%= @choice.choice_key %>"/><br>
-		<label for="choice_text">Choice Test</label>
-		<input type="text" name="choice_text" value="<%= @choice.choice_text %>"/><br>
-		<input type="submit" value="Update Choice"/>
-		<input type="hidden" name="_method" value="patch"/>
-		<input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
-	</form>
+		<h2>Edit Choice</h2>
 
-	<form action="/choices/<%= @choice.id %>" method="post">
-		<input type="submit" value="Delete Choice"/>
-		<input type="hidden" name="_method" value="delete"/>
-		<input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
-	</form>
+		<form action="/choices/<%= @choice.id %>" method="post">
+			<label for="choice_text">Choice Text</label>
+			<textarea name="choice_text"><%= @choice.choice_text %></textarea><br>
+			<input type="submit" value="Update Choice"/>
+			<input type="hidden" name="_method" value="patch"/>
+			<input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
+		</form>
 
+		<form action="/choices/<%= @choice.id %>" method="post">
+			<input type="submit" value="Delete Choice"/>
+			<input type="hidden" name="_method" value="delete"/>
+			<input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
+		</form>
+
+	</div>
 	
 <% else %>
 
-	<h1>Sorry, you are not authorized to view this page.</h1>
+	<div class="sorry">
+		<h1>Sorry, you are not authorized to view this page.</h1>
+	</div>
 
 <% end %>

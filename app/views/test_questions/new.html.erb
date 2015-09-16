@@ -1,20 +1,30 @@
-<a href="/review_sessions/<%= @session.id %>">Back to <%= @session.title %></a>
+<div class="topnav">
+	<form action="/review_sessions/<%= @session.id %>">
+    <input type="submit" value="/review_sessions/<%= @session.id %>">
+	</form>
+</div>
 
 <% if (session[:is_teacher]) %>
 
-	<h1>NEW TEST QUESTION</h1>
+	<div class="mainbox">
+
+	<h2>Create a Test Question</h2>
 
 	<form action="/review_sessions/<%= @session.id %>/test_questions" method="post">
 		<label for="question_text">Question Text</label>
-		<input type="text" name="question_text" placeholder="Enter Question Text..."/><br>		
+		<textarea name="question_text" placeholder="Enter Question Text..."></textarea><br>		
 		<label for="points">Points Worth</label>
-		<input type="text" name="points" placeholder="Enter Points Worth..."/><br>
+		<input type="text" name="points" placeholder="Enter Points Worth... (default 1 point)"/><br>
 		<input type="submit" value="Create Question"/>
 		<input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
 	</form>
+
+	</div>
 	
 <% else %>
 
-	<h1>Sorry, you are not authorized to view this page.</h1>
+	<div class="sorry">
+		<h1>Sorry, you are not authorized to view this page.</h1>
+	</div>
 
 <% end %>

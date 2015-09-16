@@ -4,21 +4,28 @@
 	</form>
 </div>
 
-<h1>REVIEW QUESTION SHOW</h1>
+<div class="mainbox">
 
-<p><%= @question.question_text %></p>
+	<h2>Review Question</h2>
 
-<!-- question image -->
+	<h4>Question:</h4>
+	<p><%= @question.question_text %></p>
 
-<p><%= @question.answer_text %></p>
+	<!-- question image -->
 
-<!-- answer image -->
+	<h4>Answer:</h4>
+	<p><%= @question.answer_text %></p>
 
-<% if (@question.is_active == true) %>
-	<h3>Active: Yes</h3>
-<% else %>
-	<h3>Active: No</h3>
-<% end %>
+	<!-- answer image -->
 
+	<% if (@question.is_active == true) %>
+		<h4>Active: Yes</h4>
+	<% else %>
+		<h4>Active: No</h4>
+	<% end %>
 
-<a href="/review_questions/<%= @question.id %>/edit">Edit Question</a>
+	<form action="/review_questions/<%= @question.id %>/edit">
+    <input type="submit" value="Edit Question">
+	</form>
+
+</div>

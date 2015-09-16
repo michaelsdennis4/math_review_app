@@ -1,20 +1,30 @@
-<a href="/topics/<%= @topic.id %>">Back to <%= @topic.title %></a>
+<div class="topnav">
+	<form action="/topics/<%= @topic.id %>">
+    <input type="submit" value="Back to <%= @topic.title %>">
+	</form>
+</div>
 
 <% if (session[:is_teacher]) %>
 
-	<h1>NEW REVIEW QUESTION</h1>
+	<div class="mainbox">
 
-	<form action="/topics/<%= @topic.id %>/review_questions" method="post">
-		<label for="question_text">Question Text</label>
-		<input type="text" name="question_text" placeholder="Enter Question Text..."/><br>
-		<label for="answer_text">Answer Text</label>
-		<input type="text" name="answer_text" placeholder="Enter Answer Text..."/><br>
-		<input type="submit" value="Create Question"/>
-		<input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
-	</form>
+		<h2>Create a Review Question</h2>
+
+		<form action="/topics/<%= @topic.id %>/review_questions" method="post">
+			<label for="question_text">Question Text</label>
+			<textarea name="question_text" placeholder="Enter Question Text..."></textarea><br>
+			<label for="answer_text">Answer Text</label>
+			<textarea name="answer_text" placeholder="Enter Answer Text..."></textarea><br>
+			<input type="submit" value="Create Question"/>
+			<input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
+		</form>
+
+	</div>
 	
 <% else %>
 
-	<h1>Sorry, you are not authorized to view this page.</h1>
+	<div class="sorry">
+		<h1>Sorry, you are not authorized to view this page.</h1>
+	</div>
 
 <% end %>

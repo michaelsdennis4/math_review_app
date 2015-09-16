@@ -1,16 +1,30 @@
-<a href="/dashboard">Back to Dashboard</a>
+<div class="topnav">
+	<form action="/dashboard">
+    <input type="submit" value="Back to Dashboard">
+	</form>
+</div>
 
-<h1>STUDENT SHOW</h1>
+<div class="mainbox">
 
-<h3>First Name: <%= @student.first_name %></h3>
-<h3>Last Name: <%= @student.last_name %></h3>
-<h3>Email: <%= @student.email %></h3>
-<h3>Student ID: <%= @student.identification %></h3>
-<h3>Graduation Year: <%= @student.grad_year %></h3>
-<h3>Status: <%= @student.status %></h3>
+	<h2>Student Profile</h2>
 
-<% if (session[:is_teacher]) %>
+	<h4>First Name: <%= @student.first_name %></h4>
+	<h4>Last Name: <%= @student.last_name %></h4>
+	<h4>Email: <%= @student.email %></h4>
+	<h4>Student ID: <%= @student.identification %></h4>
+	<h4>Graduation Year: <%= @student.grad_year %></h4>
+	<h4>Status: <%= @student.status %></h4>
+
+	<h3>Assessments</h3>
+
+	<!-- list of student assessments -->
+
+	<% if (session[:is_teacher]) %>
 
 
 
-<% end %>
+
+
+	<% end %>
+
+</div>

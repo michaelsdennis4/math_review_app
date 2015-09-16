@@ -1,24 +1,34 @@
-<a href="/dashboard">Dashboard</a>
+<div class="topnav">
+	<form action="/dashboard">
+    <input type="submit" value="Dashboard">
+	</form>
+</div>
 
 <% if (session[:is_teacher] && session[:is_admin]) %>
 
-	<h1>TEACHER INDEX</h1>
+	<div class="mainbox">
 
-	<ul>
+		<h2>Teachers</h2>
 
 		<% @teachers.each do |teacher| %>
 
-			<li><a href="/teachers/<%= teacher.id %>"><%= teacher.first_name %> <%= teacher.last_name %></a></li>
+			<form action="/teachers/<%= teacher.id %>">
+		    <input type="submit" value="<%= teacher.first_name %> <%= teacher.last_name %>">
+			</form>
 
 		<% end %>
 
-	</ul>
+		<form action="/teachers/new">
+	    <input class="lite" type="submit" value="Add a New Teacher">
+		</form>
 
-<a href = "/teachers/new">Add a New Teacher</a>
+</div>
 
 <% else %>
 
-	<h1>Sorry, you are not authorized to view this page.</h1>
+	<div class="sorry">
+		<h1>Sorry, you are not authorized to view this page.</h1>
+	</div>
 
 <% end %>
 

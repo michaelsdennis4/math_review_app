@@ -1,28 +1,46 @@
-<a href="/units/<%= @topic.unit.id %>">Back to <%= @topic.unit.title %></a>
+<div class="topnav">
+	<form action="/units/<%= @topic.unit.id %>">
+    <input type="submit" value="Back to <%= @topic.unit.title %>">
+	</form>
+</div>
 
-<h1>TOPIC SHOW</h1>
+<div class="mainbox">
 
-<h3>Course: <%= @topic.unit.review_session.course.name %></h3>
-<h3>Created by: <%= @topic.unit.review_session.teacher.first_name %> <%= @topic.unit.review_session.teacher.last_name %></h3>
-<h3>Review Session Title: <%= @topic.unit.review_session.title %></h3>
-<h3>Unit Title: <%= @topic.unit.title %></h3>
-<h3>Topic Title: <%= @topic.title %></h3>
-<h3>Video URL: <%= @topic.video_url %></h3>
-<p>Description: <%= @topic.description %></p>
+	<h2><%= @topic.title %></h2>
 
-<a href="/topics/<%= @topic.id %>/edit">Edit Topic</a>
+	<h4>Course: <%= @topic.unit.review_session.course.name %></h4>
+	<h4>Created by: <%= @topic.unit.review_session.teacher.first_name %> <%= @topic.unit.review_session.teacher.last_name %></h4>
+	<h4>Review Session Title: <%= @topic.unit.review_session.title %></h4>
+	<h4>Unit Title: <%= @topic.unit.title %></h4>
+	<h4>Video URL: <%= @topic.video_url %></h4>
+	<h4>Description:</h4>
+	<p><%= @topic.description %></p>
 
+	<br>
 
-<h4>Review Questions</h4>
+	<h3>Review Questions</h3>
 
-<ul>
+	<% i=1 %>
+
 	<% @topic.review_questions.each do |question| %>
-	
-		<li><a href="/review_questions/<%= question.id %>"><%= question.id %></a></li>
+
+		<form action="/review_questions/<%= question.id %>">
+	    <input type="submit" value="Review Question <%= i %>">
+		</form>
+
+		<% i = i+1 %>
 
 	<% end %>
 
-</ul>
+	<form action="/topics/<%= @topic.id %>/review_questions/new">
+	  <input class="lite" type="submit" value="Add a New Question">
+	</form>
 
-<a href="/topics/<%= @topic.id %>/review_questions/new">Add a New Question</a>
+	<br>
+
+	<form action="/topics/<%= @topic.id %>/edit">
+	  <input class="lite" type="submit" value="Edit Topic">
+	</form>
+
+</div>
 

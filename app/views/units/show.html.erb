@@ -1,26 +1,40 @@
-<a href="/review_sessions/<%= @unit.review_session.id %>">Back to <%= @unit.review_session.title %></a>
+<div class="topnav">
+	<form action="/review_sessions/<%= @unit.review_session.id %>">
+    <input type="submit" value="Back to <%= @unit.review_session.title %>">
+	</form>
+</div>
 
-<h1>UNIT SHOW</h1>
+<div class="mainbox">
 
-<h3>Course: <%= @unit.review_session.course.name %></h3>
-<h3>Created by: <%= @unit.review_session.teacher.first_name %> <%= @unit.review_session.teacher.last_name %></h3>
-<h3>Review Session Title: <%= @unit.review_session.title %></h3>
-<h3>Unit Title: <%= @unit.title %></h3>
-<p>Description: <%= @unit.description %></p>
+	<h2><%= @unit.title %></h2>
 
-<a href="/units/<%= @unit.id %>/edit">Edit Unit</a>
+	<h4>Course: <%= @unit.review_session.course.name %></h4>
+	<h4>Created by: <%= @unit.review_session.teacher.first_name %> <%= @unit.review_session.teacher.last_name %></h4>
+	<h4>Review Session: <%= @unit.review_session.title %></h4>
+	<h4>Description:</h4>
+	<p><%= @unit.description %></p>
 
-<h4>Topics</h4>
+	<br>
 
-<ul>
+	<h3>Topics</h3>
+
 	<% @unit.topics.each do |topic| %>
-	
-		<li><a href="/topics/<%= topic.id %>"><%= topic.title %></a></li>
 
+		<form action="/topics/<%= topic.id %>">
+	    <input type="submit" value="<%= topic.title %>">
+		</form>
+	
 	<% end %>
 
-</ul>
+	<form action="/units/<%= @unit.id %>/topics/new">
+    <input class="lite" type="submit" value="Add a New Topic">
+	</form>
 
-<a href="/units/<%= @unit.id %>/topics/new">Add a New Topic</a>
+	<br>
 
+	<form action="/units/<%= @unit.id %>/edit">
+    <input class="lite" type="submit" value="Edit Unit">
+	</form>
+
+</div>
 

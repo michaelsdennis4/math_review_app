@@ -10,9 +10,7 @@
 
 	<h4>Created by: <%= @session.teacher.first_name %> <%= @session.teacher.last_name %></h4>
 	<h4>Course: <%= @session.course.name %></h4>
-	<% if (@session.total_test_points) %>
-		<h4>Total Test Points: <%= @session.total_test_points %></h4>
-	<% end %>
+	
 	<br>
 
 	<h3>Units</h3>
@@ -41,9 +39,17 @@
 		
 		<% end %>
 
+		<form action="">
+	    <input class="lite" type="submit" value="Add an Assessment">
+		</form>
+
 	<br>
 
 	<h3>Test Questions</h3>
+
+	<% if (@session.total_test_points) %>
+		<h4>Total Test Points: <%= @session.total_test_points %></h4>
+	<% end %>
 
 	<% i = 1 %>
 

@@ -1,27 +1,39 @@
-<a href="/dashboard">Back to Dashboard</a>
+<div class="topnav">
+	<form action="/dashboard">
+    <input type="submit" value="Back to Dashboard">
+	</form>
+</div>
 
 <% if (session[:is_teacher]) %>
 
-	<h1>TEACHER SHOW</h1>
+	<div class="mainbox">
 
-	<h3>First Name: <%= @teacher.first_name %></h3>
-	<h3>Last Name: <%= @teacher.last_name %></h3>
-	<h3>Email: <%= @teacher.email %></h3>
-	<% if @teacher.is_active == true %>
-		<h3>Active?: Yes</h3>
-	<% else %>
-		<h3>Active?: No</h3>
-	<% end %>
-	<% if @teacher.is_admin == true %>
-		<h3>Admin?: Yes</h3>
-	<% else %>
-		<h3>Admin?: No</h3>
-	<% end %>
+		<h2>Teacher Profile</h2>
 
-	<a href="/teachers/<%= @teacher.id %>/edit">Edit Profile</a>
+		<h4>First Name: <%= @teacher.first_name %></h4>
+		<h4>Last Name: <%= @teacher.last_name %></h4>
+		<h4>Email: <%= @teacher.email %></h4>
+		<% if @teacher.is_active == true %>
+			<h4>Active?: Yes</h4>
+		<% else %>
+			<h4>Active?: No</h4>
+		<% end %>
+		<% if @teacher.is_admin == true %>
+			<h4>Admin?: Yes</h4>
+		<% else %>
+			<h4>Admin?: No</h4>
+		<% end %>
+
+		<form action="/teachers/<%= @teacher.id %>/edit">
+	    <input type="submit" value="Edit Profile">
+		</form>
+
+	</div>
 
 <% else %>
 
-	<h1>Sorry, you are not authorized to view this page.</h1>
+	<div class="sorry">
+		<h1>Sorry, you are not authorized to view this page.</h1>
+	</div>
 
 <% end %>
