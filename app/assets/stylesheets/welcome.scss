@@ -5,7 +5,7 @@ body {
 }
 
 .topnav {
-	margin-top: 120px;
+	margin-top: 160px;
 	margin-bottom: 30px;
 	text-align: center;
 	font-size: 16px;
@@ -33,24 +33,36 @@ header {
 	margin: 0;
 	border: 0;
 	padding: 10px;
-	height: 80px;
+	height: 120px;
 	background-color: $bgcolor;
 	text-align: center;
 
-	h5 {
+	.left {
+		width: 30%;
+		float: left;
+		margin-left: 40px;
+	}
+
+	.right {
+		width: 30%;
+		float: right;
+		margin-right: 40px;
+	}
+
+	h1, h2, h3, h4, h5 {
 		margin-top: 10px;
 		margin-bottom: 10px;
 		color: white;
 	}
 
 	input[type=submit] {
-		width: 60px;
+		width: 100px;
 		height: 30px;
 		line-height: 20px;
 		border-radius: 5px;	
 		background-color: white;
 		color: $bgcolor;
-		font-size: 12px;
+		font-size: 14px;
 		font-weight: 700;
 		margin-top: 10px;
 		margin-bottom: 10px;

@@ -17,7 +17,10 @@
 	<% end %>
 
 	<h4>Question:<h4>
-	<p><%= @question.question_text %></p>
+	<p>
+		<%= @question.question_text %>
+		<script type="text/javascript" src="http://www.hostmath.com/Math/MathJax.js?config=OK"></script>
+	</p>
 
 	<!-- question image -->
 
@@ -25,13 +28,23 @@
 
 	<h3>Choices</h3>
 
-	<% @question.choices.each do |choice| %>
+	<ul>
 
-		<form action="/choices/<%= choice.id %>/edit">
-	    <input type="submit" value="<%= choice.choice_text %>">
-		</form>
+		<% @question.choices.each do |choice| %>
 
-	<% end %>
+			<li>
+				<%= choice.choice_text %>
+				<script type="text/javascript" src="http://www.hostmath.com/Math/MathJax.js?config=OK"></script>
+		
+				<form action="/choices/<%= choice.id %>/edit">
+			    <input type="submit" value="Edit <%= choice.choice_text %>">
+				</form>
+
+			</li></li>
+
+		<% end %>
+
+	</ul>
 
 	<form action="/test_questions/<%= @question.id %>/choices/new">
     <input class="lite" type="submit" value="Add a Choice">

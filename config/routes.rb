@@ -21,7 +21,9 @@ Rails.application.routes.draw do
 
   resources :teachers, except: [:destroy]
 
-  resources :students
+  resources :students do
+    resources :assessments, only: [:index]
+  end
 
   resources :courses do
     resources :review_sessions, only: [:new, :create]
@@ -29,7 +31,8 @@ Rails.application.routes.draw do
 
   resources :review_sessions, except: [:new, :create] do
     resources :units, only: [:new, :create]
-    resources :test_questions, only: [:new, :create]
+    resources :test_questions, only: [:index, :new, :create]
+    resources :assessments, only: [:index]
   end
 
   resources :units, except: [:new, :create] do
@@ -42,17 +45,13 @@ Rails.application.routes.draw do
 
   resources :review_questions, except: [:new, :create]
 
-  resources :test_questions, except: [:new, :create] do
+  resources :test_questions, except: [:index, :new, :create] do
     resources :choices, only: [:new, :create]
   end
 
   resources :choices, except: [:new, :create]
 
-  get 'student_assessments/:student_id' => 'assessments#student'
-
   resources :assessments
-
-  
 
   resources :responses
 

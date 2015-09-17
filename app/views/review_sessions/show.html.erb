@@ -29,42 +29,12 @@
 
 	<br>
 
-	<h3>Assessments</h3>
+	<form action="/review_sessions/<%= @session.id %>/assessments">
+	  <input type="submit" value="Assessments">
+	</form>
 
-		<% @session.assessments.each do |assessment| %>
-
-			<form action="/assessments/<%= assessment.id %>">
-		    <input type="submit" value="<%= assessment.student.first_name %> <%= assessment.student.last_name %>">
-			</form>
-		
-		<% end %>
-
-		<form action="">
-	    <input class="lite" type="submit" value="Add an Assessment">
-		</form>
-
-	<br>
-
-	<h3>Test Questions</h3>
-
-	<% if (@session.total_test_points) %>
-		<h4>Total Test Points: <%= @session.total_test_points %></h4>
-	<% end %>
-
-	<% i = 1 %>
-
-	<% @session.test_questions.each do |question| %>
-
-		<form action="/test_questions/<%= question.id %>">
-	    <input type="submit" value="Test Question <%= i %>">
-		</form>
-
-		<% i = i+1 %>
-
-	<% end %>
-
-	<form action="/review_sessions/<%= @session.id %>/test_questions/new">
-    <input class="lite" type="submit" value="Add a Test Question">
+	<form action="/review_sessions/<%= @session.id %>/test_questions">
+	  <input type="submit" value="Test Questions">
 	</form>
 
 	<br>

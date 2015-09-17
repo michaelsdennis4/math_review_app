@@ -1,12 +1,15 @@
 class AssessmentsController < ApplicationController
 
 	def index
-		@assessments = Assessment.all
-	end
-
-	def student
-		@assessments = Assessment.where({student_id: params[:student_id]})
-		render :index
+		if (params[:student_id])
+			@student = Student.find(params[:student_id])
+			@assessments = @student.assessments.all
+		elsif (params[:review_session_id])
+			@session = ReviewSession.find(params[:review_session_id])
+			@assessments = @session.assessments.all
+		else
+			@assessments = Assessment.all
+		end
 	end
 
 	def show

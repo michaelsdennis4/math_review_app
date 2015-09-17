@@ -1,0 +1,34 @@
+<div class="topnav">
+	<form action="/review_sessions/<%= @session.id %>">
+    <input type="submit" value="Back to <%= @session.title %>">
+	</form>
+</div>
+
+<div class="mainbox">
+
+	<h2>Test Questions</h2>
+
+	<h3>for: <%= @session.title %></h3>
+
+	<% if (@session.total_test_points) %>
+		<h4>Total Test Points: <%= @session.total_test_points %></h4>
+	<% end %>
+
+	<% i = 1 %>
+
+	<% @session.test_questions.each do |question| %>
+
+		<form action="/test_questions/<%= question.id %>">
+	    <input type="submit" value="Test Question <%= i %>">
+		</form>
+
+		<% i = i+1 %>
+
+	<% end %>
+
+	<form action="/review_sessions/<%= @session.id %>/test_questions/new">
+    <input class="lite" type="submit" value="Add a Test Question">
+	</form>
+
+</div>
+

@@ -1,7 +1,7 @@
 class TeachersController < ApplicationController
 
 	def index
-		@teachers = Teacher.all
+		@teachers = Teacher.all.order(:last_name, :first_name)
 	end
 
 	def new

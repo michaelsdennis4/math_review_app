@@ -1,21 +1,41 @@
-<a href="/dashboard">Back to Dashboard</a>
+<div class="topnav">
+	<% if (@student) %>
+		<form action="/students/<%= @student.id %>">
+	    <input type="submit" value="Back to <%= @student.first_name %> <%= @student.last_name %>">
+		</form>
+	<% elsif (@session) %>
+		<form action="/review_sessions/<%= @session.id %>">
+	    <input type="submit" value="Back to <%= @session.title %>">
+		</form>
+	<% else %>
+		<form action="/dashboard">
+	    <input type="submit" value="Back to Dashboard">
+		</form>
+	<% end %>
+</div>
 
-<h1>ASSESSMENT INDEX</h1>
+<div class="mainbox">
 
-<ul>
+	<h2>Assessments</h2>
+
 	<% @assessments.each do |assessment| %>
 
-		<li>
-			Student: <%= assessment.student.first_name %> <%= assessment.student.last_name %><br>
-			Course: <%= assessment.review_session.course.name %><br>
-			Session: <%= assessment.review_session.title %><br>
-			Teacher: <%= assessment.review_session.teacher.first_name %> <%= assessment.review_session.teacher.last_name %><br>
-			Status: <%= assessment.status %><br>
-			Date Assigned: <%= assessment.date_assigned %><br>
-		</li>
-		<br>
+		<form action="/assessments/<%= assessment.id %>">
+	    <input type="submit" value="<%= assessment.student.first_name %> <%= assessment.student.last_name %>">
+		</form>
 
 	<% end %>
 
+	<form action="">
+	  <input class="lite" type="submit" value="Add an Assessment">
+	</form>
 
-</ul>
+</div>
+
+
+
+
+
+
+
+

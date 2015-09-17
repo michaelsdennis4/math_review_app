@@ -1,7 +1,7 @@
 class ChoicesController < ApplicationController
 
 	def index
-		@choices = Choice.all
+		@choices = Choice.all.order(:id)
 	end
 
 	def new

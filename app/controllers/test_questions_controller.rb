@@ -1,7 +1,7 @@
 class TestQuestionsController < ApplicationController
 
 	def index
-		@questions = TestQuestion.all
+		@session = ReviewSession.find(params[:review_session_id])
 	end
 
 	def new
