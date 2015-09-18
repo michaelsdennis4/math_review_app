@@ -15,7 +15,14 @@
 		<h2>Math Review</h2>
 
 		<% if (session[:user_id]) %>
-			<h5>Hello, <%= session[:user_name] %></h5>
+
+			<% if (session[:is_admin]) %>
+				<h5>Hello, <%= session[:user_name] %> [Admin]</h5>
+			<% elsif (session[:is_teacher]) %>
+				<h5>Hello, <%= session[:user_name] %> [Teacher]</h5>
+			<% else %>
+				<h5>Hello, <%= session[:user_name] %> [Student]</h5>
+			<% end %> 
 
 			<div class="left">
 				<form action="/dashboard" method="get">

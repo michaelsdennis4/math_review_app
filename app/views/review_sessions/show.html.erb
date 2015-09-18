@@ -27,25 +27,39 @@
 
 	<% end %>
 
-	<form action="/review_sessions/<%= @session.id %>/units/new">
-    <input class="lite" type="submit" value="Add a Unit">
-	</form>
+	<% if((session[:is_admin]) || (session[:user_id] == @session.teacher_id)) %>
+
+		<form action="/review_sessions/<%= @session.id %>/units/new">
+	    <input class="lite" type="submit" value="Add a Unit">
+		</form>
+
+	<% end %>
 
 	<hr>
-
-	<form action="/review_sessions/<%= @session.id %>/assessments">
-	  <input type="submit" value="Assessments">
-	</form>
 
 	<form action="/review_sessions/<%= @session.id %>/test_questions">
 	  <input type="submit" value="Test Questions">
 	</form>
 
-	<hr>
+	<% if(session[:is_teacher]) %>
 
-	<form action="/review_sessions/<%= @session.id %>/edit">
-    <input class="lite" type="submit" value="Edit Review Session">
-	</form>	
+		<hr>
+
+		<form action="/review_sessions/<%= @session.id %>/assessments">
+		  <input type="submit" value="Assessments">
+		</form>
+
+	<% end %>
+
+	<% if((session[:is_admin]) || (session[:user_id] == @session.teacher_id)) %>
+
+		<hr>
+
+		<form action="/review_sessions/<%= @session.id %>/edit">
+	    <input class="lite" type="submit" value="Edit Review Session">
+		</form>	
+
+	<% end %>
 
 </div>
 

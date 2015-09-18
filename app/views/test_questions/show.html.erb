@@ -8,7 +8,9 @@
 
 	<h2>Test Question</h2>
 
-	<h4>Points: <%= @question.points %></h4>
+	<hr>
+
+	<h4>Points:<%= @question.points %></h4>
 
 	<% if (@question.is_active == true) %>
 		<h4>Active: Yes</h4>
@@ -16,39 +18,32 @@
 		<h4>Active: No</h4>
 	<% end %>
 
-	<h4>Question:<h4>
+	<h4>Question:</h4>
 	<p>
 		<%= @question.question_text %>
 	</p>
 
 	<!-- question image -->
 
-	<br>
+	<hr>
 
 	<h3>Choices</h3>
 
-	<ul>
+	<% @question.choices.each do |choice| %>
 
-		<% @question.choices.each do |choice| %>
+		<%= choice.choice_text %>
 
-			<li>
-				<%= choice.choice_text %>
-		
-				<form action="/choices/<%= choice.id %>/edit">
-			    <input type="submit" value="Edit <%= choice.choice_text %>">
-				</form>
+		<form action="/choices/<%= choice.id %>/edit">
+	    <input type="submit" value="Edit <%= choice.choice_text %>">
+		</form>
 
-			</li></li>
-
-		<% end %>
-
-	</ul>
+	<% end %>
 
 	<form action="/test_questions/<%= @question.id %>/choices/new">
     <input class="lite" type="submit" value="Add a Choice">
 	</form>
 
-	<br>
+	<hr>
 
 	<form action="/test_questions/<%= @question.id %>/edit">
     <input class="lite" type="submit" value="Edit Test Question">

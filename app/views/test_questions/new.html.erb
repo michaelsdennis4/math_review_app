@@ -1,6 +1,6 @@
 <div class="topnav">
 	<form action="/review_sessions/<%= @session.id %>">
-    <input type="submit" value="/review_sessions/<%= @session.id %>">
+    <input type="submit" value="Back to <%= @session.title %>">
 	</form>
 </div>
 
@@ -8,7 +8,7 @@
 
 	<div class="mainbox">
 
-	<h2>Create a Test Question</h2>
+	<h2>Add a Test Question</h2>
 
 	<form action="/review_sessions/<%= @session.id %>/test_questions" method="post">
 		<label for="question_text">Question Text</label>
