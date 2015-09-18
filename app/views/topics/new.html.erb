@@ -8,13 +8,13 @@
 
 	<div class="mainbox">
 
-	<h2>Create a New Topic</h2>
+	<h2>Add a New Topic</h2>
 
 		<form action="/units/<%= @unit.id %>/topics" method="post">
-			<label for="title">Topic Title</label>
+			<label for="title">Topic Title:</label>
 			<input type="text" name="title" placeholder="Enter Topic Title..."/><br>
-			<label for="description">Topic Description</label>
-			<input type="textarea" name="description" placeholder="Enter Topic Description..."/><br>
+			<label for="description">Topic Description:</label>
+			<textarea name="description" placeholder="Enter Topic Description..."></textarea><br>
 			<label for="video_url">Video URL</label>
 			<input type="text" name="video_url" placeholder="Enter Video URL..."/><br>
 			<input type="submit" value="Create Topic"/>

@@ -4,27 +4,6 @@ body {
 	font-family: 'Open Sans', sans-serif;
 }
 
-.topnav {
-	margin-top: 160px;
-	margin-bottom: 30px;
-	text-align: center;
-	font-size: 16px;
-	color: $bgcolor;
-
-	input[type=submit] {
-		min-width: 120px;
-		height: 40px;
-		border-radius: 10px;	
-		background-color: $bgcolor;
-		border-color: $bgcolor;
-		color: white;
-		font-size: 14px;
-		font-weight: 700;
-		padding: 0 5px;
-		cursor: pointer;
-	}
-}
-
 header {
 	position: absolute;
 	width: 100%;
@@ -33,7 +12,7 @@ header {
 	margin: 0;
 	border: 0;
 	padding: 10px;
-	height: 120px;
+	height: 130px;
 	background-color: $bgcolor;
 	text-align: center;
 
@@ -72,15 +51,25 @@ header {
 
 }
 
-footer {
-	position: fixed;
-	width: 100%;
-	bottom: 0;
-	left: 0;
-	margin: 0;
-	border: 0;
-	height: 50px;
-	background-color: $bgcolor;
+.topnav {
+	margin-top: 170px;
+	margin-bottom: 30px;
+	text-align: center;
+	font-size: 16px;
+	color: $bgcolor;
+
+	input[type=submit] {
+		min-width: 120px;
+		height: 35px;
+		border-radius: 10px;	
+		background-color: $bgcolor;
+		border-color: none;
+		color: white;
+		font-size: 14px;
+		font-weight: 400;
+		padding: 0 5px;
+		cursor: pointer;
+	}
 }
 
 .mainbox {
@@ -91,9 +80,14 @@ footer {
 	text-align: center;
 	width: 80%;
 	padding: 20px;
-	border: solid 1px; 
+	border: solid 2px; 
 	border-color: $bgcolor;
 	border-radius: 20px;
+
+	hr {
+		border: solid 4px;
+		border-color: $bgcolor;
+	}
 
 	h1, h2, h3, h4, h5 {
 		margin-top: 10px;
@@ -189,10 +183,36 @@ footer {
 		cursor: pointer;
 	}
 
+	input[type=submit].delete {
+		min-width: 160px;
+		height: 40px;
+		border-radius: 10px;	
+		background-color: red;
+		border-color: red;
+		color: white;
+		font-size: 14px;
+		font-weight: 700;
+		margin-top: 10px;
+		margin-bottom: 10px;
+		padding: 5px;
+		cursor: pointer;
+	}
+
 	iframe {
 		width: 95%;
 		margin-left: auto;
 		margin-right: auto;
 	}
 
+}
+
+footer {
+	position: fixed;
+	width: 100%;
+	bottom: 0;
+	left: 0;
+	margin: 0;
+	border: 0;
+	height: 50px;
+	background-color: $bgcolor;
 }

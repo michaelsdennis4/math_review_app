@@ -10,7 +10,9 @@
 
 		<h2><%= @course.name %></h2>
 
-		<h4>Review Sessions</h4>
+		<hr>
+
+		<h3>Review Sessions</h3>
 
 		<% @course.review_sessions.each do |session| %>
 
@@ -25,6 +27,8 @@
 		</form>
 
 		<% if (session[:is_teacher] && session[:is_admin]) %>
+
+			<hr>
 
 			<form action="/courses/<%= @course.id %>/edit">
 		    <input class="lite" type="submit" value="Edit Course">

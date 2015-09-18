@@ -11,22 +11,26 @@
 	<h2>Edit Topic</h2>
 
 		<form action="/topics/<%= @topic.id %>" method="post">
-			<label for="title">Topic Title</label>
+			<label for="title">Topic Title:</label>
 			<input type="text" name="title" value="<%= @topic.title %>"/><br>
-			<label for="description">Topic Description</label>
-			<input type="textarea" name="description" value="<%= @topic.description %>"/><br>
-			<label for="video_url">Video URL</label>
+			<label for="description">Topic Description:</label>
+			<textarea name="description"><%= @topic.description %>"</textarea><br>
+			<label for="video_url">Video URL:</label>
 			<input type="text" name="video_url" value="<%= @topic.video_url %>"/><br>
 			<input type="submit" value="Update Topic"/>
 			<input type="hidden" name="_method" value="patch"/>
 			<input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
 		</form>
 
-		<form action="/topics/<%= @topic.id %>" method="post">
-			<input type="submit" value="Delete Topic"/>
-			<input type="hidden" name="_method" value="delete"/>
-			<input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
-		</form>
+		<% if(session[:is_teacher] && session[:is_admin]) %>
+
+			<form action="/topics/<%= @topic.id %>" method="post">
+				<input class= "delete" type="submit" value="Delete Topic"/>
+				<input type="hidden" name="_method" value="delete"/>
+				<input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
+			</form>
+
+		<% end %>
 
 	</div>
 

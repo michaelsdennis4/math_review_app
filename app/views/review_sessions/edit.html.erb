@@ -11,18 +11,22 @@
 		<h2>Edit Review Session</h2>
 
 		<form action="/review_sessions/<%= @session.id %>" method="post">
-			<label for="title">Session Title</label>
+			<label for="title">Session Title:</label>
 			<input type="text" name="title" value="<%= @session.title %>"/><br>
 			<input type="submit" value="Update Review Session"/>
 			<input type="hidden" name="_method" value="patch"/>
 			<input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
 		</form>
 
-		<form action="/review_sessions/<%= @session.id %>" method="post">
-			<input type="submit" value="Delete Review Session"/>
-			<input type="hidden" name="_method" value="delete"/>
-			<input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
-		</form>
+		<% if(session[:is_teacher] && session[:is_admin]) %>
+
+			<form action="/review_sessions/<%= @session.id %>" method="post">
+				<input class="delete" type="submit" value="Delete Review Session"/>
+				<input type="hidden" name="_method" value="delete"/>
+				<input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
+			</form>
+
+		<% end %>
 
 	</div>
 

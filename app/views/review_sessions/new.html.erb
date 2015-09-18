@@ -8,9 +8,10 @@
 
 	<div class="mainbox">
 
-		<h2>Create New Review Session</h2>
+		<h2>Add a Review Session</h2>
 
 		<form action="/courses/<%= @course.id %>/review_sessions" method="post">
+			<label for="title">Session Title:</label>
 			<input type="text" name="title" placeholder="Enter Session Title..."/>
 			<input type="submit" value="Create Review Session"/>
 			<input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />

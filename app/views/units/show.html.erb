@@ -8,13 +8,18 @@
 
 	<h2><%= @unit.title %></h2>
 
-	<h4>Course: <%= @unit.review_session.course.name %></h4>
-	<h4>Created by: <%= @unit.review_session.teacher.first_name %> <%= @unit.review_session.teacher.last_name %></h4>
-	<h4>Review Session: <%= @unit.review_session.title %></h4>
+	<hr>
+
+	<h4>Course:<h4>
+	<h5><%= @unit.review_session.course.name %></h5>
+	<h4>Created by:</h4>
+	<h5><%= @unit.review_session.teacher.first_name %> <%= @unit.review_session.teacher.last_name %></h5>
+	<h4>Review Session:</h4>
+	<h5><%= @unit.review_session.title %></h5>
 	<h4>Description:</h4>
 	<p><%= @unit.description %></p>
 
-	<br>
+	<hr>
 
 	<h3>Topics</h3>
 
@@ -30,7 +35,7 @@
     <input class="lite" type="submit" value="Add a New Topic">
 	</form>
 
-	<br>
+	<hr>
 
 	<form action="/units/<%= @unit.id %>/edit">
     <input class="lite" type="submit" value="Edit Unit">

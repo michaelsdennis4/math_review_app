@@ -10,9 +10,12 @@
 
 		<h2>Teacher Profile</h2>
 
-		<h4>First Name: <%= @teacher.first_name %></h4>
-		<h4>Last Name: <%= @teacher.last_name %></h4>
-		<h4>Email: <%= @teacher.email %></h4>
+		<h4>First Name:</h4>
+		<h5><%= @teacher.first_name %></h5>
+		<h4>Last Name:</h4>
+		<h5><%= @teacher.last_name %></h5>
+		<h4>Email:</h4>
+		<h5><%= @teacher.email %></h5>
 		<% if @teacher.is_active == true %>
 			<h4>Active?: Yes</h4>
 		<% else %>
@@ -23,6 +26,8 @@
 		<% else %>
 			<h4>Admin?: No</h4>
 		<% end %>
+
+		<br>
 
 		<form action="/teachers/<%= @teacher.id %>/edit">
 	    <input type="submit" value="Edit Profile">

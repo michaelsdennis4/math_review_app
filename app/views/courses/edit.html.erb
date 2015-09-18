@@ -11,18 +11,22 @@
 		<h2>Edit Course</h2>
 
 		<form action="/courses/<%= @course.id %>" method="post">
-			<label for="name">Course Name</label>
+			<label for="name">Course Name:</label>
 			<input type="text" name="name" value="<%= @course.name %>"/>
 			<input type="submit" value="Update Course"/>
 			<input type="hidden" name="_method" value="patch"/>
 			<input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
 		</form>
 
-		<form action="/courses/<%= @course.id %>" method="post">
-			<input type="submit" value="Delete Course"/>
-			<input type="hidden" name="_method" value="delete"/>
-			<input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
-		</form>
+		<% if (session[:is_teacher] && session[:is_admin]) %>
+
+			<form action="/courses/<%= @course.id %>" method="post">
+				<input class="delete" type="submit" value="Delete Course"/>
+				<input type="hidden" name="_method" value="delete"/>
+				<input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
+			</form>
+
+		<% end %>
 
 	</div>
 

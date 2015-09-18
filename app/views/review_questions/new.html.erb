@@ -8,12 +8,12 @@
 
 	<div class="mainbox">
 
-		<h2>Create a Review Question</h2>
+		<h2>Add a Review Question</h2>
 
 		<form action="/topics/<%= @topic.id %>/review_questions" method="post">
-			<label for="question_text">Question Text</label>
+			<label for="question_text">Question Text:</label>
 			<textarea name="question_text" placeholder="Enter Question Text..."></textarea><br>
-			<label for="answer_text">Answer Text</label>
+			<label for="answer_text">Answer Text:</label>
 			<textarea name="answer_text" placeholder="Enter Answer Text..."></textarea><br>
 			<input type="submit" value="Create Question"/>
 			<input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />

@@ -8,8 +8,14 @@
 
 	<h2><%= @session.title %></h2>
 
-	<h4>Created by: <%= @session.teacher.first_name %> <%= @session.teacher.last_name %></h4>
-	<h4>Course: <%= @session.course.name %></h4>
+	<hr>
+
+	<h4>Created by:</h4>
+	<h5><%= @session.teacher.first_name %> <%= @session.teacher.last_name %></h5>
+	<h4>Course:</h4>
+	<h5><%= @session.course.name %></h5>
+
+	<hr>
 	
 	<h3>Units</h3>
 
@@ -25,7 +31,7 @@
     <input class="lite" type="submit" value="Add a Unit">
 	</form>
 
-	<br>
+	<hr>
 
 	<form action="/review_sessions/<%= @session.id %>/assessments">
 	  <input type="submit" value="Assessments">
@@ -35,7 +41,7 @@
 	  <input type="submit" value="Test Questions">
 	</form>
 
-	<br>
+	<hr>
 
 	<form action="/review_sessions/<%= @session.id %>/edit">
     <input class="lite" type="submit" value="Edit Review Session">
