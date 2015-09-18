@@ -19,7 +19,6 @@
 	<h4>Question:<h4>
 	<p>
 		<%= @question.question_text %>
-		<script type="text/javascript" src="http://www.hostmath.com/Math/MathJax.js?config=OK"></script>
 	</p>
 
 	<!-- question image -->
@@ -34,7 +33,6 @@
 
 			<li>
 				<%= choice.choice_text %>
-				<script type="text/javascript" src="http://www.hostmath.com/Math/MathJax.js?config=OK"></script>
 		
 				<form action="/choices/<%= choice.id %>/edit">
 			    <input type="submit" value="Edit <%= choice.choice_text %>">
