@@ -24,9 +24,13 @@
 	    <input class="lite" type="submit" value="Add a Review Session">
 		</form>
 
-		<form action="/courses/<%= @course.id %>/edit">
-	    <input class="lite" type="submit" value="Edit Course">
-		</form>
+		<% if (session[:is_teacher] && session[:is_admin]) %>
+
+			<form action="/courses/<%= @course.id %>/edit">
+		    <input class="lite" type="submit" value="Edit Course">
+			</form>
+
+		<% end %>
 	
 	</div>
 

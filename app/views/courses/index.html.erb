@@ -18,9 +18,13 @@
 
 		<% end %>
 
-		<form action="/courses/new">
-	    <input class="lite" type="submit" value="Add a New Course">
-		</form>
+		<% if (session[:is_teacher] && session[:is_admin]) %>
+
+			<form action="/courses/new">
+		    <input class="lite" type="submit" value="Add a New Course">
+			</form>
+
+		<% end %>
 
 	</div>
 
