@@ -43,15 +43,19 @@
 
 	<% end %>
 
-	<form action="/topics/<%= @topic.id %>/review_questions/new">
-	  <input class="lite" type="submit" value="Add a New Question">
-	</form>
+	<% if((session[:is_admin]) || (session[:user_id] == @topic.unit.review_session.teacher_id)) %>
 
-	<hr>
+		<form action="/topics/<%= @topic.id %>/review_questions/new">
+		  <input class="lite" type="submit" value="Add a New Question">
+		</form>
 
-	<form action="/topics/<%= @topic.id %>/edit">
-	  <input class="lite" type="submit" value="Edit Topic">
-	</form>
+		<hr>
+
+		<form action="/topics/<%= @topic.id %>/edit">
+		  <input class="lite" type="submit" value="Edit Topic">
+		</form>
+
+	<% end %>
 
 </div>
 

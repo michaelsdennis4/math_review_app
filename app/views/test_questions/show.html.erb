@@ -31,23 +31,37 @@
 
 	<% @question.choices.each do |choice| %>
 
-		<%= choice.choice_text %>
+		<% if (choice.id == @question.correct_answer) %>
+			<%= choice.choice_text %> [Correct]
+		<% else %>
+			<%= choice.choice_text %>
+		<% end %>
 
-		<form action="/choices/<%= choice.id %>/edit">
-	    <input type="submit" value="Edit <%= choice.choice_text %>">
-		</form>
+		<br>
+
+		<% if((session[:is_admin]) || (session[:user_id] == @question.review_session.teacher_id)) %>
+
+			<form action="/choices/<%= choice.id %>/edit">
+		    <input type="submit" value="Edit <%= choice.choice_text %>">
+			</form>
+
+		<% end %>
 
 	<% end %>
 
-	<form action="/test_questions/<%= @question.id %>/choices/new">
-    <input class="lite" type="submit" value="Add a Choice">
-	</form>
+	<% if((session[:is_admin]) || (session[:user_id] == @question.review_session.teacher_id)) %>
 
-	<hr>
+		<form action="/test_questions/<%= @question.id %>/choices/new">
+	    <input class="lite" type="submit" value="Add a Choice">
+		</form>
 
-	<form action="/test_questions/<%= @question.id %>/edit">
-    <input class="lite" type="submit" value="Edit Test Question">
-	</form>
+		<hr>
+
+		<form action="/test_questions/<%= @question.id %>/edit">
+	    <input class="lite" type="submit" value="Edit Test Question">
+		</form>
+
+	<% end %>
 
 </div>
 

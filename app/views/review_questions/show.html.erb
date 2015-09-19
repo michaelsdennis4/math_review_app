@@ -28,8 +28,12 @@
 		<h4>Active: No</h4>
 	<% end %>
 
-	<form action="/review_questions/<%= @question.id %>/edit">
-    <input type="submit" value="Edit Question">
-	</form>
+	<% if((session[:is_admin]) || (session[:user_id] == @question.topic.unit.review_session.teacher_id)) %>
+
+		<form action="/review_questions/<%= @question.id %>/edit">
+	    <input type="submit" value="Edit Question">
+		</form>
+
+	<% end %>
 
 </div>

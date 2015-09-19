@@ -26,9 +26,13 @@
 
 	<% end %>
 
-	<form action="/review_sessions/<%= @session.id %>/test_questions/new">
-    <input class="lite" type="submit" value="Add a Test Question">
-	</form>
+	<% if((session[:is_admin]) || (session[:user_id] == @session.teacher_id)) %>
+
+		<form action="/review_sessions/<%= @session.id %>/test_questions/new">
+	    <input class="lite" type="submit" value="Add a Test Question">
+		</form>
+
+	<% end %>
 
 </div>
 
