@@ -17,6 +17,7 @@
 			<textarea name="description"><%= @topic.description %>"</textarea><br>
 			<label for="video_url">Video URL:</label>
 			<input type="text" name="video_url" value="<%= @topic.video_url %>"/><br>
+			<a href="https://www.youtube.com" target="_blank">Launch YouTube</a><br><br>
 			<input type="submit" value="Update Topic"/>
 			<input type="hidden" name="_method" value="patch"/>
 			<input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
