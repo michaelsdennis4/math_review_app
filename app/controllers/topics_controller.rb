@@ -1,5 +1,7 @@
 class TopicsController < ApplicationController
 
+	require 'youtube_it'
+
 	def index
 		@topics = Topic.all
 	end
@@ -14,6 +16,7 @@ class TopicsController < ApplicationController
 
 	def edit
 		@topic = Topic.find(params[:id])
+		@client = YouTubeIt::Client.new(:username => ENV[GOOGLE_USER_NAME], :password => ENV[GOOGLE_PASSWORD], :dev_key => ENV[GOOGLE_SERVER_KEY_1])
 	end
 
 	def create
