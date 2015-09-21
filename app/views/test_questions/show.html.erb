@@ -27,15 +27,24 @@
 
 	<hr>
 
-	<h2>Answer Choices</h2>
+	<h3>Answer Choices</h3>
 
 	<% @question.choices.each do |choice| %>
 
-		<% if (choice.id == @question.correct_answer) %>
-			<%= choice.choice_text %> [Correct]<br>
-		<% else %>
-			<%= choice.choice_text %><br>
-		<% end %>
+		<div class="choice">
+			<% if (choice.id == @question.correct_answer) %>	
+				<%= choice.choice_text %>
+				<form action="/choices/<%= choice.id %>/edit">
+			    <input class="small" type="submit" value="Edit">
+				</form>
+				[Correct]
+			<% else %>
+				<%= choice.choice_text %>
+				<form action="/choices/<%= choice.id %>/edit">
+			    <input class="small" type="submit" value="Edit">
+				</form>
+			<% end %>
+		</div>
 
 		<br>
 

@@ -7,9 +7,10 @@
 #  question_text     :string
 #  test_question_uid :string
 #  points            :integer          default(1), not null
-#  correct_answer    :string
 #  created_at        :datetime
 #  updated_at        :datetime
+#  is_active         :boolean          default(TRUE), not null
+#  correct_answer    :integer
 #
 
 class TestQuestion < ActiveRecord::Base

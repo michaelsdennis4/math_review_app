@@ -19,8 +19,14 @@ class ReviewQuestionsController < ApplicationController
 	def create
 		question = ReviewQuestion.create
 		topic = Topic.find(params[:topic_id])
-		if (question.update({topic: topic, question_text: params[:question_text], answer_text: params[:answer_text]}))
-			redirect_to "/topics/#{topic.id}"
+		answer = ReviewAnswer.create
+		answer.update({review_question: question})
+		if (question.update({topic: topic, question_text: params[:question_text]}))
+			if (question.review_answer.update({answer_text: params[:answer_text]}))
+				redirect_to "/topics/#{topic.id}"
+			else
+				redirect_to "/topics/#{topic.id}/review_questions/new"
+			end
 		else
 			redirect_to "/topics/#{topic.id}/review_questions/new"
 		end
@@ -28,8 +34,12 @@ class ReviewQuestionsController < ApplicationController
 
 	def update
 		question = ReviewQuestion.find(params[:id])
-		if (question.update({question_text: params[:question_text], answer_text: params[:answer_text], is_active: params[:is_active]}))
-			redirect_to "/review_questions/#{question.id}"
+		if (question.update({question_text: params[:question_text], is_active: params[:is_active]}))
+			if (question.review_answer.update({answer_text: params[:answer_text]}))
+				redirect_to "/review_questions/#{question.id}"
+			else
+				redirect_to "/review_questions/#{question.id}/edit"
+			end
 		else
 			redirect_to "/review_questions/#{question.id}/edit"
 		end

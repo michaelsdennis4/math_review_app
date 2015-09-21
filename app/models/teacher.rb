@@ -10,6 +10,7 @@
 #  is_active       :boolean          default(TRUE), not null
 #  created_at      :datetime
 #  updated_at      :datetime
+#  is_admin        :boolean          default(FALSE), not null
 #
 
 class Teacher < ActiveRecord::Base

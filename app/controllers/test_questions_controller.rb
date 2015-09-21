@@ -21,7 +21,7 @@ class TestQuestionsController < ApplicationController
 		question = TestQuestion.create
 		review_session = ReviewSession.find(params[:review_session_id])
 		4.times do |i|
-			choice = Choice.new
+			choice = Choice.create
 			choice.update({test_question: question, choice_text: "choice #{i+1}"})
 		end
 		if (question.update({review_session: review_session, question_text: params[:question_text], points: params[:points]}))

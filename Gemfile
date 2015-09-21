@@ -33,6 +33,8 @@ gem 'bcrypt', '~> 3.1.7'
 # gem 'capistrano-rails', group: :development
 
 gem 'annotate', '~> 2.6.6'
+gem 'dragonfly', '~> 1.0.10'
+gem 'dragonfly-s3_data_store'
 
 # gem 'google-api-client'
 

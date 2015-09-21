@@ -4,7 +4,6 @@
 #
 #  id               :integer          not null, primary key
 #  test_question_id :integer
-#  choice_key       :string           not null
 #  choice_text      :string
 #  choice_uid       :string
 #

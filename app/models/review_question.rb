@@ -6,14 +6,14 @@
 #  topic_id      :integer
 #  question_text :string
 #  question_uid  :string
-#  answer_text   :string
-#  answer_uid    :string
 #  created_at    :datetime
 #  updated_at    :datetime
+#  is_active     :boolean          default(TRUE), not null
 #
 
 class ReviewQuestion < ActiveRecord::Base
 
 	belongs_to :topic
+	has_one :review_answer
 
 end
