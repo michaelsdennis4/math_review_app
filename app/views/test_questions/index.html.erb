@@ -16,10 +16,14 @@
 
 	<% i = 1 %>
 
-	<% @session.test_questions.each do |question| %>
+	<% @questions.each do |question| %>
 
 		<form action="/test_questions/<%= question.id %>">
-	    <input type="submit" value="Test Question <%= i %>">
+			<% if (question.is_active == true) %>
+	    	<input type="submit" value="Question <%= i %> [ACTIVE]">
+	    <% else %>
+	    	<input class="lite" type="submit" value="Question <%= i %> [INACTIVE]">
+	    <% end %>
 		</form>
 
 		<% i = i+1 %>

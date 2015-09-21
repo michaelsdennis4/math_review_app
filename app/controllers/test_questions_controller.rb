@@ -2,6 +2,7 @@ class TestQuestionsController < ApplicationController
 
 	def index
 		@session = ReviewSession.find(params[:review_session_id])
+		@questions = @session.test_questions.all.order(:id)
 	end
 
 	def new
@@ -19,6 +20,10 @@ class TestQuestionsController < ApplicationController
 	def create
 		question = TestQuestion.create
 		review_session = ReviewSession.find(params[:review_session_id])
+		4.times do |i|
+			choice = Choice.new
+			choice.update({test_question: question, choice_text: "choice #{i+1}"})
+		end
 		if (question.update({review_session: review_session, question_text: params[:question_text], points: params[:points]}))
 			redirect_to "/test_questions/#{question.id}/edit"
 		else

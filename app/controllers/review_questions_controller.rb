@@ -1,7 +1,7 @@
 class ReviewQuestionsController < ApplicationController
 
 	def index
-		@questions = ReviewQuestion.all
+		@questions = ReviewQuestion.all.order(:id)
 	end
 
 	def new
