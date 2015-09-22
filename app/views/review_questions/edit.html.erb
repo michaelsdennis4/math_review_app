@@ -11,9 +11,9 @@
 		<h2>Edit Review Question</h2>
 
 		<form action="/review_questions/<%= @question.id %>" method="post">
-			<label for="question_text">Question Text</label>
+			<label for="question_text">Question Text</label><br>
 			<textarea name="question_text"><%= @question.question_text %></textarea><br>
-			<label for="answer_text">Answer Text</label>
+			<label for="answer_text">Answer Text</label><br>
 			<textarea name="answer_text"><%= @question.review_answer.answer_text %></textarea><br>
 			<label for"is_active">Active?</label>
 			<% if (@question.is_active == true) %>
@@ -29,15 +29,79 @@
 			<input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
 		</form>
 
-		<% if(session[:is_teacher] && session[:is_admin]) %>
+		<hr>
 
-			<form action="/review_questions/<%= @question.id %>" method="post">
-				<input class="delete" type="submit" value="Delete Question"/>
+		<h3>Question Image Upload</h3>
+
+		<h4>Current Image</h4>
+
+		<% if @question.image_stored? %>
+			<%= image_tag @question.image.thumb('200x200').url if @question.image_stored? %>
+		<% else %>
+			<h5>No Image</h5>
+		<% end %>
+
+		<% if @question.image_stored? %>
+
+			<form action="/review_questions/<%= @question.id %>/delete_image" method="post" enctype="multipart/form-data">
+				<input class="delete" type="submit" value="Delete Image"/>
 				<input type="hidden" name="_method" value="delete"/>
 				<input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
 			</form>
 
+		<% else %>
+
+			<form action="/review_questions/<%= @question.id %>/upload_image" method="post" enctype="multipart/form-data">
+				<label for="image">File Upload</label>
+				<input type="file" name="image" accept="image/png,image/gif,image/jpeg,image/pdf"/>
+				<br><br>
+				<input type="submit" value="Upload Image"/>
+				<input type="hidden" name="_method" value="patch"/>
+				<input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
+			</form>
+
 		<% end %>
+		
+		<hr>
+
+		<h3>Answer Image Upload</h3>
+
+		<h4>Current Image</h4>
+
+		<% if @question.review_answer.image_stored? %>
+			<%= image_tag @question.review_answer.image.thumb('200x200').url if @question.review_answer.image_stored? %>
+		<% else %>
+			<h5>No Image</h5>
+		<% end %>
+
+		<% if @question.review_answer.image_stored? %>
+
+			<form action="/review_answers/<%= @question.review_answer.id %>/delete_image" method="post" enctype="multipart/form-data">
+				<input class="delete" type="submit" value="Delete Image"/>
+				<input type="hidden" name="_method" value="delete"/>
+				<input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
+			</form>
+
+		<% else %>
+
+			<form action="/review_answers/<%= @question.review_answer.id %>/upload_image" method="post" enctype="multipart/form-data">
+				<label for="image">File Upload</label>
+				<input type="file" name="image" accept="image/png,image/gif,image/jpeg,image/pdf"/>
+				<br><br>
+				<input type="submit" value="Upload Image"/>
+				<input type="hidden" name="_method" value="patch"/>
+				<input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
+			</form>
+
+		<% end %>
+		
+		<hr>
+
+		<form action="/review_questions/<%= @question.id %>" method="post">
+			<input class="delete" type="submit" value="Delete Question"/>
+			<input type="hidden" name="_method" value="delete"/>
+			<input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
+		</form>
 
 	</div>
 

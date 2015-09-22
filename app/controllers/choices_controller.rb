@@ -37,11 +37,8 @@ class ChoicesController < ApplicationController
 
 	def upload_image
 		choice = Choice.find(params[:id])
-		if (choice.update({image: params[:image], image_uid: params[:image_uid]}))
-			redirect_to "/test_questions/#{choice.test_question.id}"
-		else
-			redirect_to "/choices/#{choice.id}/edit"
-		end
+		choice.update({image: params[:image], image_uid: params[:image_uid]})
+		redirect_to "/choices/#{choice.id}/edit"
 	end
 
 	def delete_image
@@ -53,6 +50,8 @@ class ChoicesController < ApplicationController
 
 	def destroy
 		choice = Choice.find(params[:id])
+		choice.image = nil
+		choice.save
 		choice.destroy
 		redirect_to "/test_questions/#{choice.test_question.id}" 
 	end

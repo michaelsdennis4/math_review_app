@@ -5,7 +5,7 @@
 #  id            :integer          not null, primary key
 #  topic_id      :integer
 #  question_text :string
-#  question_uid  :string
+#  image_uid     :string
 #  created_at    :datetime
 #  updated_at    :datetime
 #  is_active     :boolean          default(TRUE), not null
@@ -15,5 +15,8 @@ class ReviewQuestion < ActiveRecord::Base
 
 	belongs_to :topic
 	has_one :review_answer
+
+	extend Dragonfly::Model
+		dragonfly_accessor :image
 
 end

@@ -45,8 +45,26 @@ class ReviewQuestionsController < ApplicationController
 		end
 	end
 
+	def upload_image
+		question = ReviewQuestion.find(params[:id])
+		question.update({image: params[:image], image_uid: params[:image_uid]})
+		redirect_to "/review_questions/#{question.id}/edit"
+	end
+
+	def delete_image
+		question = ReviewQuestion.find(params[:id])
+		question.image = nil
+		question.save
+		redirect_to "/review_questions/#{question.id}/edit"
+	end
+
 	def destroy
 		question = ReviewQuestion.find(params[:id])
+		question.image = nil
+		question.save
+		question.review_answer.image = nil
+		question.review_answer.save
+		question.review_answer.destroy
 		question.destroy
 		redirect_to "/topics/#{question.topic.id}"
 	end

@@ -42,11 +42,8 @@ class TestQuestionsController < ApplicationController
 
 	def upload_image
 		question = TestQuestion.find(params[:id])
-		if (question.update({image: params[:image], image_uid: params[:image_uid]}))
-			redirect_to "/test_questions/#{question.id}"
-		else
-			redirect_to "/test_questions/#{question.id}/edit"
-		end
+		question.update({image: params[:image], image_uid: params[:image_uid]})
+		redirect_to "/test_questions/#{question.id}/edit"
 	end
 
 	def delete_image
@@ -64,6 +61,8 @@ class TestQuestionsController < ApplicationController
 			question.choices.each do |choice|
 				choice.destroy
 			end
+			question.image = nil
+			question.save
 			question.destroy
 			redirect_to "/review_sessions/#{question.review_session.id}/test_questions"
 		end		

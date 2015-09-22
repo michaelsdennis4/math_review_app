@@ -43,6 +43,12 @@ Rails.application.routes.draw do
     resources :review_questions, only: [:new, :create]
   end
 
+  patch '/review_questions/:id/upload_image' => 'review_questions#upload_image'
+  delete '/review_questions/:id/delete_image' => 'review_questions#delete_image'
+
+  patch '/review_answers/:id/upload_image' => 'review_answers#upload_image'
+  delete '/review_answers/:id/delete_image' => 'review_answers#delete_image'
+
   resources :review_questions, except: [:new, :create]
 
   patch '/test_questions/:id/upload_image' => 'test_questions#upload_image'
