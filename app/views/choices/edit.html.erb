@@ -11,12 +11,47 @@
 		<h2>Edit Choice</h2>
 
 		<form action="/choices/<%= @choice.id %>" method="post">
-			<label for="choice_text">Choice Text</label>
+			<label for="choice_text">Choice Text</label><br>
 			<textarea name="choice_text"><%= @choice.choice_text %></textarea><br>
 			<input type="submit" value="Update Choice"/>
 			<input type="hidden" name="_method" value="patch"/>
 			<input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
 		</form>
+
+		<hr>
+
+		<h3>Image Upload</h3>
+
+		<h4>Current Image</h4>
+
+		<% if @choice.image_stored? %>
+			<%= image_tag @choice.image.thumb('200x200').url if @choice.image_stored? %>
+		<% else %>
+			<h5>No Image</h5>
+		<% end %>
+
+		<% if @choice.image_stored? %>
+
+			<form action="/choices/<%= @choice.id %>/delete_image" method="post" enctype="multipart/form-data">
+				<input class="delete" type="submit" value="Delete Image"/>
+				<input type="hidden" name="_method" value="delete"/>
+				<input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
+			</form>
+
+		<% else %>
+
+			<form action="/choices/<%= @choice.id %>/upload_image" method="post" enctype="multipart/form-data">
+				<label for="image">File Upload</label>
+				<input type="file" name="image" accept="image/png,image/gif,image/jpeg,image/pdf"/>
+				<br><br>
+				<input type="submit" value="Upload Image"/>
+				<input type="hidden" name="_method" value="patch"/>
+				<input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
+			</form>
+
+		<% end %>
+		
+		<hr>
 
 		<form action="/choices/<%= @choice.id %>" method="post">
 			<input class="delete" type="submit" value="Delete Choice"/>

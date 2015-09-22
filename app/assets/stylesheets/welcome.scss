@@ -18,14 +18,14 @@ header {
 
 	.left {
 		width: 30%;
-		float: left;
-		margin-left: 40px;
+		float: right;
+		margin-right: 20%;
 	}
 
 	.right {
 		width: 30%;
-		float: right;
-		margin-right: 40px;
+		float: left;
+		margin-left: 20%;
 	}
 
 	h1, h2, h3, h4, h5 {
@@ -181,6 +181,13 @@ header {
 		color: $bgcolor;
 	}
 
+	input[type=submit].shaded {		
+		background-color: $bgcolor;
+		opacity: 0.4;
+		border-color: $bgcolor;
+		color: white;
+	}
+
 	input[type=submit].small {
 		min-width: 60px;
 		height: 30px;
@@ -196,6 +203,14 @@ header {
 		width: 95%;
 		margin-left: auto;
 		margin-right: auto;
+	}
+
+	.warning {
+		color: red;
+	}
+
+	.correct {
+		color: green;
 	}
 
 }

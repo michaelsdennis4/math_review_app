@@ -21,11 +21,17 @@
 	<h4>Description:</h4>
 	<p><%= @topic.description %></p>
 
-	<hr>
-	
-	<h3>Video</h3>
+	<% if (@topic.video_url) %>
+		<% if (@topic.video_url.length > 0) %>
 
-	<iframe src="https://www.youtube.com/embed/<%= @topic.video_url %>" frameborder="0" allowfullscreen></iframe>
+		<hr>
+
+		<h3>Video</h3>
+
+		<iframe src="https://www.youtube.com/embed/<%= @topic.video_url %>" frameborder="0" allowfullscreen></iframe>
+
+		<% end %>
+	<% end %>
 
 	<hr>
 

@@ -19,7 +19,7 @@ class ChoicesController < ApplicationController
 	def create
 		choice = Choice.create
 		question = TestQuestion.find(params[:test_question_id])
-		if (choice.update({test_question: question, choice_key: params[:choice_key], choice_text: params[:choice_text]}))
+		if (choice.update({test_question: question, choice_text: params[:choice_text]}))
 			redirect_to "/test_questions/#{choice.test_question.id}"
 		else
 			redirect_to "/test_questions/#{choice.test_question.id}/choices/new"
@@ -28,11 +28,27 @@ class ChoicesController < ApplicationController
 
 	def update
 		choice = Choice.find(params[:id])
-		if (choice.update({choice_key: params[:choice_key], choice_text: params[:choice_text]}))
+		if (choice.update({choice_text: params[:choice_text]}))
 			redirect_to "/test_questions/#{choice.test_question.id}"
 		else
 			redirect_to "/choices/#{choice.id}/edit"
 		end
+	end
+
+	def upload_image
+		choice = Choice.find(params[:id])
+		if (choice.update({image: params[:image], image_uid: params[:image_uid]}))
+			redirect_to "/test_questions/#{choice.test_question.id}"
+		else
+			redirect_to "/choices/#{choice.id}/edit"
+		end
+	end
+
+	def delete_image
+		choice = Choice.find(params[:id])
+		choice.image = nil
+		choice.save
+		redirect_to "/choices/#{choice.id}/edit"
 	end
 
 	def destroy

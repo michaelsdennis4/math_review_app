@@ -23,23 +23,29 @@
 		<%= @question.question_text %>
 	</p>
 
-	<%= image_tag @question.image.thumb('100x100#').url if @question.image_stored? %>
+	<%= image_tag @question.image.thumb('400x400').url if @question.image_stored? %>
 
 	<hr>
 
 	<h3>Answer Choices</h3>
 
+	<% if ((@question.correct_answer == nil) || (@question.correct_answer <= 0)) %>	
+		<h4 class="warning">No Correct Answer Selected for this Question!</h4>
+	<% end %>
+
 	<% @question.choices.each do |choice| %>
 
 		<div class="choice">
 			<% if (choice.id == @question.correct_answer) %>	
-				<%= choice.choice_text %>
+				<%= choice.choice_text %><br><br>
+				<%= image_tag choice.image.thumb('400x400').url if choice.image_stored? %>
 				<form action="/choices/<%= choice.id %>/edit">
 			    <input class="small lite" type="submit" value="Edit">
 				</form>
-				[Correct]
+				<h4 class="correct">[Correct]</h4>
 			<% else %>
-				<%= choice.choice_text %>
+				<%= choice.choice_text %><br><br>
+				<%= image_tag choice.image.thumb('400x400').url if choice.image_stored? %>
 				<form action="/choices/<%= choice.id %>/edit">
 			    <input class="small lite" type="submit" value="Edit">
 				</form>

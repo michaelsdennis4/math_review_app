@@ -40,13 +40,20 @@ class TestQuestionsController < ApplicationController
 		end
 	end
 
-	def upload
+	def upload_image
 		question = TestQuestion.find(params[:id])
 		if (question.update({image: params[:image], image_uid: params[:image_uid]}))
 			redirect_to "/test_questions/#{question.id}"
 		else
 			redirect_to "/test_questions/#{question.id}/edit"
 		end
+	end
+
+	def delete_image
+		question = TestQuestion.find(params[:id])
+		question.image = nil
+		question.save
+		redirect_to "/test_questions/#{question.id}/edit"
 	end
 
 	def destroy

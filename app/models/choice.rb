@@ -5,7 +5,7 @@
 #  id               :integer          not null, primary key
 #  test_question_id :integer
 #  choice_text      :string
-#  choice_uid       :string
+#  image_uid        :string
 #
 
 class Choice < ActiveRecord::Base
@@ -13,5 +13,8 @@ class Choice < ActiveRecord::Base
 	validates :choice_text, presence: true
 
 	belongs_to :test_question
+
+	extend Dragonfly::Model
+		dragonfly_accessor :image
 
 end
