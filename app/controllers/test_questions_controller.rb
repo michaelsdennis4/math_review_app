@@ -40,16 +40,25 @@ class TestQuestionsController < ApplicationController
 		end
 	end
 
+	def upload
+		question = TestQuestion.find(params[:id])
+		if (question.update({image: params[:image], image_uid: params[:image_uid]}))
+			redirect_to "/test_questions/#{question.id}"
+		else
+			redirect_to "/test_questions/#{question.id}/edit"
+		end
+	end
+
 	def destroy
 		question = TestQuestion.find(params[:id])
 		if (question.responses.count > 0)
-			redirect_to "/test_questions/#{question.id}/edit"
+			redirect_to "/review_sessions/#{question.review_session.id}/test_questions/#{question.id}"
 		else
 			question.choices.each do |choice|
 				choice.destroy
 			end
 			question.destroy
-			redirect_to "/review_sessions/#{question.review_session.id}"
+			redirect_to "/review_sessions/#{question.review_session.id}/test_questions"
 		end		
 	end
 

@@ -5,7 +5,7 @@
 #  id                :integer          not null, primary key
 #  review_session_id :integer
 #  question_text     :string
-#  test_question_uid :string
+#  image_uid         :string
 #  points            :integer          default(1), not null
 #  created_at        :datetime
 #  updated_at        :datetime
@@ -18,5 +18,8 @@ class TestQuestion < ActiveRecord::Base
 	has_many :responses
 	has_many :choices
 	belongs_to :review_session
+
+	extend Dragonfly::Model
+		dragonfly_accessor :image
 
 end

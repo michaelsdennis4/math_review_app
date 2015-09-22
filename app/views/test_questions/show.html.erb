@@ -23,7 +23,7 @@
 		<%= @question.question_text %>
 	</p>
 
-	<!-- question image -->
+	<%= image_tag @question.image.thumb('100x100#').url if @question.image_stored? %>
 
 	<hr>
 
@@ -35,13 +35,13 @@
 			<% if (choice.id == @question.correct_answer) %>	
 				<%= choice.choice_text %>
 				<form action="/choices/<%= choice.id %>/edit">
-			    <input class="small" type="submit" value="Edit">
+			    <input class="small lite" type="submit" value="Edit">
 				</form>
 				[Correct]
 			<% else %>
 				<%= choice.choice_text %>
 				<form action="/choices/<%= choice.id %>/edit">
-			    <input class="small" type="submit" value="Edit">
+			    <input class="small lite" type="submit" value="Edit">
 				</form>
 			<% end %>
 		</div>

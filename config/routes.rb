@@ -45,6 +45,8 @@ Rails.application.routes.draw do
 
   resources :review_questions, except: [:new, :create]
 
+  patch '/test_questions/:id/upload' => 'test_questions#upload'
+
   resources :test_questions, except: [:index, :new, :create] do
     resources :choices, only: [:new, :create]
   end
