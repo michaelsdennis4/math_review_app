@@ -3,7 +3,7 @@ $bgcolorlite: rgba(89, 41, 129, 0.2);
 
 body {
 	font-family: 'Open Sans', sans-serif;  
-	background-image: url("math.jpg");
+	background-image: url("https://s3-us-west-2.amazonaws.com/math-review/math.jpg");
 	background-repeat: no-repeat;
 	background-size: cover;
 }
@@ -20,13 +20,13 @@ header {
 	background-color: $bgcolor;
 	text-align: center;
 
-	.left {
+	.right {
 		width: 30%;
 		float: right;
 		margin-right: 20%;
 	}
 
-	.right {
+	.left {
 		width: 30%;
 		float: left;
 		margin-left: 20%;
