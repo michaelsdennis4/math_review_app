@@ -21,7 +21,7 @@
 	<% @assessments.each do |assessment| %>
 
 		<form action="/assessments/<%= assessment.id %>">
-	    <input type="submit" value="<%= assessment.student.first_name %> <%= assessment.student.last_name %>">
+	    <input type="submit" value="<%= assessment.student.first_name %> <%= assessment.student.last_name %> - <%= assessment.review_session.course.name %> - <%= assessment.review_session.title %>">
 		</form>
 
 	<% end %>
