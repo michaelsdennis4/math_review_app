@@ -1,8 +1,11 @@
 $bgcolor: rgba(89, 41, 129, 1);
-$bgcolorlite: rgba(89, 41, 129, 0.1);
+$bgcolorlite: rgba(89, 41, 129, 0.2);
 
 body {
-	font-family: 'Open Sans', sans-serif;
+	font-family: 'Open Sans', sans-serif;  
+	background-image: url("math.jpg");
+	background-repeat: no-repeat;
+	background-size: cover;
 }
 
 header {
@@ -84,7 +87,7 @@ header {
 	border: solid 2px; 
 	border-color: $bgcolor;
 	border-radius: 20px;
-	background-color: $bgcolorlite;
+	background-color: rgba(255,255,255,0.7);
 
 	hr {
 		border: solid 4px;
@@ -229,4 +232,13 @@ footer {
 	border: 0;
 	height: 50px;
 	background-color: $bgcolor;
+}
+
+
+@media screen and (min-width: 1200px) {
+
+	.mainbox {
+		width: 50%;
+	}
+	
 }
