@@ -44,7 +44,7 @@
 		<% if @question.image_stored? %>
 
 			<form action="/review_questions/<%= @question.id %>/delete_image" method="post" enctype="multipart/form-data">
-				<input class="delete" type="submit" value="Delete Image"/>
+				<input class="delete" id="image" type="submit" value="Delete Image"/>
 				<input type="hidden" name="_method" value="delete"/>
 				<input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
 			</form>
@@ -53,9 +53,9 @@
 
 			<form action="/review_questions/<%= @question.id %>/upload_image" method="post" enctype="multipart/form-data">
 				<label for="image">File Upload</label>
-				<input type="file" name="image" accept="image/png,image/gif,image/jpeg,image/pdf"/>
+				<input type="file" name="image" accept="image/png,image/gif,image/jpeg"/>
 				<br><br>
-				<input type="submit" value="Upload Image"/>
+				<input type="submit" id="upload" value="Upload Image"/>
 				<input type="hidden" name="_method" value="patch"/>
 				<input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
 			</form>
@@ -77,7 +77,7 @@
 		<% if @question.review_answer.image_stored? %>
 
 			<form action="/review_answers/<%= @question.review_answer.id %>/delete_image" method="post" enctype="multipart/form-data">
-				<input class="delete" type="submit" value="Delete Image"/>
+				<input class="delete" id="image" type="submit" value="Delete Image"/>
 				<input type="hidden" name="_method" value="delete"/>
 				<input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
 			</form>
@@ -86,9 +86,9 @@
 
 			<form action="/review_answers/<%= @question.review_answer.id %>/upload_image" method="post" enctype="multipart/form-data">
 				<label for="image">File Upload</label>
-				<input type="file" name="image" accept="image/png,image/gif,image/jpeg,image/pdf"/>
+				<input type="file" name="image" accept="image/png,image/gif,image/jpeg"/>
 				<br><br>
-				<input type="submit" value="Upload Image"/>
+				<input type="submit" id="upload" value="Upload Image"/>
 				<input type="hidden" name="_method" value="patch"/>
 				<input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
 			</form>
@@ -98,7 +98,7 @@
 		<hr>
 
 		<form action="/review_questions/<%= @question.id %>" method="post">
-			<input class="delete" type="submit" value="Delete Question"/>
+			<input class="delete" id="review question" type="submit" value="Delete Question"/>
 			<input type="hidden" name="_method" value="delete"/>
 			<input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
 		</form>

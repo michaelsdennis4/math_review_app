@@ -19,7 +19,7 @@
 		</form>
 
 		<form action="/review_sessions/<%= @session.id %>" method="post">
-			<input class="delete" type="submit" value="Delete Review Session"/>
+			<input class="delete" id="review session" type="submit" value="Delete Review Session"/>
 			<input type="hidden" name="_method" value="delete"/>
 			<input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
 		</form>

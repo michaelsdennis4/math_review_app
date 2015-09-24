@@ -35,7 +35,7 @@
 
 	<% @question.choices.each do |choice| %>
 
-		<div class="choice">
+		<div class="container">
 			<% if (choice.id == @question.correct_answer) %>	
 				<%= choice.choice_text %><br><br>
 				<%= image_tag choice.image.thumb('400x400').url if choice.image_stored? %>
