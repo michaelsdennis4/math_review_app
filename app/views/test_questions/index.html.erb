@@ -24,6 +24,9 @@
 	    <% else %>
 	    	<input class="shaded" type="submit" value="Question <%= i %> [INACTIVE]">
 	    <% end %>
+	    <% if ((question.correct_answer == nil) || (question.correct_answer <= 0)) %>	
+	    	<h5 class="warning">No Correct Answer Selected!</h5>
+	    <% end %>
 		</form>
 
 		<% i = i+1 %>

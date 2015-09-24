@@ -11,9 +11,9 @@
 	<h2>Add a Test Question</h2>
 
 	<form action="/review_sessions/<%= @session.id %>/test_questions" method="post">
-		<label for="question_text">Question Text</label>
+		<label for="question_text">Question Text</label><br>
 		<textarea name="question_text" placeholder="Enter Question Text..."></textarea><br>		
-		<label for="points">Points Worth</label>
+		<label for="points">Points Worth</label><br>
 		<input type="text" name="points" placeholder="Enter Points Worth... (default 1 point)"/><br>
 		<input type="submit" value="Create Question"/>
 		<input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />

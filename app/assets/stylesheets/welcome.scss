@@ -104,6 +104,18 @@ header {
 		text-align: left;
 	}
 
+	.container_short {
+		width: 300px; 
+		margin-left: auto;
+		margin-right: auto;
+		border: solid 1px;
+		border-color: $bgcolor;
+		border-radius: 5px;
+		padding: 5px;
+		background-color: white;
+		text-align: center;
+	}
+
 	h1, h2, h3, h4, h5 {
 		margin-top: 10px;
 		margin-bottom: 10px;
@@ -139,6 +151,18 @@ header {
 		margin-bottom: 10px;
 		margin-left: auto;
 		margin-right: auto;
+	}
+
+	input[type=text].short {
+		margin-left: 35%;
+		margin-right: 35%; 
+		width: 30%;
+		text-align: left;
+	}
+
+	input[type=text].small {
+		width: 60px;
+		text-align: right;
 	}
 
 	input[type=password] {
@@ -214,6 +238,9 @@ header {
 	}
 
 	.warning {
+		margin-top: 0;
+		margin-bottom: 15px;
+		height: 20px;
 		color: red;
 		text-align: center;
 	}

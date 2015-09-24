@@ -14,7 +14,7 @@
 			<label for="question_text">Question Text</label><br>
 			<textarea name="question_text"><%= @question.question_text %></textarea><br>
 			<label for="points">Points Worth</label><br>
-			<input type="text" name="points" value="<%= @question.points %>"/><br>
+			<input type="text" class="small" name="points" value="<%= @question.points %>"/><br>
 			<label for="is_active">Question Active?</label>
 			<% if @question.is_active == true %>
 				<input type="radio" name="is_active" value="true" checked="checked">Yes

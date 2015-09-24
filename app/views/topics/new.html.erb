@@ -11,11 +11,11 @@
 	<h2>Add a New Topic</h2>
 
 		<form action="/units/<%= @unit.id %>/topics" method="post">
-			<label for="title">Topic Title:</label>
+			<label for="title">Topic Title:</label><br>
 			<input type="text" name="title" placeholder="Enter Topic Title..."/><br>
-			<label for="description">Topic Description:</label>
+			<label for="description">Topic Description:</label><br>
 			<textarea name="description" placeholder="Enter Topic Description..."></textarea><br>
-			<label for="video_url">YouTube Video Code</label>
+			<label for="video_url">YouTube Video Code</label><br>
 			<input type="text" name="video_url" placeholder="Enter Video URL..."/><br>
 			<a href="https://www.youtube.com" target="_blank">Launch YouTube</a><br><br><br>
 			<input type="submit" value="Create Topic"/>

@@ -11,9 +11,9 @@
 	<h2>Edit Unit</h2>
 
 		<form action="/units/<%= @unit.id %>" method="post">
-			<label for="title">Unit Title:</label>
+			<label for="title">Unit Title:</label><br>
 			<input type="text" name="title" value="<%= @unit.title %>"/><br>
-			<label for="description">Unit Description:</label>
+			<label for="description">Unit Description:</label><br>
 			<textarea name="description"><%= @unit.description %></textarea><br>
 			<input type="submit" value="Update Unit"/>
 			<input type="hidden" name="_method" value="patch"/>

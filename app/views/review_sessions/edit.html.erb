@@ -11,7 +11,7 @@
 		<h2>Edit Review Session</h2>
 
 		<form action="/review_sessions/<%= @session.id %>" method="post">
-			<label for="title">Session Title:</label>
+			<label for="title">Session Title:</label><br>
 			<input type="text" name="title" value="<%= @session.title %>"/><br>
 			<input type="submit" value="Update Review Session"/>
 			<input type="hidden" name="_method" value="patch"/>
