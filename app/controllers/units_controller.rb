@@ -10,6 +10,7 @@ class UnitsController < ApplicationController
 
 	def show
 		@unit = Unit.find(params[:id])
+		@topics = @unit.topics.all.order(:id)
 	end
 
 	def edit

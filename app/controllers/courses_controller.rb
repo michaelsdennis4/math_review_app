@@ -1,7 +1,7 @@
 class CoursesController < ApplicationController
 
 	def index
-		@courses = Course.all
+		@courses = Course.all.order(:name)
 	end
 
 	def new
@@ -9,6 +9,7 @@ class CoursesController < ApplicationController
 
 	def show
 		@course = Course.find(params[:id])
+		@sessions = @course.review_sessions.all.order(:id)
 	end
 
 	def edit

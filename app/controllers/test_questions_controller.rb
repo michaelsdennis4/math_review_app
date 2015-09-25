@@ -11,6 +11,7 @@ class TestQuestionsController < ApplicationController
 
 	def show
 		@question = TestQuestion.find(params[:id])
+		@choices = @question.choices.all.order(:id)
 	end
 
 	def edit

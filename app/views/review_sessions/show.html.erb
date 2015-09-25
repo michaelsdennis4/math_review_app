@@ -18,7 +18,7 @@
 	
 	<h3>Units</h3>
 
-	<% @session.units.each do |unit| %>
+	<% @units.each do |unit| %>
 
 		<form action="/units/<%= unit.id %>">
 	    <input type="submit" value="<%= unit.title %>">

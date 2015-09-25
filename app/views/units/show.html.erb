@@ -20,7 +20,7 @@
 
 	<h3>Topics</h3>
 
-	<% @unit.topics.each do |topic| %>
+	<% @topics.each do |topic| %>
 
 		<form action="/topics/<%= topic.id %>">
 	    <input type="submit" value="<%= topic.title %>">

@@ -35,7 +35,7 @@
 
 	<% i=1 %>
 
-	<% @topic.review_questions.each do |question| %>
+	<% @questions.each do |question| %>
 
 		<form action="/review_questions/<%= question.id %>">
 			<% if (question.is_active == true) %>

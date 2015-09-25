@@ -14,7 +14,7 @@
 
 		<h3>Review Sessions</h3>
 
-		<% @course.review_sessions.each do |session| %>
+		<% @sessions.each do |session| %>
 
 			<form action="/review_sessions/<%= session.id %>">
 		    <input type="submit" value="<%= session.title %>">

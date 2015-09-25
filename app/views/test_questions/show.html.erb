@@ -19,7 +19,7 @@
 	<% end %>
 
 	<h4>Question:</h4>
-	<p>
+	<p class="description">
 		<%= @question.question_text %>
 	</p>
 
@@ -33,17 +33,17 @@
 		<h4 class="warning">No Correct Answer Selected for this Question!</h4>
 	<% end %>
 
-	<% @question.choices.each do |choice| %>
+	<% @choices.each do |choice| %>
 
 		<div class="container">
 			<% if (choice.id == @question.correct_answer) %>	
+				<h4 class="correct">Correct Answer</h4>
 				<%= choice.choice_text %><br><br>
 				<%= image_tag choice.image.url if choice.image_stored? %>
 				<div class="edit">
 					<form action="/choices/<%= choice.id %>/edit">
 				    <input class="small" type="submit" value="Edit"/>
 					</form>
-					<h4 class="correct">Correct Answer</h4>
 				</div>
 			<% else %>
 				<%= choice.choice_text %><br><br>

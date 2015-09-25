@@ -12,6 +12,7 @@ class TopicsController < ApplicationController
 
 	def show
 		@topic = Topic.find(params[:id])
+		@questions = @topic.review_questions.all.order(:id)
 	end
 
 	def edit

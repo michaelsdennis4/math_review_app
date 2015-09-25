@@ -1,7 +1,7 @@
 class ReviewSessionsController < ApplicationController
 
 	def index
-		@sessions = ReviewSession.all 
+		@sessions = ReviewSession.all.order(:id)
 	end
 
 	def new
@@ -10,6 +10,7 @@ class ReviewSessionsController < ApplicationController
 
 	def show
 		@session = ReviewSession.find(params[:id])
+		@units = @session.units.all.order(:id)
 	end
 
 	def edit
