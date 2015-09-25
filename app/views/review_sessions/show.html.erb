@@ -10,15 +10,10 @@
 
 	<hr>
 
-	<h4>Course:</h4>
-	<div class="container_short">
-		<%= @session.course.name %>
-	</div>
-	<h4>Created by:</h4>
-	<div class="container_short">
-		<%= @session.teacher.first_name %> <%= @session.teacher.last_name %>
-	</div>
+	<h4>Course: <%= @session.course.name %></h4>
 
+	<h4>Created by: <%= @session.teacher.first_name %> <%= @session.teacher.last_name %></h4>
+	
 	<hr>
 	
 	<h3>Units</h3>

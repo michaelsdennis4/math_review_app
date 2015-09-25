@@ -11,7 +11,7 @@
 	<h4>Question:</h4>
 	<div class="container">
 		<%= @question.question_text %><br><br>
-		<%= image_tag @question.image.thumb('400x400').url if @question.image_stored? %>
+		<%= image_tag @question.image.url if @question.image_stored? %>
 	</div>
 
 	<!-- question image -->
@@ -19,7 +19,7 @@
 	<h4>Answer:</h4>
 	<div class="container">
 		<%= @question.review_answer.answer_text %><br><br>
-		<%= image_tag @question.review_answer.image.thumb('400x400').url if @question.review_answer.image_stored? %>
+		<%= image_tag @question.review_answer.image.url if @question.review_answer.image_stored? %>
 	</div>
 
 	<!-- answer image -->

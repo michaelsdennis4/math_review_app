@@ -10,16 +10,12 @@
 
 	<hr>
 
-	<h4>Course:</h4>
-	<h5><%= @topic.unit.review_session.course.name %></h5>
-	<h4>Created by:</h4>
-	<h5><%= @topic.unit.review_session.teacher.first_name %> <%= @topic.unit.review_session.teacher.last_name %></h5>
-	<h4>Review Session Title:</h4>
-	<h5><%= @topic.unit.review_session.title %></h5>
-	<h4>Unit Title:</h4>
-	<h5><%= @topic.unit.title %></h5>
+	<h4>Course: <%= @topic.unit.review_session.course.name %></h4>
+	<h4>Created by: <%= @topic.unit.review_session.teacher.first_name %> <%= @topic.unit.review_session.teacher.last_name %></h4>
+	<h4>Review Session Title: <%= @topic.unit.review_session.title %></h4>
+	<h4>Unit Title: <%= @topic.unit.title %></h4>
 	<h4>Description:</h4>
-	<p><%= @topic.description %></p>
+	<p class="description"><%= @topic.description %></p>
 
 	<% if (@topic.video_url) %>
 		<% if (@topic.video_url.length > 0) %>
