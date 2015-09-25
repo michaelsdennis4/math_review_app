@@ -41,16 +41,16 @@
 				<%= image_tag choice.image.url if choice.image_stored? %>
 				<div class="edit">
 					<form action="/choices/<%= choice.id %>/edit">
-				    <input class="small lite" type="submit" value="Edit"/><br>
+				    <input class="small" type="submit" value="Edit"/>
 					</form>
-					<h4 class="correct">[Correct]</h4>
+					<h4 class="correct">Correct Answer</h4>
 				</div>
 			<% else %>
 				<%= choice.choice_text %><br><br>
 				<%= image_tag choice.image.url if choice.image_stored? %>
 				<div class="edit">
 					<form action="/choices/<%= choice.id %>/edit">
-				    <input class="small lite" type="submit" value="Edit">
+				    <input class="small" type="submit" value="Edit">
 					</form>
 				</div>
 			<% end %>

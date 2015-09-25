@@ -258,7 +258,9 @@ header {
 	}
 
 	.correct {
-		color: green;
+		background-color: green;
+		color: white;
+		border-radius: 5px;
 		text-align: center;
 	}
 
