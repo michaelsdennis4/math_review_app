@@ -8,11 +8,15 @@
 
 	<h2>Test Questions</h2>
 
-	<h3>for: <%= @session.title %></h3>
+	<h4>Review Session: <%= @session.title %></h3>
 
 	<% if (@session.total_test_points) %>
 		<h4>Total Test Points: <%= @session.total_test_points %></h4>
+	<% else %>
+	<h4>Total Test Points: undefined</h4>
 	<% end %>
+
+	<hr>
 
 	<% i = 1 %>
 

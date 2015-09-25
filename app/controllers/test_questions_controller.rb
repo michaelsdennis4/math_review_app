@@ -25,6 +25,7 @@ class TestQuestionsController < ApplicationController
 			choice.update({test_question: question, choice_text: "choice #{i+1}"})
 		end
 		if (question.update({review_session: review_session, question_text: params[:question_text], points: params[:points]}))
+			question.review_session.points
 			redirect_to "/test_questions/#{question.id}/edit"
 		else
 			redirect_to "/review_sessions/#{review_session.id}/test_questions/new"
@@ -34,6 +35,7 @@ class TestQuestionsController < ApplicationController
 	def update
 		question = TestQuestion.find(params[:id])
 		if (question.update({question_text: params[:question_text], points: params[:points], correct_answer: params[:correct_answer], is_active: params[:is_active]}))
+			question.review_session.points
 			redirect_to "/test_questions/#{question.id}"
 		else
 			redirect_to "/test_questions/#{question.id}/edit"
@@ -64,6 +66,7 @@ class TestQuestionsController < ApplicationController
 			question.image = nil
 			question.save
 			question.destroy
+			question.review_session.points
 			redirect_to "/review_sessions/#{question.review_session.id}/test_questions"
 		end		
 	end

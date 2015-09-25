@@ -10,7 +10,7 @@
 
 	<hr>
 
-	<h4>Points:<%= @question.points %></h4>
+	<h4>Points: <%= @question.points %></h4>
 
 	<% if (@question.is_active == true) %>
 		<h4>Active: Yes</h4>
@@ -38,17 +38,21 @@
 		<div class="container">
 			<% if (choice.id == @question.correct_answer) %>	
 				<%= choice.choice_text %><br><br>
-				<%= image_tag choice.image.thumb('400x400').url if choice.image_stored? %>
-				<form action="/choices/<%= choice.id %>/edit">
-			    <input class="small lite" type="submit" value="Edit">
-				</form>
-				<h4 class="correct">[Correct]</h4>
+				<%= image_tag choice.image.url if choice.image_stored? %>
+				<div class="edit">
+					<form action="/choices/<%= choice.id %>/edit">
+				    <input class="small lite" type="submit" value="Edit"/><br>
+					</form>
+					<h4 class="correct">[Correct]</h4>
+				</div>
 			<% else %>
 				<%= choice.choice_text %><br><br>
-				<%= image_tag choice.image.thumb('400x400').url if choice.image_stored? %>
-				<form action="/choices/<%= choice.id %>/edit">
-			    <input class="small lite" type="submit" value="Edit">
-				</form>
+				<%= image_tag choice.image.url if choice.image_stored? %>
+				<div class="edit">
+					<form action="/choices/<%= choice.id %>/edit">
+				    <input class="small lite" type="submit" value="Edit">
+					</form>
+				</div>
 			<% end %>
 		</div>
 

@@ -47,5 +47,4 @@ class ReviewSessionsController < ApplicationController
 		end
 	end
 
-
 end

@@ -20,5 +20,15 @@ class ReviewSession < ActiveRecord::Base
 	has_many :test_questions
 	has_many :units
 	has_many :assessments
+
+	def points
+		self.total_test_points = 0;
+		self.test_questions.each do |question|
+			if ((question.is_active == true) && (question.correct_answer) && (question.correct_answer > 0))
+				self.total_test_points = self.total_test_points + question.points
+			end
+		end
+		self.save;
+	end
 	
 end
