@@ -18,33 +18,41 @@
 
 	<h2>Assessments</h2>
 
-	<table>
+	<% @assessments.each do |assessment| %>
 
-		<tr>
-			<th>Student</th>
-			<th>Course</th>
-			<th>Review Session</th>
-			<th>Status</th>
-			<th>Test Score</th>
-		</tr>
+		<div class="assessment">
+			<h4>Student: <%= assessment.student.first_name %> <%= assessment.student.last_name %></h4>
+			<h4>Course: <%= assessment.review_session.course.name %></h4>
+			<h4>Review Session: <%= assessment.review_session.title %></h4>
+			<h4>Status: <%= assessment.status.capitalize %></h4>
+			<h4>Test Score: not yet calculated</h4>
 
-		<% @assessments.each do |assessment| %>
+			<div class="view">
 
-			<tr>
+				<% if (@student) %>
+					<form action="/students/<%= @student.id %>/assessments/<%= assessment.id %>">
+				<% elsif (@session) %>
+					<form action="/review_sessions/<%= @session.id %>/assessments/<%= assessment.id %>">
+				<% else %>
+					<form action="/assessments/<%= assessment.id %>">
+				<% end %>
+				  <input type="submit" value="View Assessment">
+				</form>
 
-				<td><%= assessment.student.first_name %> <%= assessment.student.last_name %></td>
-				<td><%= assessment.review_session.course.name %></td>
-				<td><%= assessment.review_session.title %></td>
-				<td></td>
-				<td></td>
+			</div>
 
-			</tr>
+		</div>
 
-		<% end %>
 
-	</table>
+	<% end %>
 
-	<form action="">
+	<% if (@student) %>
+		<form action="/students/assessments/new">
+	<% elsif (@session) %>
+		<form action="/review_sessions/assessments/new">
+	<% else %>
+		<form action="/assessments/new">
+	<% end %>
 	  <input class="lite" type="submit" value="Add an Assessment">
 	</form>
 

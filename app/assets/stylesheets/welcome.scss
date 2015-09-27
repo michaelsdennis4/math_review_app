@@ -282,6 +282,28 @@ header {
 		th, td {
 			border: solid 1px;
 			border-color: $bgcolor;
+			padding: 2px;
+		}
+	}
+
+	.assessment {
+		width: 90%;
+		margin-left: auto;
+		margin-right: auto;
+		margin-bottom: 10px;
+		border: solid 1px;
+		border-color: $bgcolor;
+		background-color: $bgcolorlite;
+		border-radius: 10px;
+		text-align: left;
+		padding: 5px;
+
+		h4 {
+			text-align: left;
+		}
+
+		.view {
+			text-align: center;
 		}
 	}
 

@@ -22,7 +22,7 @@ Rails.application.routes.draw do
   resources :teachers, except: [:destroy]
 
   resources :students do
-    resources :assessments, only: [:index]
+    resources :assessments
   end
 
   resources :courses do
@@ -32,7 +32,7 @@ Rails.application.routes.draw do
   resources :review_sessions, except: [:new, :create] do
     resources :units, only: [:new, :create]
     resources :test_questions, only: [:index, :new, :create]
-    resources :assessments, only: [:index]
+    resources :assessments
   end
 
   resources :units, except: [:new, :create] do
