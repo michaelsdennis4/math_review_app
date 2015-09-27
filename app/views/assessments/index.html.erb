@@ -18,13 +18,31 @@
 
 	<h2>Assessments</h2>
 
-	<% @assessments.each do |assessment| %>
+	<table>
 
-		<form action="/assessments/<%= assessment.id %>">
-	    <input type="submit" value="<%= assessment.student.first_name %> <%= assessment.student.last_name %> - <%= assessment.review_session.course.name %> - <%= assessment.review_session.title %>">
-		</form>
+		<tr>
+			<th>Student</th>
+			<th>Course</th>
+			<th>Review Session</th>
+			<th>Status</th>
+			<th>Test Score</th>
+		</tr>
 
-	<% end %>
+		<% @assessments.each do |assessment| %>
+
+			<tr>
+
+				<td><%= assessment.student.first_name %> <%= assessment.student.last_name %></td>
+				<td><%= assessment.review_session.course.name %></td>
+				<td><%= assessment.review_session.title %></td>
+				<td></td>
+				<td></td>
+
+			</tr>
+
+		<% end %>
+
+	</table>
 
 	<form action="">
 	  <input class="lite" type="submit" value="Add an Assessment">

@@ -9,18 +9,18 @@
 	<h2>Review Question</h2>
 
 	<h4>Question:</h4>
-	<div class="container">
+	<p class="description">
 		<%= @question.question_text %><br><br>
-		<%= image_tag @question.image.url if @question.image_stored? %>
-	</div>
+	</p>
+	<%= image_tag @question.image.url if @question.image_stored? %>
 
 	<!-- question image -->
 
 	<h4>Answer:</h4>
-	<div class="container">
+	<p class="description">
 		<%= @question.review_answer.answer_text %><br><br>
-		<%= image_tag @question.review_answer.image.url if @question.review_answer.image_stored? %>
-	</div>
+	</p>
+	<%= image_tag @question.review_answer.image.url if @question.review_answer.image_stored? %>
 
 	<!-- answer image -->
 
