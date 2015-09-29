@@ -36,9 +36,30 @@
 
 	<hr>
 
-	<form action="/review_sessions/<%= @session.id %>/test_questions">
-	  <input type="submit" value="Final Test">
-	</form>
+	<% if (@session.test_type == 0) %>
+
+		<h4>Final Test Format: paper (teacher graded)</h4>
+		<h4>Test URL: <%= @session.test_url %></h4>
+
+		<% if ((!@session.test_url) || (@session.test_url.length == 0)) %>
+			<h5 class="warning">Warning: there is no test URL entered for this session!</h5><br>
+		<% end %>
+
+	<% else %>
+
+		<h4>Final Test Format: online (computer graded)</h4>
+
+		<form action="/review_sessions/<%= @session.id %>/test_questions">
+		  <input type="submit" value="Final Test">
+		</form>
+
+		<% if (@session.test_questions.count == 0) %>
+			<h5 class="warning">Warning: there are no test questions for this session!</h5><br>
+		<% end %>
+
+	<% end %>
+
+	<hr>
 
 	<% if(session[:is_teacher]) %>
 

@@ -12,6 +12,13 @@
 
 		<form action="/courses/<%= @course.id %>/review_sessions" method="post">
 			<label for="title">Session Title:</label><br>
+			<br>
+			<label for="test_type">Final Test Type:</label>
+			<input type="radio" name="test_type" value="0" checked="checked">Paper
+			<input type="radio" name="test_type" value="1">Computer
+			<br><br>
+			<label for="title">Test URL (for paper test):</label><br>
+			<input type="text" name="test_url" placeholder="Enter Test URL..."/><br>
 			<input type="text" name="title" placeholder="Enter Session Title..."/>
 			<input type="submit" value="Create Review Session"/>
 			<input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />

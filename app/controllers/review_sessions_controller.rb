@@ -21,7 +21,7 @@ class ReviewSessionsController < ApplicationController
 		new_session = ReviewSession.create
 		course = Course.find(params[:course_id])
 		teacher = Teacher.find(session[:user_id])
-		if (new_session.update({course: course, teacher: teacher, title: params[:title], total_test_points: 0}))
+		if (new_session.update({course: course, teacher: teacher, title: params[:title], total_test_points: 0, test_type: params[:test_type], test_url: params[:test_url]}))
 			redirect_to "/courses/#{course.id}"
 		else
 			redirect_to "/courses/#{course.id}/review_sessions/new"
@@ -30,7 +30,7 @@ class ReviewSessionsController < ApplicationController
 
 	def update
 		session = ReviewSession.find(params[:id])
-		if (session.update({title: params[:title]}))
+		if (session.update({title: params[:title], test_type: params[:test_type], test_url: params[:test_url]}))
 			redirect_to "/review_sessions/#{session.id}"
 		else
 			redirect_to "/review_sessions/#{session.id}/edit"
