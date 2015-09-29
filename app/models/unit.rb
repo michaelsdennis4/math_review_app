@@ -16,5 +16,16 @@ class Unit < ActiveRecord::Base
 
 	belongs_to :review_session
 	has_many :topics
+	has_many :test_questions
+
+	def points
+		self.total_quiz_points = 0;
+		self.test_questions.each do |question|
+			if ((question.is_active == true) && (question.correct_answer) && (question.correct_answer > 0))
+				self.total_quiz_points = self.total_quiz_points + question.points
+			end
+		end
+		self.save;
+	end
 
 end

@@ -17,7 +17,7 @@
 		<h4>Student Name: <a href="/students/<%= @assessment.student.id %>"><%= @assessment.student.first_name %> <%= @assessment.student.last_name %></a></h4>
 		<h4>Course: <a href="/courses/<%= @assessment.review_session.course.id %>"><%= @assessment.review_session.course.name %></a></h4>
 		<h4>Review Session Title: <a href="/review_sessions/<%= @assessment.review_session.course.id %>"><%= @assessment.review_session.title %></a></h4>
-		<h4>Created by: <%= @assessment.review_session.teacher.first_name %> <%= @assessment.review_session.teacher.last_name %></h4>
+		<h4>Teacher: <%= @assessment.review_session.teacher.first_name %> <%= @assessment.review_session.teacher.last_name %></h4>
 		<h4>Status: <%= @assessment.status.capitalize %></h4>
 		<h4>Date Assigned: <%= @assessment.date_assigned %></h4>
 

@@ -1,9 +1,5 @@
 <div class="topnav">
-	<% if (@student) %>
-		<form action="/students/<%= @student.id %>">
-	    <input type="submit" value="Back to <%= @student.first_name %> <%= @student.last_name %>">
-		</form>
-	<% elsif (@session) %>
+	<% if (@session) %>
 		<form action="/review_sessions/<%= @session.id %>">
 	    <input type="submit" value="Back to <%= @session.title %>">
 		</form>
@@ -16,7 +12,15 @@
 
 <div class="mainbox">
 
-	<h2>Assessments</h2>
+	<% if (@session) %>
+		<h2>Assessments for <%= @session.title %></h2>
+	<% elsif (@teacher) %>
+		<h2><%= @teacher.first_name %> <%= @teacher.last_name %>'s Assessments</h2>
+	<% elsif (@student) %>
+		<h2><%= @student.first_name %> <%= @student.last_name %>'s Assessments</h2>
+	<% else %>
+		<h2>All Assessments</h2>
+	<% end %>
 
 	<% @assessments.each do |assessment| %>
 
@@ -24,6 +28,7 @@
 			<h4>Student: <%= assessment.student.first_name %> <%= assessment.student.last_name %></h4>
 			<h4>Course: <%= assessment.review_session.course.name %></h4>
 			<h4>Review Session: <%= assessment.review_session.title %></h4>
+			<h4>Teacher: <%= assessment.review_session.teacher.first_name %> <%= assessment.review_session.teacher.last_name %></h4>
 			<h4>Status: <%= assessment.status.capitalize %></h4>
 			<h4>Test Score: not yet calculated</h4>
 

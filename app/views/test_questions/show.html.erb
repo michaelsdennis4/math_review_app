@@ -1,6 +1,11 @@
 <div class="topnav">
-	<form action="/review_sessions/<%= @question.review_session.id %>/test_questions">
-    <input type="submit" value="Back to Test Questions">
+	<% if (@question.review_session_id) %>
+		<form action="/review_sessions/<%= @question.review_session.id %>/test_questions">
+		<input type="submit" value="Back to Test Questions">
+	<% else %>
+		<form action="/units/<%= @question.unit.id %>/test_questions">
+		<input type="submit" value="Back to Quiz Questions">
+	<% end %>
 	</form>
 </div>
 

@@ -1,23 +1,46 @@
 <div class="topnav">
-	<form action="/review_sessions/<%= @session.id %>">
-    <input type="submit" value="Back to <%= @session.title %>">
-	</form>
+	<% if (@session) %>
+		<form action="/review_sessions/<%= @session.id %>">
+	    <input type="submit" value="Back to <%= @session.title %>">
+		</form>
+	<% else %>
+		<form action="/units/<%= @unit.id %>">
+	    <input type="submit" value="Back to <%= @unit.title %>">
+		</form>
+	<% end %>
 </div>
 
-<% if (session[:is_teacher]) %>
+<% if((session[:is_admin]) || (session[:user_id] == @session.teacher_id)) %>
 
 	<div class="mainbox">
 
-	<h2>Add a Test Question</h2>
+	<% if (@session) %>
 
-	<form action="/review_sessions/<%= @session.id %>/test_questions" method="post">
-		<label for="question_text">Question Text</label><br>
-		<textarea name="question_text" placeholder="Enter Question Text..."></textarea><br>		
-		<label for="points">Points Worth</label><br>
-		<input type="number" name="points" min="1" placeholder="1"/><br>
-		<input type="submit" value="Create Question"/>
-		<input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
-	</form>
+		<h2>Add a Test Question</h2>
+
+		<form action="/review_sessions/<%= @session.id %>/test_questions" method="post">
+			<label for="question_text">Question Text</label><br>
+			<textarea name="question_text" placeholder="Enter Question Text..."></textarea><br>		
+			<label for="points">Points Worth</label><br>
+			<input type="number" name="points" min="1" value="1"/><br>
+			<input type="submit" value="Create Question"/>
+			<input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
+		</form>
+
+	<% else %>
+
+		<h2>Add a Quiz Question</h2>
+
+		<form action="/units/<%= @unit.id %>/test_questions" method="post">
+			<label for="question_text">Question Text</label><br>
+			<textarea name="question_text" placeholder="Enter Question Text..."></textarea><br>		
+			<label for="points">Points Worth</label><br>
+			<input type="number" name="points" min="1" value="1"/><br>
+			<input type="submit" value="Create Question"/>
+			<input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
+		</form>
+
+	<% end %>
 
 	</div>
 	

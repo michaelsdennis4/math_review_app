@@ -21,6 +21,7 @@ class Teacher < ActiveRecord::Base
 	
 	has_secure_password
 
-	has_many :sessions
+	has_many :review_sessions
+	has_many :assessments, :through => :review_sessions
 
 end

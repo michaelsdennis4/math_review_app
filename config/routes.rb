@@ -19,7 +19,9 @@ Rails.application.routes.draw do
 
   resources :sessions, only: [:new, :destroy]
 
-  resources :teachers, except: [:destroy]
+  resources :teachers, except: [:destroy] do
+    resources :assessments
+  end
 
   resources :students do
     resources :assessments
@@ -37,6 +39,7 @@ Rails.application.routes.draw do
 
   resources :units, except: [:new, :create] do
     resources :topics, only: [:new, :create]
+    resources :test_questions, only: [:index, :new, :create]
   end
 
   resources :topics, except: [:new, :create] do

@@ -18,6 +18,7 @@ class TestQuestion < ActiveRecord::Base
 	has_many :responses
 	has_many :choices
 	belongs_to :review_session
+	belongs_to :unit
 
 	extend Dragonfly::Model
 		dragonfly_accessor :image
