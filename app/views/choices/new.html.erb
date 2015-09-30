@@ -8,11 +8,14 @@
 
 	<div class="mainbox">
 
-		<h2>Create a New Choice</h2>
+		<h2>Add a New Choice</h2>
+
+		<hr>
 
 		<form action="/test_questions/<%= @question.id %>/choices" method="post">
-			<label for="choice_text">Choice Test</label>
+			<label for="choice_text">Choice Text</label><br>
 			<textarea name="choice_text" placeholder="Enter Choice Text..."></textarea><br>
+			<hr>
 			<input type="submit" value="Create Choice"/>
 			<input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
 		</form>

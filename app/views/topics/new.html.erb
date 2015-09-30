@@ -8,7 +8,9 @@
 
 	<div class="mainbox">
 
-	<h2>Add a New Topic</h2>
+		<h2>Add a New Topic</h2>
+
+		<hr>
 
 		<form action="/units/<%= @unit.id %>/topics" method="post">
 			<label for="title">Topic Title:</label><br>
@@ -16,8 +18,9 @@
 			<label for="description">Topic Description:</label><br>
 			<textarea name="description" placeholder="Enter Topic Description..."></textarea><br>
 			<label for="video_url">YouTube Video Code</label><br>
-			<input type="text" name="video_url" placeholder="Enter Video URL..."/><br>
-			<a href="https://www.youtube.com" target="_blank">Launch YouTube</a><br><br><br>
+			<input type="text" name="video_url" placeholder="Enter YouTube Video Code..."/><br>
+			<a href="https://www.youtube.com" target="_blank">Launch YouTube</a><br><br>
+			<hr>
 			<input type="submit" value="Create Topic"/>
 			<input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
 		</form>

@@ -7,6 +7,8 @@
 
 		<h2>Teacher Dashboard</h2>
 
+		<hr>
+
 		<form action="/courses">
 		  <input type="submit" value="Courses">
 		</form>
@@ -23,6 +25,8 @@
       <input type="submit" value="My Assessments">
 	  </form>
 
+	  <hr>
+
 		<% if (session[:is_admin]) %>
 
 			<h5>For Administrators Only</h5>
@@ -34,6 +38,8 @@
 		  <form action="/teachers">
 	      <input type="submit" value="Teachers">
 		  </form>
+
+		  <hr>
 
 		<% end %>
 

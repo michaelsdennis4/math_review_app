@@ -4,11 +4,13 @@
 	</form>
 </div>
 
-<% if (session[:is_teacher] && session[:is_admin]) %>
+<% if (session[:is_admin]) %>
 
 	<div class="mainbox">
 
 		<h2>Teachers</h2>
+
+		<hr>
 
 		<% @teachers.each do |teacher| %>
 
@@ -21,6 +23,8 @@
 		<form action="/teachers/new">
 	    <input class="lite" type="submit" value="Add a New Teacher">
 		</form>
+
+		<hr>
 
 </div>
 

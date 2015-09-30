@@ -4,11 +4,13 @@
 	</form>
 </div>
 
-<% if (session[:is_teacher]) %>
+<% if (session[:is_admin]) %>
 
 	<div class="mainbox">
 
 		<h2>Edit Teacher Profile</h2>
+
+		<hr>
 
 		<form action="/teachers/<%= @teacher.id %>" method="post">
 			<label for="first_name">First Name</label><br>
@@ -38,6 +40,9 @@
 				<% end %>
 			<% end %>
 			<br><br>
+
+			<hr>
+
 			<input type="submit" value="Update Profile"/>
 			<input type="hidden" name="_method" value="patch"/>
 			<input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />

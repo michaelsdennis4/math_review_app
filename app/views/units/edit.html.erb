@@ -8,13 +8,16 @@
 
 	<div class="mainbox">
 
-	<h2>Edit Unit</h2>
+		<h2>Edit Unit</h2>
+
+		<hr>
 
 		<form action="/units/<%= @unit.id %>" method="post">
 			<label for="title">Unit Title:</label><br>
 			<input type="text" name="title" value="<%= @unit.title %>"/><br>
 			<label for="description">Unit Description:</label><br>
 			<textarea name="description"><%= @unit.description %></textarea><br>
+			<hr>
 			<input type="submit" value="Update Unit"/>
 			<input type="hidden" name="_method" value="patch"/>
 			<input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />

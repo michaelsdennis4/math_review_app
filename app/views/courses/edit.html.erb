@@ -10,9 +10,12 @@
 
 		<h2>Edit Course</h2>
 
+		<hr>
+
 		<form action="/courses/<%= @course.id %>" method="post">
 			<label for="name">Course Name:</label><br>
 			<input class="short" type="text" name="name" value="<%= @course.name %>"/>
+			<hr>
 			<input type="submit" value="Update Course"/>
 			<input type="hidden" name="_method" value="patch"/>
 			<input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />

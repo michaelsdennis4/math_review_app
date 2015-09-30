@@ -10,10 +10,22 @@
 
 		<h2>Students</h2>
 
+		<hr>
+
 		<% @students.each do |student| %>
 
 			<form action="/students/<%= student.id %>">
 		    <input type="submit" value="<%= student.first_name %> <%= student.last_name %>">
+			</form>
+
+		<% end %>
+
+		<hr>
+
+		<% if (session[:is_admin]) %>
+
+			<form action="/students/new">
+		    <input class="lite" type="submit" value="Add a Student">
 			</form>
 
 		<% end %>

@@ -10,6 +10,8 @@
 
 		<h2>Edit Review Session</h2>
 
+		<hr>
+
 		<form action="/review_sessions/<%= @session.id %>" method="post">
 			<label for="title">Session Title:</label><br>
 			<input type="text" name="title" value="<%= @session.title %>"/><br>
@@ -23,9 +25,10 @@
 				<input type="radio" name="test_type" value="1" checked="checked">Computer
 			<% end %>
 			<br><br>
-			<label for="title">Test URL (for paper test):</label><br>
+			<label for="title">Test URL (for paper test)</label><br>
 			<h5>Enter Dropbox URL for test PDF</h5>
 			<input type="text" name="test_url" value="<%= @session.test_url %>"/><br>
+			<hr>
 			<input type="submit" value="Update Review Session"/>
 			<input type="hidden" name="_method" value="patch"/>
 			<input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />

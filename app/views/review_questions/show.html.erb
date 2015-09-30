@@ -8,6 +8,8 @@
 
 	<h2>Review Question</h2>
 
+	<hr>
+
 	<h4>Question:</h4>
 	<p class="description">
 		<%= @question.question_text %><br><br>
@@ -29,6 +31,8 @@
 	<% else %>
 		<h4>Active: No</h4>
 	<% end %>
+
+	<hr>
 
 	<% if((session[:is_admin]) || (session[:user_id] == @question.topic.unit.review_session.teacher_id)) %>
 

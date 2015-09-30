@@ -8,7 +8,9 @@
 
 	<div class="mainbox">
 
-	<h2>Edit Topic</h2>
+		<h2>Edit Topic</h2>
+
+		<hr>
 
 		<form action="/topics/<%= @topic.id %>" method="post">
 			<label for="title">Topic Title:</label><br>
@@ -18,6 +20,7 @@
 			<label for="video_url">YouTube Video Code:</label><br>
 			<input type="text" name="video_url" value="<%= @topic.video_url %>"/><br>
 			<a href="https://www.youtube.com" target="_blank">Launch YouTube</a><br><br>
+			<hr>
 			<input type="submit" value="Update Topic"/>
 			<input type="hidden" name="_method" value="patch"/>
 			<input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />

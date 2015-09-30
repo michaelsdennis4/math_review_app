@@ -10,11 +10,20 @@
 
 		<h2>Edit Choice</h2>
 
+		<hr>
+
 		<form action="/choices/<%= @choice.id %>" method="post">
 			<label for="choice_text">Choice Text</label><br>
 			<textarea name="choice_text"><%= @choice.choice_text %></textarea><br>
+			<hr>
 			<input type="submit" value="Update Choice"/>
 			<input type="hidden" name="_method" value="patch"/>
+			<input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
+		</form>
+
+		<form action="/choices/<%= @choice.id %>" method="post">
+			<input class="delete" id="choice" type="submit" value="Delete Choice"/>
+			<input type="hidden" name="_method" value="delete"/>
 			<input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
 		</form>
 
@@ -52,12 +61,6 @@
 		<% end %>
 		
 		<hr>
-
-		<form action="/choices/<%= @choice.id %>" method="post">
-			<input class="delete" id="choice" type="submit" value="Delete Choice"/>
-			<input type="hidden" name="_method" value="delete"/>
-			<input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
-		</form>
 
 	</div>
 	

@@ -4,11 +4,13 @@
 	</form>
 </div>
 
-<% if (session[:is_teacher]) %>
+<% if((session[:is_admin]) || (session[:user_id] == @session.teacher_id)) %>
 
 	<div class="mainbox">
 
 		<h2>Edit Test Question</h2>
+
+		<hr>
 
 		<form action="/test_questions/<%= @question.id %>" method="post">
 			<label for="question_text">Question Text</label><br>
@@ -23,8 +25,8 @@
 				<input type="radio" name="is_active" value="true">Yes
 				<input type="radio" name="is_active" value="false" checked="checked">No
 			<% end %>
-			<br>
-			<br>
+			<br><br>
+			<hr>
 
 			<h3>Answer Choices</h3>
 			<h5>Teacher: Select Correct Answer</h5>
@@ -40,8 +42,16 @@
 					<br>
 				<% end %>
 
+			<hr>
+
 			<input type="submit" value="Update Question"/>
 			<input type="hidden" name="_method" value="patch"/>
+			<input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
+		</form>
+
+		<form action="/test_questions/<%= @question.id %>" method="post">
+			<input class="delete" id="test question" type="submit" value="Delete Question"/>
+			<input type="hidden" name="_method" value="delete"/>
 			<input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
 		</form>
 
@@ -79,12 +89,6 @@
 		<% end %>
 		
 		<hr>
-
-		<form action="/test_questions/<%= @question.id %>" method="post">
-			<input class="delete" id="test question" type="submit" value="Delete Question"/>
-			<input type="hidden" name="_method" value="delete"/>
-			<input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
-		</form>
 
 	</div>
 

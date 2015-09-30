@@ -4,11 +4,13 @@
 	</form>
 </div>
 
-<% if (session[:is_teacher] && session[:is_admin]) %>
+<% if (session[:is_admin]) %>
 
 	<div class="mainbox">
 
 		<h2>Add a New Teacher</h2>
+
+		<hr>
 
 		<form action="/teachers" method="post">
 			<label for="first_name">First Name</label><br>
@@ -25,6 +27,9 @@
 			<input type="radio" name="is_admin" value="true">Yes
 			<input type="radio" name="is_admin" value="false" checked="checked">No
 			<br><br>
+
+			<hr>
+			
 			<input type="submit" value="Create Teacher"/>
 			<input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
 		</form>

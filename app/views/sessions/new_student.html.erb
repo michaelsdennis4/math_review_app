@@ -1,10 +1,14 @@
 <div class="topnav">
-	<a href="/">Home</a>
+	<form action="/">
+    <input type="submit" value="Home">
+	</form>
 </div>
 
 <div class="mainbox">
 
 	<h2>Student Login</h2>
+
+	<hr>
 
 	<form action="/student_login" method="post">
 		<label for="email">E-mail</label><br>
@@ -13,6 +17,7 @@
 		<label for="password">Password</label><br>
 		<input type="password" name="password" placeholder="Password"/><br>
 		<br>
+		<hr>
 		<input type="submit" value="Login"/>
 		<input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
 	</form>

@@ -4,34 +4,30 @@
 	</form>
 </div>
 
+<% if((session[:is_admin]) || (session[:user_id] == @student.id)) %>
+
 <div class="mainbox">
 
 	<h2>Student Profile</h2>
 
-	<h4>First Name:</h4>
-	<h5><%= @student.first_name %></h5>
-	<h4>Last Name:</h4>
-	<h5><%= @student.last_name %></h5>
-	<h4>Email:</h4> 
-	<h5><%= @student.email %></h5>
-	<h4>Student ID:</h4>
-	<h5><%= @student.identification %></h5>
-	<h4>Graduation Year:</h4>
-	<h5><%= @student.grad_year %></h5>
-	<h4>Status:</h4>
-	<h5><%= @student.status %></h5>
+	<hr>
+
+	<h4>First Name: <%= @student.first_name %></h4>
+	<h4>Last Name: <%= @student.last_name %></h4>
+	<h4>Email: <%= @student.email %></h4> 
+	<h4>Student ID: <%= @student.identification %></h4>
+	<h4>Graduation Year: <%= @student.grad_year %></h4>
+	<% if (@student.status == 0) %>	
+		<h4>Status: Invited</h4>
+	<% end %>
 
 	<hr>
 
-	<h3>Assessments</h3>
+	<% if (session[:is_admin]) %>
 
-	<!-- list of student assessments -->
-
-	<% if (session[:is_teacher]) %>
-
-
-
-
+		<form action="/students/<%= @student.id %>/edit">
+	    <input type="submit" value="Edit Profile">
+		</form>
 
 	<% end %>
 
