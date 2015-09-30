@@ -1,0 +1,46 @@
+<div class="topnav">
+	<form action="/students">
+    <input type="submit" value="Back to Students">
+	</form>
+</div>
+
+<% if (session[:is_admin]) %>
+
+	<div class="mainbox">
+
+		<h2>Add a New Student</h2>
+
+		<hr>
+
+		<form action="/students" method="post">
+			<label for="first_name">First Name</label><br>
+			<input type="text" name="first_name" placeholder="Enter First Name..."/><br>
+			<label for="last_name">Last Name</label><br>
+			<input type="text" name="last_name" placeholder="Enter Last Name..."/><br>
+			<label for="email">Email</label><br>
+			<input type="text" name="email" placeholder="Enter Email..."/><br>	
+			<label for="identification">Student ID</label><br>
+			<input type="text" name="identification" placeholder="Enter Student ID..."/>
+			<label for="grad_year">Graduation Year</label><br>
+			<input type="number" name="grad_year" min="2000" value="2016"/><br>
+			<br>
+			<label for="password">Password</label><br>
+			<input type="text" name="password" placeholder="Enter Password..."/><br>
+			<label for="password_confirmation">Password Confirmation</label><br>
+			<input type="text" name="password_confirmation" placeholder="Confirm Password..."/><br><br>
+			
+			<hr>
+			
+			<input type="submit" value="Create Student"/>
+			<input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
+		</form>
+
+	</div>
+	
+<% else %>
+
+	<div class="sorry">
+		<h1>Sorry, you are not authorized to view this page.</h1>
+	</div>
+
+<% end %>

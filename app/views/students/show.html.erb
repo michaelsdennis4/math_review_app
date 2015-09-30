@@ -1,34 +1,42 @@
 <div class="topnav">
-	<form action="/dashboard">
-    <input type="submit" value="Back to Dashboard">
-	</form>
+	<form action="/students/<%= @student.id %>">
+    <input type="submit" value="Back to <%= @student.first_name %> <%= @student.last_name %>">
+	</form>		
 </div>
 
 <% if((session[:is_admin]) || (session[:user_id] == @student.id)) %>
 
-<div class="mainbox">
+	<div class="mainbox">
 
-	<h2>Student Profile</h2>
+		<h2>Edit Student Profile</h2>
 
-	<hr>
+		<hr>
 
-	<h4>First Name: <%= @student.first_name %></h4>
-	<h4>Last Name: <%= @student.last_name %></h4>
-	<h4>Email: <%= @student.email %></h4> 
-	<h4>Student ID: <%= @student.identification %></h4>
-	<h4>Graduation Year: <%= @student.grad_year %></h4>
-	<% if (@student.status == 0) %>	
-		<h4>Status: Invited</h4>
-	<% end %>
+		<h4>First Name: <%= @student.first_name %></h4>
+		<h4>Last Name: <%= @student.last_name %></h4>
+		<h4>Email: <%= @student.email %></h4> 
+		<h4>Student ID: <%= @student.identification %></h4>
+		<h4>Graduation Year: <%= @student.grad_year %></h4>
+		<% if (@student.status == 0) %>	
+			<h4>Status: Invited</h4>
+		<% end %>
 
-	<hr>
+		<hr>
 
-	<% if (session[:is_admin]) %>
+		<% if (session[:is_admin]) %>
 
-		<form action="/students/<%= @student.id %>/edit">
-	    <input type="submit" value="Edit Profile">
-		</form>
+			<form action="/students/<%= @student.id %>/edit">
+		    <input type="submit" value="Edit Profile">
+			</form>
 
-	<% end %>
+		<% end %>
 
-</div>
+	</div>
+
+<% else %>
+
+	<div class="sorry">
+		<h1>Sorry, you are not authorized to view this page.</h1>
+	</div>
+
+<% end %>

@@ -1,0 +1,42 @@
+<div class="topnav">
+	<form action="/teachers">
+    <input type="submit" value="Back to Teachers">
+	</form>
+</div>
+
+<% if (session[:is_admin]) %>
+
+	<div class="mainbox">
+
+		<h2>Edit Student</h2>
+
+		<hr>
+
+		<form action="/students" method="post">
+			<label for="first_name">First Name</label><br>
+			<input type="text" name="first_name" value="<%= @student.first_name %>"/><br>
+			<label for="last_name">Last Name</label><br>
+			<input type="text" name="last_name" value="<%= @student.last_name %>"/><br>
+			<label for="email">Email</label><br>
+			<input type="text" name="email" value="<%= @student.email %>"/><br>	
+			<label for="identification">Student ID</label><br>
+			<input type="text" name="identification" value="<%= @student.identification %>"/>
+			<label for="grad_year">Graduation Year</label><br>
+			<input type="number" name="grad_year" min="2000" value="<%= @student.grad_year %>"/><br>
+			<br>
+		
+			<hr>
+			
+			<input type="submit" value="Update Student"/>
+			<input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
+		</form>
+
+	</div>
+	
+<% else %>
+
+	<div class="sorry">
+		<h1>Sorry, you are not authorized to view this page.</h1>
+	</div>
+
+<% end %>
