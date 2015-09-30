@@ -1,7 +1,7 @@
 <div class="topnav">
-	<form action="/teachers">
-    <input type="submit" value="Back to Teachers">
-	</form>
+	<form action="/students/<%= @student.id %>">
+    <input type="submit" value="Back to <%= @student.first_name %> <%= @student.last_name %>">
+	</form>		
 </div>
 
 <% if (session[:is_admin]) %>
@@ -12,7 +12,7 @@
 
 		<hr>
 
-		<form action="/students" method="post">
+		<form action="/students/<%= @student.id %>" method="post">
 			<label for="first_name">First Name</label><br>
 			<input type="text" name="first_name" value="<%= @student.first_name %>"/><br>
 			<label for="last_name">Last Name</label><br>
@@ -23,11 +23,16 @@
 			<input type="text" name="identification" value="<%= @student.identification %>"/>
 			<label for="grad_year">Graduation Year</label><br>
 			<input type="number" name="grad_year" min="2000" value="<%= @student.grad_year %>"/><br>
-			<br>
-		
+			<label for="status">Status</label><br>
+			<select name="status">
+			  <option value="0"<% if (@student.status == 0) %>selected<% end %>>Invited</option> 
+			  <option value="1"<% if (@student.status == 1) %>selected<% end %>>Active</option>
+			  <option value="2"<% if (@student.status == 2) %>selected<% end %>>Inactive</option>
+			</select>
+			<br><br>
 			<hr>
-			
 			<input type="submit" value="Update Student"/>
+			<input type="hidden" name="_method" value="patch"/>
 			<input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
 		</form>
 

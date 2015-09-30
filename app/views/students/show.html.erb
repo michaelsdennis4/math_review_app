@@ -1,6 +1,6 @@
 <div class="topnav">
-	<form action="/students/<%= @student.id %>">
-    <input type="submit" value="Back to <%= @student.first_name %> <%= @student.last_name %>">
+	<form action="/students">
+    <input type="submit" value="Back to Students">
 	</form>		
 </div>
 
@@ -19,6 +19,10 @@
 		<h4>Graduation Year: <%= @student.grad_year %></h4>
 		<% if (@student.status == 0) %>	
 			<h4>Status: Invited</h4>
+		<% elsif (@student.status == 1) %>
+			<h4>Status: Active</h4>
+		<% else %>
+			<h4>Status: Inactive</h4>
 		<% end %>
 
 		<hr>
