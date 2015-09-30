@@ -14,7 +14,11 @@
 
 	<div class="mainbox">
 
-		<h2>Student Profile</h2>
+		<% if (session[:student_id] == @student.id) %>
+			<h2>My Profile</h2>
+		<% else %>
+			<h2>Student Profile</h2>
+		<% end %>
 
 		<hr>
 
@@ -34,6 +38,12 @@
 		<hr>
 
 		<% if (session[:is_admin]) %>
+
+			<form action="/students/<%= @student.id %>/assessments">
+		    <input type="submit" value="Student Assessments">
+			</form>
+
+			<hr>
 
 			<form action="/students/<%= @student.id %>/edit">
 		    <input type="submit" value="Edit Profile">

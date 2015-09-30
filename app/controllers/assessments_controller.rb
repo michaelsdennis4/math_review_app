@@ -16,6 +16,13 @@ class AssessmentsController < ApplicationController
 	end
 
 	def show
+		if (params[:student_id])
+			@student = Student.find(params[:student_id])
+		elsif (params[:teacher_id])
+			@teacher = Teacher.find(params[:teacher_id])
+		elsif (params[:review_session_id])
+			@session = ReviewSession.find(params[:review_session_id])
+		end
 		@assessment = Assessment.find(params[:id])
 	end
 	

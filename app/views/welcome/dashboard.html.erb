@@ -3,7 +3,7 @@
 
 <div class="mainbox">
 
-	<% if (session[:teacher_id != nil]) %>
+	<% if (session[:teacher_id] != nil) %>
 
 		<h2>Teacher Dashboard</h2>
 
@@ -17,17 +17,17 @@
       <input type="submit" value="Students">
 	  </form>
 
-	  <form action="/teachers/<%= session[:user_id] %>">
+	  <form action="/teachers/<%= session[:teacher_id] %>">
       <input type="submit" value="My Profile">
 	  </form>
 
-	  <form action="/teachers/<%= session[:user_id] %>/assessments">
+	  <form action="/teachers/<%= session[:teacher_id] %>/assessments">
       <input type="submit" value="My Assessments">
 	  </form>
 
 	  <hr>
 
-		<% if (session[:is_admin]) %>
+		<% if (session[:is_admin] == true) %>
 
 			<h5>For Administrators Only</h5>
 
@@ -47,11 +47,11 @@
 
 		<h2>Student Dashboard</h2>
 
-		<form action="/student_assessments/<%= session[:user_id] %>">
+		<form action="/students/<%= session[:student_id] %>/assessments">
 	    <input type="submit" value="My Review Sessions">
 		</form>
 
-		<form action="/students/<%= session[:user_id] %>">
+		<form action="/students/<%= session[:student_id] %>">
 	    <input type="submit" value="My Profile">
 		</form>
 

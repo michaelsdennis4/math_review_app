@@ -8,7 +8,11 @@
 
 	<div class="mainbox">
 
-		<h2>Teacher Profile</h2>
+		<% if (session[:teacher_id] == @teacher.id) %>		
+			<h2>My Profile</h2>
+		<% else %>
+			<h2>Teacher Profile</h2>
+		<% end %>
 
 		<hr>
 

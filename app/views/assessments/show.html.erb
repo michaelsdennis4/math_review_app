@@ -1,32 +1,36 @@
-<div class="topnav">
-	<!-- this will have several links depending on where it originated -->
-	<form action="/assessments">
-    <input type="submit" value="Back to Assessments">
-	</form>
-<!-- <a href="/review_sessions/<%= @assessment.review_session.id %>"><%= @assessment.review_session.title %></a> -->
-</div>
+<% if((session[:is_admin] == true) || (session[:teacher_id] == @assessment.review_session.teacher_id)) %>
 
-<% if((session[:is_admin] == true) || (session[:teacher_id] == @question.review_session.teacher_id)) %>
+	<div class="topnav">
+		<% if (@session) %>
+			<form action="/review_sessions/<%= @session.id %>/assessments">
+		<% elsif (@teacher) %>
+			<form action="/teachers/<%= @teacher.id %>/assessments"> 
+		<% elsif (@student) %>
+			<form action="/students/<%= @student.id %>/assessments">
+		<% else %>
+			<form action="/assessments">
+		<% end %>
+	    <input type="submit" value="Back to Assessments">
+		</form>
+	</div>
 
 	<div class="mainbox">
 
-		<h2>Assessment</h2>
+		<h2>Assessment Detail</h2>
 
 		<hr>
 
 		<h4>Student Name: <a href="/students/<%= @assessment.student.id %>"><%= @assessment.student.first_name %> <%= @assessment.student.last_name %></a></h4>
 		<h4>Course: <a href="/courses/<%= @assessment.review_session.course.id %>"><%= @assessment.review_session.course.name %></a></h4>
-		<h4>Review Session Title: <a href="/review_sessions/<%= @assessment.review_session.course.id %>"><%= @assessment.review_session.title %></a></h4>
+		<h4>Review Session: <a href="/review_sessions/<%= @assessment.review_session.course.id %>"><%= @assessment.review_session.title %></a></h4>
 		<h4>Teacher: <%= @assessment.review_session.teacher.first_name %> <%= @assessment.review_session.teacher.last_name %></h4>
 		<h4>Status: <%= @assessment.status.capitalize %></h4>
-		<h4>Date Assigned: <%= @assessment.date_assigned %></h4>
 
 		<hr>
 
 			<h3>Test Results</h3>
 
 			<h4>No Results Yet</h4>
-
 
 		<hr>
 
@@ -36,6 +40,37 @@
 
 	</div>
 
+<% elsif (session[:student_id] == @assessment.student.id) %>	
+<!-- student view -->
+
+	<div class="topnav">
+		<form action="/students/<%= @student.id %>/assessments">
+	    <input type="submit" value="Back to My Review Sessions">
+		</form>
+	</div>
+
+	<div class="mainbox">
+
+		<h2>Review Session Detail</h2>
+
+		<hr>
+
+		<h4>Course: <%= @assessment.review_session.course.name %></h4>
+		<h4>Review Session: <%= @assessment.review_session.title %></h4>
+		<h4>Teacher: <%= @assessment.review_session.teacher.first_name %> <%= @assessment.review_session.teacher.last_name %></h4>
+		<h4>Status: <%= @assessment.status.capitalize %></h4>
+		<h4>Test Score: not yet calculated</h4>
+
+		<hr>
+
+		<form action="">
+			<% if (@assessment.status == 'assigned') %>
+			  <input type="submit" value="Start">
+			<% else %>
+			  <input type="submit" value="Continue">
+			<% end %>
+		</form>
+	
 <% else %>
 
 	<div class="sorry">
