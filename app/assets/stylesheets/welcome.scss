@@ -76,6 +76,20 @@ header {
 	}
 }
 
+.sorry {
+	width: 80%;
+	margin-top: 20px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 100px;
+	text-align: center;
+	padding: 20px;
+	border: solid 2px; 
+	border-color: $bgcolor;
+	border-radius: 20px;
+	background-color: rgba(255,255,255,0.7);
+}
+
 .mainbox {
 	width: 80%;
 	margin-top: 20px;
@@ -326,6 +340,10 @@ footer {
 
 	.topnav {
 		margin-top: 220px;
+	}
+
+	.sorry {
+		width: 40%;
 	}
 
 	.mainbox {

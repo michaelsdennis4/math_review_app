@@ -1,0 +1,17 @@
+<div class="topnav">
+	<% if ((session[:teacher_id] != nil) || (session[:student_id] != nil)) %>
+		<form action="/dashboard">
+	    <input type="submit" value="Back to Dashboard">
+		</form>
+	<% else %>
+		<form action="/">
+	    <input type="submit" value="Home">
+		</form>
+	<% end %>
+</div>
+
+<div class="sorry">
+
+	<h1>404 - Page Not Found</h1>
+
+</div>

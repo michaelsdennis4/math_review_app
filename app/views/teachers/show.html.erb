@@ -4,7 +4,7 @@
 	</form>
 </div>
 
-<% if ((session[:is_admin]) || (session[:user_id] == @teacher.id)) %>
+<% if ((session[:is_admin] == true) || (session[:teacher_id] == @teacher.id)) %>
 
 	<div class="mainbox">
 
@@ -28,7 +28,7 @@
 
 		<hr>
 
-		<% if (session[:is_admin]) %>
+		<% if (session[:is_admin] == true) %>
 
 			<form action="/teachers/<%= @teacher.id %>/edit">
 		    <input type="submit" value="Edit Profile">

@@ -4,7 +4,7 @@
 	</form>
 </div>
 
-<% if (session[:is_teacher]) %>
+<% if (session[:teacher_id] != nil) %>
 
 	<div class="mainbox">
 
@@ -20,7 +20,7 @@
 
 		<% end %>
 
-		<% if (session[:is_admin]) %>
+		<% if (session[:is_admin] == true) %>
 
 			<form action="/courses/new">
 		    <input class="lite" type="submit" value="Add a New Course">

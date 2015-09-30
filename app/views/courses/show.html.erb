@@ -4,7 +4,7 @@
 	</form>
 </div>
 
-<% if (session[:is_teacher]) %>
+<% if (session[:teacher_id] != nil) %>
 
 	<div class="mainbox">
 
@@ -26,7 +26,7 @@
 	    <input class="lite" type="submit" value="Add a Review Session">
 		</form>
 
-		<% if (session[:is_admin]) %>
+		<% if (session[:is_admin] == true) %>
 
 			<hr>
 

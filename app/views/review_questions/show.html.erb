@@ -34,7 +34,7 @@
 
 	<hr>
 
-	<% if((session[:is_admin]) || (session[:user_id] == @question.topic.unit.review_session.teacher_id)) %>
+	<% if((session[:is_admin] == true) || (session[:teacher_id] == @question.topic.unit.review_session.teacher_id)) %>
 
 		<form action="/review_questions/<%= @question.id %>/edit">
 	    <input class="lite" type="submit" value="Edit Question">

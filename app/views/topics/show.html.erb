@@ -49,7 +49,7 @@
 
 	<% end %>
 
-	<% if((session[:is_admin]) || (session[:user_id] == @topic.unit.review_session.teacher_id)) %>
+	<% if((session[:is_admin] == true) || (session[:teacher_id] == @topic.unit.review_session.teacher_id)) %>
 
 		<form action="/topics/<%= @topic.id %>/review_questions/new">
 		  <input class="lite" type="submit" value="Add a New Question">

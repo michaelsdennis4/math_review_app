@@ -26,7 +26,7 @@
 
 	<% end %>
 
-	<% if((session[:is_admin]) || (session[:user_id] == @session.teacher_id)) %>
+	<% if((session[:is_admin] == true) || (session[:teacher_id] == @session.teacher_id)) %>
 
 		<form action="/review_sessions/<%= @session.id %>/units/new">
 	    <input class="lite" type="submit" value="Add a Unit">
@@ -61,7 +61,7 @@
 
 	<hr>
 
-	<% if(session[:is_teacher]) %>
+	<% if(session[:teacher_id] != nil) %>
 
 		<form action="/review_sessions/<%= @session.id %>/assessments">
 		  <input type="submit" value="Assessments">
@@ -69,7 +69,7 @@
 
 	<% end %>
 
-	<% if((session[:is_admin]) || (session[:user_id] == @session.teacher_id)) %>
+	<% if((session[:is_admin] == true) || (session[:teacher_id] == @session.teacher_id)) %>
 
 		<hr>
 

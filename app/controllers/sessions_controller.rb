@@ -16,9 +16,9 @@ class SessionsController < ApplicationController
   def create_teacher
     user = Teacher.find_by({email: params[:email]})
     if (user && user.authenticate(params[:password]))
-      session[:user_id] = user.id
+      session[:teacher_id] = user.id
+      session[:student_id] = nil
       session[:user_name] = "#{user.first_name} #{user.last_name}"
-      session[:is_teacher] = true
       session[:is_admin] = user.is_admin
       redirect_to "/dashboard" #dashboard
     else
@@ -29,9 +29,9 @@ class SessionsController < ApplicationController
   def create_student
     user = Student.find_by({email: params[:email]})
     if (user && user.authenticate(params[:password]))
-      session[:user_id] = user.id
+      session[:teacher_id] = nil
+      session[:student_id] = user.id
       session[:user_name] = "#{user.first_name} #{user.last_name}"
-      session[:is_teacher] = false
       session[:is_admin] = false
       redirect_to "/dashboard" #dashboard
     else
@@ -41,9 +41,10 @@ class SessionsController < ApplicationController
 
   #nulls user session (logout)
   def destroy
-  	session[:user_id] = nil
+  	session[:teacher_id] = nil
+    session[:student_id] = nil
     session[:user_name] = nil
-    session[:is_teacher] = nil
+    session[:is_admin] = nil
   	redirect_to '/'
   end
 
