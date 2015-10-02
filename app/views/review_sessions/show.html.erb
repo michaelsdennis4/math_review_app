@@ -35,8 +35,26 @@
 			</div>
 
 			<div class="status">
-				<%= image_tag "http://i.imgur.com/5byMYCo.png", :class => "icon" %>
-				<h4>QUIZ NOT COMPLETED</h4>
+				<% if (unit.test_questions.count == 0) %>
+					<%= image_tag "http://i.imgur.com/hBmX2V1.png", :class => "icon" %>
+					<h4>NO QUIZ FOR THIS UNIT</h4>
+				<% else %>
+					<% unit.test_questions.each do |question| %>
+						<% if (question.response.score) %>
+							<% unit_quiz_complete = true %>
+						<% else %>
+							<% unit_quiz_complete = false %>
+						<% end %>
+					<% end %>
+					<% if (unit_quiz_complete == true) %>
+						<%= image_tag "http://i.imgur.com/LZTyXAD.png", :class => "icon" %>
+						<h4>QUIZ COMPLETE</h4>
+					<% else %>
+						<%= image_tag "http://i.imgur.com/5byMYCo.png", :class => "icon" %>
+						<h4>QUIZ NOT COMPLETED</h4>
+					<% end %>
+				<% end %>
+				
 			</div>
 
 		<% else %>
@@ -72,12 +90,30 @@
 
 		<h4>Final Test Format: online (computer graded)</h4>
 
-		<form action="/review_sessions/<%= @session.id %>/test_questions">
-		  <input type="submit" value="Final Test">
-		</form>
+		<% if (@assessment) %>
 
-		<% if (@session.test_questions.count == 0) %>
-			<h5 class="warning">Warning: there are no test questions for this session!</h5><br>
+			<!-- test is enabled when quizzes are completed (need method) -->
+
+			<form action="/review_sessions/<%= @session.id %>/test_questions">
+			  <input class="shaded" type="submit" value="Final Test" disabled>
+			</form>
+
+			<h5>You must complete the unit quizzes before you can take the test.</h5>
+
+		<% else %>
+
+			<form action="/review_sessions/<%= @session.id %>/test_questions">
+			  <input type="submit" value="Final Test">
+			</form>
+
+		<% end %>
+
+		<% if((session[:is_admin] == true) || (session[:teacher_id] == @session.teacher_id)) %>
+
+			<% if (@session.test_questions.count == 0) %>
+				<h5 class="warning">Warning: there are no test questions for this session!</h5><br>
+			<% end %>
+
 		<% end %>
 
 	<% end %>
