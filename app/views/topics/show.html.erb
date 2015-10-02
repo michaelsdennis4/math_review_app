@@ -1,7 +1,13 @@
 <div class="topnav">
-	<form action="/units/<%= @topic.unit.id %>">
-    <input type="submit" value="Back to <%= @topic.unit.title %>">
-	</form>
+	<% if (@assessment) %>
+		<form action="/assessments/<%= @assessment.id %>/units/<%= @topic.unit.id %>">
+    	<input type="submit" value="Back to <%= @topic.unit.title %>">
+		</form>
+	<% else %>
+		<form action="/units/<%= @topic.unit.id %>">
+    	<input type="submit" value="Back to <%= @topic.unit.title %>">
+		</form>
+	<% end %>
 </div>
 
 <div class="mainbox">
@@ -37,13 +43,27 @@
 
 	<% @questions.each do |question| %>
 
-		<form action="/review_questions/<%= question.id %>">
-			<% if (question.is_active == true) %>
-	    	<input type="submit" value="Question <%= i %> [ACTIVE]">
-	    <% else %>	
-	    	<input class="lite" type="submit" value="Question <%= i %> [INACTIVE]">
-	    <% end %>
-		</form>
+		<% if (@assessment) %>
+
+			<form action="/assessments/<%= @assessment.id %>/review_questions/<%= question.id %>">
+				<% if (question.is_active == true) %>
+		    	<input type="submit" value="Question <%= i %> [ACTIVE]">
+		    <% else %>	
+		    	<input class="lite" type="submit" value="Question <%= i %> [INACTIVE]">
+		    <% end %>
+			</form>
+
+		<% else %>
+
+			<form action="/review_questions/<%= question.id %>">
+				<% if (question.is_active == true) %>
+		    	<input type="submit" value="Question <%= i %> [ACTIVE]">
+		    <% else %>	
+		    	<input class="lite" type="submit" value="Question <%= i %> [INACTIVE]">
+		    <% end %>
+			</form>
+
+		<% end %>
 
 		<% i = i+1 %>
 

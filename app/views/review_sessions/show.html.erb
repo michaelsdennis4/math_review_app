@@ -29,7 +29,7 @@
 		<% if (@assessment) %>
 
 			<div class="button">
-				<form action="/units/<%= unit.id %>">
+				<form action="/assessments/<%= @assessment.id %>/units/<%= unit.id %>">
 			    <input type="submit" value="<%= unit.title %>">
 				</form>
 			</div>

@@ -18,10 +18,23 @@ $('document').ready(function() {
 			window.alert("Please select a file to upload.");
 			event.preventDefault();
 		};
-	} ;
+	};
+
+	var revealAnswer = function(event) {
+		event.preventDefault();
+		console.log(event);
+		$("div.answer").toggleClass("hidden");
+		if (event.target.defaultValue == "Reveal Answer") {
+			event.target.defaultValue = "Hide Answer"
+		} else {
+			event.target.defaultValue = "Reveal Answer"
+		};
+	};
 
 	$(".delete").bind('click', confirmDelete);
 
-	$("input#upload").bind('click', checkFileSelected)
+	$("input.upload").bind('click', checkFileSelected);
+
+	$("input.reveal").bind('click', revealAnswer);
 
 });

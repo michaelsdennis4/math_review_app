@@ -1,7 +1,13 @@
 <div class="topnav">
-	<form action="/review_sessions/<%= @unit.review_session.id %>">
-    <input type="submit" value="Back to <%= @unit.review_session.title %>">
-	</form>
+	<% if (@assessment) %>
+		<form action="/assessments/<%= @assessment.id %>/review_sessions/<%= @unit.review_session.id %>">
+    	<input type="submit" value="Back to <%= @unit.review_session.title %>">
+		</form>
+	<% else %>
+		<form action="/review_sessions/<%= @unit.review_session.id %>">
+    	<input type="submit" value="Back to <%= @unit.review_session.title %>">
+		</form>
+	<% end %>
 </div>
 
 <div class="mainbox">
@@ -22,9 +28,19 @@
 
 	<% @topics.each do |topic| %>
 
-		<form action="/topics/<%= topic.id %>">
-	    <input type="submit" value="<%= topic.title %>">
-		</form>
+		<% if (@assessment) %>
+
+			<form action="/assessments/<%= @assessment.id %>/topics/<%= topic.id %>">
+		    <input type="submit" value="<%= topic.title %>">
+			</form>
+
+		<% else %>
+
+			<form action="/topics/<%= topic.id %>">
+		    <input type="submit" value="<%= topic.title %>">
+			</form>
+
+		<% end %>
 	
 	<% end %>
 

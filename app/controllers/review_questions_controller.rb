@@ -9,6 +9,9 @@ class ReviewQuestionsController < ApplicationController
 	end
 
 	def show
+		if (params[:assessment_id])
+			@assessment = Assessment.find(params[:assessment_id])
+		end	
 		@question = ReviewQuestion.find(params[:id])
 	end
 

@@ -1,7 +1,13 @@
 <div class="topnav">
-	<form action="/topics/<%= @question.topic.id %>">
-    <input type="submit" value="Back to <%= @question.topic.title %>">
-	</form>
+	<% if (@assessment) %>
+		<form action="/assessments/<%= @assessment.id %>/topics/<%= @question.topic.id %>">
+    	<input type="submit" value="Back to <%= @question.topic.title %>">
+		</form>
+	<% else %>
+		<form action="/topics/<%= @question.topic.id %>">
+    	<input type="submit" value="Back to <%= @question.topic.title %>">
+		</form>
+	<% end %>	
 </div>
 
 <div class="mainbox">
@@ -16,20 +22,36 @@
 	</p>
 	<%= image_tag @question.image.url if @question.image_stored? %>
 
-	<!-- question image -->
+	<% if (@assessment) %>
 
-	<h4>Answer:</h4>
-	<p class="description">
-		<%= @question.review_answer.answer_text %><br><br>
-	</p>
-	<%= image_tag @question.review_answer.image.url if @question.review_answer.image_stored? %>
+		<form action="">
+	    <input class="reveal" type="submit" value="Reveal Answer">
+		</form>
 
-	<!-- answer image -->
+		<div class="answer hidden">
 
-	<% if (@question.is_active == true) %>
-		<h4>Active: Yes</h4>
 	<% else %>
-		<h4>Active: No</h4>
+
+		<div class="answer">
+
+	<% end %>
+
+		<h4>Answer:</h4>
+		<p class="description">
+			<%= @question.review_answer.answer_text %><br><br>
+		</p>
+		<%= image_tag @question.review_answer.image.url if @question.review_answer.image_stored? %>
+
+	</div>
+
+	<% if !(@assessment) %>
+
+		<% if (@question.is_active == true) %>
+			<h4>Active: Yes</h4>
+		<% else %>
+			<h4>Active: No</h4>
+		<% end %>
+
 	<% end %>
 
 	<hr>

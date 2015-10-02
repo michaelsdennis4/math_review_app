@@ -11,6 +11,9 @@ class TopicsController < ApplicationController
 	end
 
 	def show
+		if (params[:assessment_id])
+			@assessment = Assessment.find(params[:assessment_id])
+		end	
 		@topic = Topic.find(params[:id])
 		@questions = @topic.review_questions.all.order(:id)
 	end
