@@ -63,11 +63,13 @@
 
 		<hr>
 
-		<form action="">
+		<form action="/review_sessions/<%= @assessment.id %>/instructions">
 			<% if (@assessment.status == 'assigned') %>
 			  <input type="submit" value="Start">
-			<% else %>
+			<% elsif (@assessment.status == 'in progress') %>
 			  <input type="submit" value="Continue">
+			<% else %>
+			  <input type="submit" value="Review">
 			<% end %>
 		</form>
 	

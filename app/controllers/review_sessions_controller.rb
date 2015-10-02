@@ -9,12 +9,20 @@ class ReviewSessionsController < ApplicationController
 	end
 
 	def show
+		if (params[:assessment_id])
+			@assessment = Assessment.find(params[:assessment_id])
+		end
 		@session = ReviewSession.find(params[:id])
 		@units = @session.units.all.order(:id)
 	end
 
 	def edit
 		@session = ReviewSession.find(params[:id])
+	end
+
+	def instructions
+		@assessment = Assessment.find(params[:id])
+		@session = @assessment.review_session
 	end
 
 	def create

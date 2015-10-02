@@ -14,11 +14,11 @@
 
 		<h1>Mathematics Review</h1>
 
-		<% if (session[:user_id]) %>
+		<% if ((session[:student_id] != nil) || (session[:teacher_id] != nil)) %> 
 
-			<% if (session[:is_admin]) %>
+			<% if (session[:is_admin] == true) %>
 				<h5>Hello, <%= session[:user_name] %> [Admin]</h5>
-			<% elsif (session[:is_teacher]) %>
+			<% elsif (session[:teacher_id] != nil) %>
 				<h5>Hello, <%= session[:user_name] %> [Teacher]</h5>
 			<% else %>
 				<h5>Hello, <%= session[:user_name] %> [Student]</h5>

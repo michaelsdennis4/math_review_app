@@ -1,7 +1,13 @@
 <div class="topnav">
-	<form action="/courses/<%= @session.course.id %>">
-    <input type="submit" value="Back to <%= @session.course.name %>">
-	</form>
+	<% if (@assessment) %>
+		<form action="/review_sessions/<%= @session.id %>/instructions">
+	    <input type="submit" value="Back to Instructions">
+		</form>
+	<% else %>
+		<form action="/courses/<%= @session.course.id %>">
+	    <input type="submit" value="Back to <%= @session.course.name %>">
+		</form>
+	<% end %>
 </div>
 
 <div class="mainbox">
@@ -12,7 +18,7 @@
 
 	<h4>Course: <%= @session.course.name %></h4>
 
-	<h4>Created by: <%= @session.teacher.first_name %> <%= @session.teacher.last_name %></h4>
+	<h4>Teacher: <%= @session.teacher.first_name %> <%= @session.teacher.last_name %></h4>
 	
 	<hr>
 	
@@ -20,10 +26,27 @@
 
 	<% @units.each do |unit| %>
 
-		<form action="/units/<%= unit.id %>">
-	    <input type="submit" value="<%= unit.title %>">
-		</form>
+		<% if (@assessment) %>
 
+			<div class="button">
+				<form action="/units/<%= unit.id %>">
+			    <input type="submit" value="<%= unit.title %>">
+				</form>
+			</div>
+
+			<div class="status">
+				<%= image_tag "http://i.imgur.com/5byMYCo.png", :class => "icon" %>
+				<h4>QUIZ NOT COMPLETED</h4>
+			</div>
+
+		<% else %>
+
+			<form action="/units/<%= unit.id %>">
+		    <input type="submit" value="<%= unit.title %>">
+			</form>
+
+		<% end %>
+			
 	<% end %>
 
 	<% if((session[:is_admin] == true) || (session[:teacher_id] == @session.teacher_id)) %>

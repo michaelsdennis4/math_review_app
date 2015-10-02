@@ -31,6 +31,8 @@ Rails.application.routes.draw do
     resources :review_sessions, only: [:new, :create]
   end
 
+  get 'review_sessions/:id/instructions' => 'review_sessions#instructions'
+
   resources :review_sessions, except: [:new, :create] do
     resources :units, only: [:new, :create]
     resources :test_questions, only: [:index, :new, :create]
@@ -66,7 +68,9 @@ Rails.application.routes.draw do
 
   resources :choices, except: [:new, :create]
 
-  resources :assessments
+  resources :assessments do
+    resources :review_sessions, only: [:show]
+  end
 
   resources :responses
 

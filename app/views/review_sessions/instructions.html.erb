@@ -1,0 +1,23 @@
+<div class="topnav">
+	<form action="/students/<%= @assessment.student.id %>/assessments/<%= @assessment.id %>">
+    <input type="submit" value="Back to <%= @session.title %>">
+	</form>
+</div>
+
+<div class="mainbox">
+
+	<h2>Instructions</h2>
+
+	<p>This review session consists of one or more <strong>units</strong>.</p>
+
+	<p>Each unit contains several <strong>topics</strong>. Each topic has a description and a video explaining the topic. For each topic, watch the video and then complete the review questions. The review questions are self-assessed. Once you have worked through the problem, click on the "reveal answer" button to reveal the solution. If your answer is incorrect, you should work through the problem again until you reach the correct solution.</p>
+
+	<p>Once you have completed all the topics and review questions for a given unit, there is a computer-graded multiple-choice quiz on that unit, which you should then complete.</p>
+
+	<p>Once you have completed all the units, and the quizzes for each unit, the final test for the review session will be unlocked. This final test will be either a multiple-choice, computer-graded format similar to the unit quizzes, or else it will be a printable paper test that you will complete off-line and submit to your teacher. Appropriate instructions, including guidelines for submission, will be provided on the test.</p>
+
+	<form action="/assessments/<%= @assessment.id %>/review_sessions/<%= @session.id %>">
+		<input type="submit" value="Go">
+	</form>
+
+</div>
