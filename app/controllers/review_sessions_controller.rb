@@ -11,6 +11,9 @@ class ReviewSessionsController < ApplicationController
 	def show
 		if (params[:assessment_id])
 			@assessment = Assessment.find(params[:assessment_id])
+			if (@assessment.student.id != session[:student_id])
+				redirect_to "/error" 
+			end
 		end
 		@session = ReviewSession.find(params[:id])
 		@units = @session.units.all.order(:id)

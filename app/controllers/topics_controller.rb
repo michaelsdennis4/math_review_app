@@ -13,6 +13,9 @@ class TopicsController < ApplicationController
 	def show
 		if (params[:assessment_id])
 			@assessment = Assessment.find(params[:assessment_id])
+			if (@assessment.student.id != session[:student_id])
+				redirect_to "/error" 
+			end
 		end	
 		@topic = Topic.find(params[:id])
 		@questions = @topic.review_questions.all.order(:id)
