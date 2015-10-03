@@ -34,4 +34,25 @@ class TestQuestion < ActiveRecord::Base
 		result
 	end
 
+	def score(assessment)
+		result = nil
+		responses.each do |response|
+			if (response.assessment == assessment)
+				result = response.student_score
+			end
+		end
+		result
+	end
+
+	def student_answer(assessment)
+		result = nil
+		responses.each do |response|
+			if (response.assessment == assessment)
+				result = response.student_answer
+			end
+		end
+		result
+	end
+
+
 end

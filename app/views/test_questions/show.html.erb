@@ -61,13 +61,7 @@
 				<%= choice.choice_text %><br><br>
 				<%= image_tag choice.image.url if choice.image_stored? %>
 				<div class="edit">
-					<% if (@assessment) %>
-						<form action="/assessments/<%= @assessment.id %>/responses" method="post">
-							<input type="hidden" name="question_id" value="<%= @question.id %>"/>
-							<input type="hidden" name="student_answer" value="<%= choice.id %>"/>
-					    <input class="small select" id="<%= choice.id %>" type="submit" value="Select"/>
-						</form>
-					<% elsif (session[:is_admin] == true) || ((@session) && (session[:teacher_id] == @question.review_session.teacher_id)) || (session[:teacher_id] == @question.unit.review_session.teacher_id) %>
+					<% if (session[:is_admin] == true) || ((@session) && (session[:teacher_id] == @question.review_session.teacher_id)) || (session[:teacher_id] == @question.unit.review_session.teacher_id) %>
 						<form action="/choices/<%= choice.id %>/edit">
 					    <input class="small" type="submit" value="Edit"/>
 						</form>
@@ -77,16 +71,20 @@
 				<%= choice.choice_text %><br><br>
 				<%= image_tag choice.image.url if choice.image_stored? %>
 				<div class="edit">
-					<% if (@assessment) %>
+					<% if (@question.answered?(@assessment) == false) %>
 						<form action="/assessments/<%= @assessment.id %>/responses" method="post">
 							<input type="hidden" name="question_id" value="<%= @question.id %>"/>
 							<input type="hidden" name="student_answer" value="<%= choice.id %>"/>
 					    <input class="small select" id="<%= choice.id %>" type="submit" value="Select"/>
+					    <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>"/>
 						</form>
-					<% elsif (session[:is_admin] == true) || ((@session) && (session[:teacher_id] == @question.review_session.teacher_id)) || (session[:teacher_id] == @question.unit.review_session.teacher_id) %>
-						<form action="/choices/<%= choice.id %>/edit">
-					    <input class="small" type="submit" value="Edit">
-						</form>
+					<% else %>
+						<% if (choice.id == @question.correct_answer) %>	
+							<h4 class="correct">Correct Answer</h4>
+						<% end %>
+						<% if (@question.student_answer(@assessment) == choice.id) %>
+							<h4 class="selected">Selected Answer</h4>
+						<% end %>
 					<% end %>
 				</div>
 			<% end %>

@@ -66,7 +66,7 @@
 				<div class="button">
 
 					<form action="/assessments/<%= @assessment.id %>/units/<%= @unit.id %>/test_questions/<%= question.id %>">
-						<% if (question.correct_answer == nil) || (question.answered?(@assessment) == true) %>
+						<% if (question.correct_answer == nil) %>
 							<input class ="shaded" type="submit" value="Question <%= i %>" disabled/>	
 						<% else %>
 							<input type="submit" value="Question <%= i %>"/>
@@ -83,6 +83,14 @@
 						<h4>NOT ANSWERED</h4>
 					<% else %>
 					  <!-- display correct or incorrect here -->
+					  <% score = question.score(@assessment) %>
+					  <% if (score != nil) %>
+					  	<% if (score > 0) %>
+					  		<h4>CORRECT (<%= question.score(@assessment) %>/<%= question.points %>)</h4>
+					  	<% else %>
+					  		<h4>INCORRECT (0/<%= question.points %>)</h4>
+					  	<% end %>
+					  <% end %>
 					<% end %>
 
 				</div>

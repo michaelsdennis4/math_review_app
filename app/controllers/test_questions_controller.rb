@@ -30,8 +30,6 @@ class TestQuestionsController < ApplicationController
 			@assessment = Assessment.find(params[:assessment_id])
 			if (@assessment.student.id != session[:student_id])
 				redirect_to "/error" 
-			elsif (@question.answered?(@assessment) == true)
-				redirect_to "/error" 
 			end		
 		end	
 		if (@question.review_session)
@@ -41,6 +39,8 @@ class TestQuestionsController < ApplicationController
 		end
 		@number = @questions.find_index(@question) + 1
 		@choices = @question.choices.all.order(:id)
+		
+		@student_answer = @question.responses.where({})
 	end
 
 	def edit
