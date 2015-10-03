@@ -66,7 +66,7 @@
 				<div class="button">
 
 					<form action="/assessments/<%= @assessment.id %>/units/<%= @unit.id %>/test_questions/<%= question.id %>">
-						<% if (question.correct_answer == nil) %>
+						<% if (question.correct_answer == nil) || (question.answered?(@assessment) == true) %>
 							<input class ="shaded" type="submit" value="Question <%= i %>" disabled/>	
 						<% else %>
 							<input type="submit" value="Question <%= i %>"/>
@@ -79,6 +79,10 @@
 
 					<% if (question.correct_answer == nil) %>
 						<p class="problem">There is a problem with this question. Please contact your teacher.</p>
+					<% elsif (question.answered?(@assessment) == false) %>
+						<h4>NOT ANSWERED</h4>
+					<% else %>
+					  <!-- display correct or incorrect here -->
 					<% end %>
 
 				</div>

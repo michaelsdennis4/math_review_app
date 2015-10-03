@@ -24,4 +24,14 @@ class TestQuestion < ActiveRecord::Base
 	extend Dragonfly::Model
 		dragonfly_accessor :image
 
+	def answered?(assessment)
+		result = false
+		responses.each do |response|
+			if (response.assessment == assessment)
+				result = true
+			end
+		end
+		result
+	end
+
 end

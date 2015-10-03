@@ -25,13 +25,15 @@ class TestQuestionsController < ApplicationController
 	end
 
 	def show
+		@question = TestQuestion.find(params[:id])
 		if (params[:assessment_id])
 			@assessment = Assessment.find(params[:assessment_id])
 			if (@assessment.student.id != session[:student_id])
 				redirect_to "/error" 
-			end
+			elsif (@question.answered?(@assessment) == true)
+				redirect_to "/error" 
+			end		
 		end	
-		@question = TestQuestion.find(params[:id])
 		if (@question.review_session)
 			@questions = @question.review_session.test_questions.all.order(:id)
 		else

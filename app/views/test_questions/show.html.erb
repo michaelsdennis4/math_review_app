@@ -56,16 +56,18 @@
 	<% @choices.each do |choice| %>
 
 		<div class="container">
-			<% if ((!@assessment) && (choice.id == @question.correct_answer)) %>	
+			<% if ((!@assessment) && (session[:teacher_id] != nil) && (choice.id == @question.correct_answer)) %>	
 				<h4 class="correct">Correct Answer</h4>
 				<%= choice.choice_text %><br><br>
 				<%= image_tag choice.image.url if choice.image_stored? %>
 				<div class="edit">
 					<% if (@assessment) %>
-						<form action="">
+						<form action="/assessments/<%= @assessment.id %>/responses" method="post">
+							<input type="hidden" name="question_id" value="<%= @question.id %>"/>
+							<input type="hidden" name="student_answer" value="<%= choice.id %>"/>
 					    <input class="small select" id="<%= choice.id %>" type="submit" value="Select"/>
 						</form>
-					<% else %>
+					<% elsif (session[:is_admin] == true) || ((@session) && (session[:teacher_id] == @question.review_session.teacher_id)) || (session[:teacher_id] == @question.unit.review_session.teacher_id) %>
 						<form action="/choices/<%= choice.id %>/edit">
 					    <input class="small" type="submit" value="Edit"/>
 						</form>
@@ -76,10 +78,12 @@
 				<%= image_tag choice.image.url if choice.image_stored? %>
 				<div class="edit">
 					<% if (@assessment) %>
-						<form action="">
+						<form action="/assessments/<%= @assessment.id %>/responses" method="post">
+							<input type="hidden" name="question_id" value="<%= @question.id %>"/>
+							<input type="hidden" name="student_answer" value="<%= choice.id %>"/>
 					    <input class="small select" id="<%= choice.id %>" type="submit" value="Select"/>
 						</form>
-					<% else %>
+					<% elsif (session[:is_admin] == true) || ((@session) && (session[:teacher_id] == @question.review_session.teacher_id)) || (session[:teacher_id] == @question.unit.review_session.teacher_id) %>
 						<form action="/choices/<%= choice.id %>/edit">
 					    <input class="small" type="submit" value="Edit">
 						</form>
@@ -91,6 +95,8 @@
 		<br>
 
 	<% end %>
+
+	<hr>
 
 	<% if (session[:is_admin] == true) || ((@session) && (session[:teacher_id] == @question.review_session.teacher_id)) || (session[:teacher_id] == @question.unit.review_session.teacher_id) %>
 

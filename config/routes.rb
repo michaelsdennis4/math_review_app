@@ -77,6 +77,7 @@ Rails.application.routes.draw do
     end
     resources :topics, only: [:show]
     resources :review_questions, only: [:show]
+    resources :responses, only: [:create]
   end
 
   resources :responses
