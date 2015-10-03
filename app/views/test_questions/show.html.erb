@@ -1,9 +1,17 @@
 <div class="topnav">
 	<% if (@question.review_session_id) %>
-		<form action="/review_sessions/<%= @question.review_session.id %>/test_questions">
+		<% if (@assessment) %>
+			<form action="/assessments/<%= @assessment.id %>/review_sessions/<%= @question.review_session.id %>/test_questions">
+		<% else %>
+			<form action="/review_sessions/<%= @question.review_session.id %>/test_questions">
+		<% end %>
 		<input type="submit" value="Back to Test Questions">
-	<% else %>
-		<form action="/units/<%= @question.unit.id %>/test_questions">
+	<% else %> <!-- unit_id -->
+		<% if (@assessment) %>
+			<form action="/assessments/<%= @assessment.id %>/units/<%= @question.unit.id %>/test_questions">	
+		<% else %>
+			<form action="/units/<%= @question.unit.id %>/test_questions">
+		<% end %>
 		<input type="submit" value="Back to Quiz Questions">
 	<% end %>
 	</form>
@@ -11,16 +19,18 @@
 
 <div class="mainbox">
 
-	<h2>Test Question</h2>
+	<h2>Question <%= @number %></h2>
 
 	<hr>
 
-	<h4>Points: <%= @question.points %></h4>
+	<h4>Points Worth: <%= @question.points %></h4>
 
-	<% if (@question.is_active == true) %>
-		<h4>Active: Yes</h4>
-	<% else %>
-		<h4>Active: No</h4>
+	<% if !(@assessment) %>
+		<% if (@question.is_active == true) %>
+			<h4>Active: Yes</h4>
+		<% else %>
+			<h4>Active: No</h4>
+		<% end %>
 	<% end %>
 
 	<h4>Question:</h4>
@@ -34,29 +44,46 @@
 
 	<h3>Answer Choices</h3>
 
-	<% if ((@question.correct_answer == nil) || (@question.correct_answer <= 0)) %>	
+	<% if (!@assessment) && ((@question.correct_answer == nil) || (@question.correct_answer <= 0)) %>	
 		<h4 class="warning">No Correct Answer Selected for this Question!</h4>
+	<% end %>
+
+	<% if (@assessment) %>
+		<h4>Please select the correct answer.</h4> 
+		<h4>Remember, once selected, your answer is final.</h4>
 	<% end %>
 
 	<% @choices.each do |choice| %>
 
 		<div class="container">
-			<% if (choice.id == @question.correct_answer) %>	
+			<% if ((!@assessment) && (choice.id == @question.correct_answer)) %>	
 				<h4 class="correct">Correct Answer</h4>
 				<%= choice.choice_text %><br><br>
 				<%= image_tag choice.image.url if choice.image_stored? %>
 				<div class="edit">
-					<form action="/choices/<%= choice.id %>/edit">
-				    <input class="small" type="submit" value="Edit"/>
-					</form>
+					<% if (@assessment) %>
+						<form action="">
+					    <input class="small select" id="<%= choice.id %>" type="submit" value="Select"/>
+						</form>
+					<% else %>
+						<form action="/choices/<%= choice.id %>/edit">
+					    <input class="small" type="submit" value="Edit"/>
+						</form>
+					<% end %>
 				</div>
 			<% else %>
 				<%= choice.choice_text %><br><br>
 				<%= image_tag choice.image.url if choice.image_stored? %>
 				<div class="edit">
-					<form action="/choices/<%= choice.id %>/edit">
-				    <input class="small" type="submit" value="Edit">
-					</form>
+					<% if (@assessment) %>
+						<form action="">
+					    <input class="small select" id="<%= choice.id %>" type="submit" value="Select"/>
+						</form>
+					<% else %>
+						<form action="/choices/<%= choice.id %>/edit">
+					    <input class="small" type="submit" value="Edit">
+						</form>
+					<% end %>
 				</div>
 			<% end %>
 		</div>
@@ -65,7 +92,7 @@
 
 	<% end %>
 
-	<% if((session[:is_admin] == true) || (session[:teacher_id] == @question.review_session.teacher_id)) %>
+	<% if (session[:is_admin] == true) || ((@session) && (session[:teacher_id] == @question.review_session.teacher_id)) || (session[:teacher_id] == @question.unit.review_session.teacher_id) %>
 
 		<form action="/test_questions/<%= @question.id %>/choices/new">
 	    <input class="lite" type="submit" value="Add a Choice">

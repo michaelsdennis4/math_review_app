@@ -31,8 +31,6 @@
 
 		<% if (@session.total_test_points) %>
 			<h4>Total Test Points: <%= @session.total_test_points %></h4>
-		<% else %>
-		<h4>Total Test Points: undefined</h4>
 		<% end %>
 
 	<% else %> <!--  unit quiz -->
@@ -65,16 +63,26 @@
 
 			<% if (question.is_active == true) %>
 
-				<form action="/assessments/<%= @assessment.id %>/test_questions/<%= question.id %>">
-					<% if (question.correct_answer == nil) %>
-						<input class ="shaded" type="submit" value="Question <%= i %>" disabled/>
-						<h5 class="warning">There is a problem with this question. Please contact your teacher.</h5>
-						<br>	
-					<% else %>
-						<input type="submit" value="Question <%= i %>"/>
-					<% end %>
-				</form>
+				<div class="button">
 
+					<form action="/assessments/<%= @assessment.id %>/units/<%= @unit.id %>/test_questions/<%= question.id %>">
+						<% if (question.correct_answer == nil) %>
+							<input class ="shaded" type="submit" value="Question <%= i %>" disabled/>	
+						<% else %>
+							<input type="submit" value="Question <%= i %>"/>
+						<% end %>
+					</form>
+
+				</div>
+
+				<div class="status">
+
+					<% if (question.correct_answer == nil) %>
+						<p class="problem">There is a problem with this question. Please contact your teacher.</p>
+					<% end %>
+
+				</div>
+				
 			<% end %> 
 
 		<% else %>
@@ -82,14 +90,14 @@
 			<form action="/test_questions/<%= question.id %>">
 				<% if (question.is_active == true) %>
 					<% if ((question.correct_answer == nil) || (question.correct_answer <= 0)) %>	
-		    		<input class="delete" type="submit" value="Question <%= i %> [ACTIVE]">
+		    		<input class="red" type="submit" value="Question <%= i %> [ACTIVE]">
 		    		<h5 class="warning">No Correct Answer Selected!</h5>
 		    	<% else %>
 		    		<input type="submit" value="Question <%= i %> [ACTIVE]">
 		    	<% end %>
 		    <% else %>
 		    	<% if ((question.correct_answer == nil) || (question.correct_answer <= 0)) %>	
-		    		<input class="delete" type="submit" value="Question <%= i %> [INACTIVE]">
+		    		<input class="red" type="submit" value="Question <%= i %> [INACTIVE]">
 		    		<h5 class="warning">No Correct Answer Selected!</h5>
 	    		<% else %>
 	    			<input class="shaded" type="submit" value="Question <%= i %> [INACTIVE]">

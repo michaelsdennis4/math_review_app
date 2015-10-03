@@ -25,7 +25,19 @@ class TestQuestionsController < ApplicationController
 	end
 
 	def show
+		if (params[:assessment_id])
+			@assessment = Assessment.find(params[:assessment_id])
+			if (@assessment.student.id != session[:student_id])
+				redirect_to "/error" 
+			end
+		end	
 		@question = TestQuestion.find(params[:id])
+		if (@question.review_session)
+			@questions = @question.review_session.test_questions.all.order(:id)
+		else
+			@questions = @question.unit.test_questions.all.order(:id)
+		end
+		@number = @questions.find_index(@question) + 1
 		@choices = @question.choices.all.order(:id)
 	end
 
@@ -64,11 +76,21 @@ class TestQuestionsController < ApplicationController
 
 	def update
 		question = TestQuestion.find(params[:id])
-		if (question.update({question_text: params[:question_text], points: params[:points], correct_answer: params[:correct_answer], is_active: params[:is_active]}))
-			question.review_session.points
-			redirect_to "/test_questions/#{question.id}"
+		if (params[:review_session_id]) 
+			if (question.update({question_text: params[:question_text], points: params[:points], correct_answer: params[:correct_answer], is_active: params[:is_active]}))
+				question.review_session.points
+				redirect_to "/test_questions/#{question.id}"
+			else
+				redirect_to "/test_questions/#{question.id}/edit"
+			end
 		else
-			redirect_to "/test_questions/#{question.id}/edit"
+			if (question.update({question_text: params[:question_text], points: params[:points], correct_answer: params[:correct_answer], is_active: params[:is_active]}))
+				question.unit.points
+				redirect_to "/test_questions/#{question.id}"
+			else
+				redirect_to "/test_questions/#{question.id}/edit"
+			end
+
 		end
 	end
 
