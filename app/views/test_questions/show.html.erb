@@ -96,7 +96,23 @@
 
 	<hr>
 
-	<% if (session[:is_admin] == true) || ((@session) && (session[:teacher_id] == @question.review_session.teacher_id)) || (session[:teacher_id] == @question.unit.review_session.teacher_id) %>
+	<% if ((@assessment) && (@next_question != nil) && (@next_question.is_active == true) && (@next_question.correct_answer != nil)) %>
+
+		<% if (@next_question.review_session_id) %>
+
+			<form action="/assessments/<%= @assessment.id %>/review_sessions/<%= @next_question.review_session.id %>/test_questions/<%= @next_question.id %>">
+		    <input type="submit" value="Go to Next Question">
+			</form>
+
+		<% else %>
+
+			<form action="/assessments/<%= @assessment.id %>/units/<%= @next_question.unit.id %>/test_questions/<%= @next_question.id %>">
+		    <input type="submit" value="Go to Next Question">
+			</form>
+
+		<% end %>
+
+	<% elsif (session[:is_admin] == true) || ((@session) && (session[:teacher_id] == @question.review_session.teacher_id)) || (session[:teacher_id] == @question.unit.review_session.teacher_id) %>
 
 		<form action="/test_questions/<%= @question.id %>/choices/new">
 	    <input class="lite" type="submit" value="Add a Choice">

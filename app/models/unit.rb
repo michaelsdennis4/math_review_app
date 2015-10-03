@@ -32,8 +32,8 @@ class Unit < ActiveRecord::Base
 	def complete?(assessment)
 		result = true
 		test_questions.each do |question|
+			response_result = false
 			question.responses do |response|
-				response_result = false
 				if (response.assessment == assessment)
 					response_result = true
 				end

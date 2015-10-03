@@ -86,8 +86,10 @@
 					  <% score = question.score(@assessment) %>
 					  <% if (score != nil) %>
 					  	<% if (score > 0) %>
+					  		<%= image_tag "http://i.imgur.com/LZTyXAD.png", :class => "icon" %>
 					  		<h4>CORRECT (<%= question.score(@assessment) %>/<%= question.points %>)</h4>
 					  	<% else %>
+					  		<%= image_tag "http://i.imgur.com/5byMYCo.png", :class => "icon" %>
 					  		<h4>INCORRECT (0/<%= question.points %>)</h4>
 					  	<% end %>
 					  <% end %>

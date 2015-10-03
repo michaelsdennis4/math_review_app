@@ -33,14 +33,17 @@ class TestQuestionsController < ApplicationController
 			end		
 		end	
 		if (@question.review_session)
-			@questions = @question.review_session.test_questions.all.order(:id)
+			questions = @question.review_session.test_questions.all.order(:id)
 		else
-			@questions = @question.unit.test_questions.all.order(:id)
+			questions = @question.unit.test_questions.all.order(:id)
 		end
-		@number = @questions.find_index(@question) + 1
+		@number = questions.find_index(@question) + 1
 		@choices = @question.choices.all.order(:id)
-		
-		@student_answer = @question.responses.where({})
+		if (@number < questions.length) 
+			@next_question = questions[@number]
+		else
+			@next_question = nil
+		end
 	end
 
 	def edit
