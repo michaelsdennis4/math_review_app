@@ -36,11 +36,19 @@
 
 			<div class="status">
 				<% if (unit.test_questions.count == 0) %>
+
 					<%= image_tag "http://i.imgur.com/hBmX2V1.png", :class => "icon" %>
 					<h4>NO QUIZ FOR THIS UNIT</h4>
+					
 				<% else %>
 
-					<!-- need code here to determine if specific student (assessment) has completed this unit quiz -->
+					<% if (unit.complete?(@assessment) == true) %>
+						<%= image_tag "http://i.imgur.com/LZTyXAD.png", :class => "icon" %>
+						<h4>QUIZ COMPLETE</h4>
+					<% else %>
+						<%= image_tag "http://i.imgur.com/5byMYCo.png", :class => "icon" %>
+						<h4>QUIZ NOT COMPLETED</h4>
+					<% end %>
 			
 				<% end %>
 				

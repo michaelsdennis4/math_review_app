@@ -29,4 +29,20 @@ class Unit < ActiveRecord::Base
 		self.save;
 	end
 
+	def complete?(assessment)
+		result = true
+		test_questions.each do |question|
+			question.responses do |response|
+				response_result = false
+				if (response.assessment == assessment)
+					response_result = true
+				end
+			end
+			if ((question.responses.count == 0) || (response_result == false))
+			 	result = false
+			end
+		end
+		result
+	end
+
 end
