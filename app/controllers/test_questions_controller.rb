@@ -1,6 +1,12 @@
 class TestQuestionsController < ApplicationController
 
 	def index
+		if (params[:assessment_id])
+			@assessment = Assessment.find(params[:assessment_id])
+			if (@assessment.student.id != session[:student_id])
+				redirect_to "/error" 
+			end
+		end	
 		if (params[:review_session_id]) 
 			@session = ReviewSession.find(params[:review_session_id])
 			@questions = @session.test_questions.all.order(:id)

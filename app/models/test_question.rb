@@ -11,6 +11,7 @@
 #  updated_at        :datetime
 #  is_active         :boolean          default(TRUE), not null
 #  correct_answer    :integer
+#  unit_id           :integer
 #
 
 class TestQuestion < ActiveRecord::Base

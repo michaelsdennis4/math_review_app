@@ -1,100 +1,104 @@
 <div class="topnav">
 	<% if (@session) %>
-		<form action="/review_sessions/<%= @session.id %>">
-		<input type="submit" value="Back to <%= @session.title %>">
+		<% if (@assessment) %>
+			<form action="/assessments/<%= @assessment.id %>/review_sessions/<%= @session.id %>">
+				<input type="submit" value="Back to <%= @session.title %>">
+		<% else %>
+			<form action="/review_sessions/<%= @session.id %>">
+				<input type="submit" value="Back to <%= @session.title %>">
+		<% end %>		
 	<% else %>
-		<form action="/units/<%= @unit.id %>">
-		<input type="submit" value="Back to <%= @unit.title %>">
+		<% if (@assessment) %>
+			<form action="/assessments/<%= @assessment.id %>/units/<%= @unit.id %>">
+				<input type="submit" value="Back to <%= @unit.title %>">
+		<% else %>
+			<form action="/units/<%= @unit.id %>">
+				<input type="submit" value="Back to <%= @unit.title %>">
+		<% end %>
 	<% end %>
 	</form>
 </div>
 
-<% if((session[:is_admin] == true) || (session[:teacher_id] == @session.teacher_id)) %>
+<div class="mainbox">
 
-	<div class="mainbox">
+	<% if (@session) %>
 
-		<% if (@session) %>
-
-			<h2>Final Test Questions</h2>
-
-			<hr>
-
-			<h4>Review Session: <%= @session.title %></h4>
-
-			<% if (@session.total_test_points) %>
-				<h4>Total Test Points: <%= @session.total_test_points %></h4>
-			<% else %>
-			<h4>Total Test Points: undefined</h4>
-			<% end %>
-
-		<% else %> <!--  unit quiz -->
-
-			<h2>Unit Quiz Questions</h2>
-
-			<hr>
-
-			<h4>Review Session: <%= @unit.review_session.title %></h4>
-			<h4>Unit: <%= @unit.title %></h3>
-
-			<% if (@unit.total_quiz_points) %>
-				<h4>Total Quiz Points: <%= @unit.total_quiz_points %></h4>
-			<% else %>
-			<h4>Total Quiz Points: undefined</h4>
-			<% end %>
-
-		<% end %>
+		<h2>Final Test Questions</h2>
 
 		<hr>
 
-		<% i = 1 %>
+		<h4>Review Session: <%= @session.title %></h4>
 
-		<% @questions.each do |question| %>
-
-			<form action="/test_questions/<%= question.id %>">
-				<% if (question.is_active == true) %>
-					<% if ((question.correct_answer == nil) || (question.correct_answer <= 0)) %>	
-		    		<input class="delete" type="submit" value="Question <%= i %> [ACTIVE]">
-		    		<h5 class="warning">No Correct Answer Selected!</h5>
-		    	<% else %>
-		    		<input type="submit" value="Question <%= i %> [ACTIVE]">
-		    	<% end %>
-		    <% else %>
-		    	<% if ((question.correct_answer == nil) || (question.correct_answer <= 0)) %>	
-		    		<input class="delete" type="submit" value="Question <%= i %> [INACTIVE]">
-		    		<h5 class="warning">No Correct Answer Selected!</h5>
-	    		<% else %>
-	    			<input class="shaded" type="submit" value="Question <%= i %> [INACTIVE]">
-		    	<% end %>
-		    <% end %>
-			</form>
-
-			<% i = i+1 %>
-
-		<% end %>
-
-		<% if (@session) %>
-
-			<form action="/review_sessions/<%= @session.id %>/test_questions/new">
-		    <input class="lite" type="submit" value="Add a Test Question">
-			</form>
-
+		<% if (@session.total_test_points) %>
+			<h4>Total Test Points: <%= @session.total_test_points %></h4>
 		<% else %>
-
-			<form action="/units/<%= @unit.id %>/test_questions/new">
-		    <input class="lite" type="submit" value="Add a Quiz Question">
-			</form>
-
+		<h4>Total Test Points: undefined</h4>
 		<% end %>
+
+	<% else %> <!--  unit quiz -->
+
+		<h2>Unit Quiz Questions</h2>
 
 		<hr>
 
-	</div>
+		<h4>Review Session: <%= @unit.review_session.title %></h4>
+		<h4>Unit: <%= @unit.title %></h3>
 
-<% else %>
+		<% if (@unit.total_quiz_points) %>
+			<h4>Total Quiz Points: <%= @unit.total_quiz_points %></h4>
+		<% end %>
 
-	<div class="sorry">
-		<h1>Sorry, you are not authorized to view this page.</h1>
-	</div>
+	<% end %>
 
-<% end %>
+	<hr>
+
+	<% if (@questions.count == 0) %>
+		<h4>There are no quiz questions for this unit!</h4>
+	<% end %>
+
+	<% i = 1 %>
+
+	<% @questions.each do |question| %>
+
+		<form action="/test_questions/<%= question.id %>">
+			<% if (question.is_active == true) %>
+				<% if ((question.correct_answer == nil) || (question.correct_answer <= 0)) %>	
+	    		<input class="delete" type="submit" value="Question <%= i %> [ACTIVE]">
+	    		<h5 class="warning">No Correct Answer Selected!</h5>
+	    	<% else %>
+	    		<input type="submit" value="Question <%= i %> [ACTIVE]">
+	    	<% end %>
+	    <% else %>
+	    	<% if ((question.correct_answer == nil) || (question.correct_answer <= 0)) %>	
+	    		<input class="delete" type="submit" value="Question <%= i %> [INACTIVE]">
+	    		<h5 class="warning">No Correct Answer Selected!</h5>
+    		<% else %>
+    			<input class="shaded" type="submit" value="Question <%= i %> [INACTIVE]">
+	    	<% end %>
+	    <% end %>
+		</form>
+
+		<% i = i+1 %>
+
+	<% end %>
+
+	<% if (@session) && ((session[:is_admin] == true) || (session[:teacher_id] == @session.teacher.id)) %>
+
+		<form action="/review_sessions/<%= @session.id %>/test_questions/new">
+	    <input class="lite" type="submit" value="Add a Test Question">
+		</form>
+
+	<% elsif ((session[:is_admin] == true) || (session[:teacher_id] == @unit.review_session.teacher.id)) %>
+
+		<form action="/units/<%= @unit.id %>/test_questions/new">
+	    <input class="lite" type="submit" value="Add a Quiz Question">
+		</form>
+
+	<% end %>
+
+	<hr>
+
+</div>
+
+
 

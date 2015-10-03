@@ -39,20 +39,9 @@
 					<%= image_tag "http://i.imgur.com/hBmX2V1.png", :class => "icon" %>
 					<h4>NO QUIZ FOR THIS UNIT</h4>
 				<% else %>
-					<% unit.test_questions.each do |question| %>
-						<% if (question.response.score) %>
-							<% unit_quiz_complete = true %>
-						<% else %>
-							<% unit_quiz_complete = false %>
-						<% end %>
-					<% end %>
-					<% if (unit_quiz_complete == true) %>
-						<%= image_tag "http://i.imgur.com/LZTyXAD.png", :class => "icon" %>
-						<h4>QUIZ COMPLETE</h4>
-					<% else %>
-						<%= image_tag "http://i.imgur.com/5byMYCo.png", :class => "icon" %>
-						<h4>QUIZ NOT COMPLETED</h4>
-					<% end %>
+
+					<!-- need code here to determine if specific student (assessment) has completed this unit quiz -->
+			
 				<% end %>
 				
 			</div>

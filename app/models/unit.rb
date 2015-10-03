@@ -8,6 +8,7 @@
 #  description       :string
 #  created_at        :datetime
 #  updated_at        :datetime
+#  total_quiz_points :integer
 #
 
 class Unit < ActiveRecord::Base

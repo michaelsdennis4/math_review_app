@@ -50,11 +50,25 @@
 	    <input class="lite" type="submit" value="Add a New Topic">
 		</form>
 
+	<% end %>
+
 		<hr>
+
+	<% if (@assessment) %>
+
+		<form action="/assessments/<%= @assessment.id %>/units/<%= @unit.id %>/test_questions">
+		  <input type="submit" value="Take Unit Quiz">
+		</form>
+
+	<% else %>
 
 		<form action="/units/<%= @unit.id %>/test_questions">
 		  <input type="submit" value="Unit Quiz">
 		</form>
+
+	<% end %>
+
+	<% if((session[:is_admin] == true) || (session[:teacher_id] == @unit.review_session.teacher_id)) %>	
 
 		<hr>
 

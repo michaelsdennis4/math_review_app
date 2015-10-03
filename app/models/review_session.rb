@@ -9,6 +9,8 @@
 #  total_test_points :integer
 #  created_at        :datetime
 #  updated_at        :datetime
+#  test_type         :integer
+#  test_url          :string
 #
 
 class ReviewSession < ActiveRecord::Base

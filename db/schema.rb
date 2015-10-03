@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150929204445) do
+ActiveRecord::Schema.define(version: 20151003132944) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -38,7 +38,7 @@ ActiveRecord::Schema.define(version: 20150929204445) do
 
   create_table "responses", force: :cascade do |t|
     t.integer  "test_question_id"
-    t.integer  "student_id"
+    t.integer  "assessment_id"
     t.string   "student_answer"
     t.integer  "student_score"
     t.datetime "created_at"

@@ -72,7 +72,9 @@ Rails.application.routes.draw do
 
   resources :assessments do
     resources :review_sessions, only: [:show]
-    resources :units, only: [:show]
+    resources :units, only: [:show] do
+      resources :test_questions, only: [:index, :show]
+    end
     resources :topics, only: [:show]
     resources :review_questions, only: [:show]
   end

@@ -19,5 +19,6 @@ class Assessment < ActiveRecord::Base
 	belongs_to :student
 	belongs_to :review_session
 	belongs_to :teacher
+	has_many :responses
 
 end

@@ -24,6 +24,5 @@ class Student < ActiveRecord::Base
 	has_secure_password
 
 	has_many :assessments
-	has_many :responses
 
 end
