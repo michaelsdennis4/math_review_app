@@ -46,4 +46,17 @@ class Unit < ActiveRecord::Base
 		end
 	end
 
+	def score(assessment)
+		score = 0
+		self.test_questions.each do |question|
+			question.responses.each do |response|
+				if (response.assessment == assessment)
+					score = score + response.student_score
+				end
+			end
+		end
+		score
+	end
+
+
 end

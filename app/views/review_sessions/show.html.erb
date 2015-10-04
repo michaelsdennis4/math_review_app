@@ -44,7 +44,7 @@
 
 					<% if (unit.complete?(@assessment) == true) %>
 						<%= image_tag "http://i.imgur.com/LZTyXAD.png", :class => "icon" %>
-						<h4>QUIZ COMPLETED (x/<%= unit.total_quiz_points %>)</h4>
+						<h4>QUIZ COMPLETED (<%= unit.score(@assessment) %>/<%= unit.total_quiz_points %>)</h4>
 					<% else %>
 						<%= image_tag "http://i.imgur.com/5byMYCo.png", :class => "icon" %>
 						<h4>QUIZ NOT COMPLETED</h4>
@@ -93,33 +93,57 @@
 
 			<% if (@session.test_questions.count == 0) %>
 
-			  <form action="/assessments/<%= @assessment.id %>/review_sessions/<%= @session.id %>/test_questions">
-				  <input class="shaded" type="submit" value="Take Final Test" disabled/>
-				</form>
+				<div class="button">
+				  <form action="/assessments/<%= @assessment.id %>/review_sessions/<%= @session.id %>/test_questions">
+					  <input class="shaded" type="submit" value="Take Final Test" disabled/>
+					</form>
+				</div>
 
-				<h5>There are no test questions for this session. Please consult your teacher.</h5>
+				<div class="status">
+
+					<h5 class="red">There are no test questions for this session. Please consult your teacher.</h5>
+
+				</div>
 
 			<% elsif (@session.quizzes_complete?(@assessment) == true) %>
 
-				<form action="/assessments/<%= @assessment.id %>/review_sessions/<%= @session.id %>/test_questions">
-				  <input type="submit" value="Take Final Test"/>
-				</form>
+
+				<div class="button">
+					<form action="/assessments/<%= @assessment.id %>/review_sessions/<%= @session.id %>/test_questions">
+					  <input type="submit" value="Take Final Test"/>
+					</form>
+				</div>
+
+				<div class="status">
+					<br>
+				</div>
 
 			<% else %>
 
-			  <form action="/assessments/<%= @assessment.id %>/review_sessions/<%= @session.id %>/test_questions">
-				  <input class="shaded" type="submit" value="Take Final Test" disabled/>
-				</form>
+				<div class="button">
+				  <form action="/assessments/<%= @assessment.id %>/review_sessions/<%= @session.id %>/test_questions">
+					  <input class="shaded" type="submit" value="Take Final Test" disabled/>
+					</form>
+				</div>
 
-				<h5>You must complete the unit quizzes before you can take the test.</h5>
+				<div class="status">
+					<h5>You must complete the unit quizzes before you can take the test.</h5>
+				</div>
 		
 			<% end %>
 			
 		<% else %>
 
-			<form action="/review_sessions/<%= @session.id %>/test_questions">
-			  <input type="submit" value="Final Test (<%= @session.test_questions.count %>)">
-			</form>
+			<div class="button">
+				<form action="/review_sessions/<%= @session.id %>/test_questions">
+				  <input type="submit" value="Final Test (<%= @session.test_questions.count %>)">
+				</form>
+			</div>
+
+			<div class="status">
+				<br>
+			</div>
+
 
 		<% end %>
 
