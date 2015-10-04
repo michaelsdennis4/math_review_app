@@ -17,7 +17,7 @@ class ResponsesController < ApplicationController
 		end
 		response.update({test_question: question, assessment: assessment, student_answer: student_answer.id, student_score: score})
 		if (session)
-			redirect_to "/assessments/#{assessment.id}/review_session/#{session.id}/test_questions/#{question.id}"
+			redirect_to "/assessments/#{assessment.id}/review_sessions/#{session.id}/test_questions/#{question.id}"
 		else
 			redirect_to "/assessments/#{assessment.id}/units/#{unit.id}/test_questions/#{question.id}"
 		end

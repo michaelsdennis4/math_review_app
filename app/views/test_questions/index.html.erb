@@ -73,7 +73,11 @@
 
 				<div class="button">
 
-					<form action="/assessments/<%= @assessment.id %>/units/<%= @unit.id %>/test_questions/<%= question.id %>">
+					<% if (@session) %>
+						<form action="/assessments/<%= @assessment.id %>/review_sessions/<%= @session.id %>/test_questions/<%= question.id %>">
+					<% else %>
+						<form action="/assessments/<%= @assessment.id %>/units/<%= @unit.id %>/test_questions/<%= question.id %>">
+					<% end %>
 						<% if (question.correct_answer == nil) %>
 							<input class ="shaded" type="submit" value="Question <%= i %>" disabled/>	
 						<% else %>

@@ -81,22 +81,16 @@ class TestQuestionsController < ApplicationController
 
 	def update
 		question = TestQuestion.find(params[:id])
-		if (params[:review_session_id]) 
-			if (question.update({question_text: params[:question_text], points: params[:points], correct_answer: params[:correct_answer], is_active: params[:is_active]}))
+		if (question.update({question_text: params[:question_text], points: params[:points], correct_answer: params[:correct_answer], is_active: params[:is_active]}))
+			if (question.review_session)
 				question.review_session.points
-				redirect_to "/test_questions/#{question.id}"
 			else
-				redirect_to "/test_questions/#{question.id}/edit"
-			end
-		else
-			if (question.update({question_text: params[:question_text], points: params[:points], correct_answer: params[:correct_answer], is_active: params[:is_active]}))
 				question.unit.points
-				redirect_to "/test_questions/#{question.id}"
-			else
-				redirect_to "/test_questions/#{question.id}/edit"
 			end
-
-		end
+			redirect_to "/test_questions/#{question.id}"
+		else
+			redirect_to "/test_questions/#{question.id}/edit"
+		end	
 	end
 
 	def upload_image

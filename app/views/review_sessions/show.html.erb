@@ -44,7 +44,7 @@
 
 					<% if (unit.complete?(@assessment) == true) %>
 						<%= image_tag "http://i.imgur.com/LZTyXAD.png", :class => "icon" %>
-						<h4>QUIZ COMPLETED</h4>
+						<h4>QUIZ COMPLETED (x/<%= unit.total_quiz_points %>)</h4>
 					<% else %>
 						<%= image_tag "http://i.imgur.com/5byMYCo.png", :class => "icon" %>
 						<h4>QUIZ NOT COMPLETED</h4>
