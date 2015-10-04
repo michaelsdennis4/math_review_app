@@ -21,6 +21,17 @@
 
 	<h2>Question <%= @number %></h2>
 
+	<% if ((@assessment) && (@question.answered?(@assessment) == true)) %>
+		<% score = @question.score(@assessment) %>
+	  <% if (score != nil) %>
+	  	<% if (score > 0) %>
+	  		<h4 class="correct">CORRECT (<%= @question.score(@assessment) %>/<%= @question.points %>)</h4>
+	  	<% else %>  
+	  		<h4 class="incorrect">INCORRECT (0/<%= @question.points %>)</h4>
+	  	<% end %>
+	  <% end %>
+	<% end %>
+
 	<hr>
 
 	<h4>Points Worth: <%= @question.points %></h4>
@@ -79,10 +90,11 @@
 					    <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>"/>
 						</form>
 					<% else %>
-						<% if (choice.id == @question.correct_answer) %>	
+						<% if ((@question.correct_answer == choice.id) && (@question.student_answer(@assessment) == choice.id)) %>
+							<h4 class="correct">Correct Answer (Selected)</h4>
+						<% elsif (@question.correct_answer == choice.id) %>	
 							<h4 class="correct">Correct Answer</h4>
-						<% end %>
-						<% if (@question.student_answer(@assessment) == choice.id) %>
+						<% elsif (@question.student_answer(@assessment) == choice.id) %>
 							<h4 class="selected">Selected Answer</h4>
 						<% end %>
 					<% end %>
@@ -98,7 +110,7 @@
 
 	<% if ((@assessment) && (@next_question != nil) && (@next_question.is_active == true) && (@next_question.correct_answer != nil)) %>
 
-		<% if (@next_question.review_session_id) %>
+		<% if (@question.review_session_id) %>
 
 			<form action="/assessments/<%= @assessment.id %>/review_sessions/<%= @next_question.review_session.id %>/test_questions/<%= @next_question.id %>">
 		    <input type="submit" value="Go to Next Question">
@@ -108,6 +120,22 @@
 
 			<form action="/assessments/<%= @assessment.id %>/units/<%= @next_question.unit.id %>/test_questions/<%= @next_question.id %>">
 		    <input type="submit" value="Go to Next Question">
+			</form>
+
+		<% end %>
+
+	<% elsif ((@assessment) && (@next_question == nil)) %>
+
+		<% if (@question.review_session_id) %>
+
+			<form action="/assessments/<%= @assessment.id %>/review_sessions/<%= @next_question.review_session.id %>/test_questions">
+		    <input type="submit" value="Finish">
+			</form>
+
+		<% else %>
+
+			<form action="/assessments/<%= @assessment.id %>/units/<%= @next_question.unit.id %>/test_questions">
+		    <input type="submit" value="Finish">
 			</form>
 
 		<% end %>

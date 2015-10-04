@@ -10,7 +10,7 @@ class ResponsesController < ApplicationController
 			unit = question.unit
 		end
 		student_answer = Choice.find(params[:student_answer])
-		if (question.correct_answer == student_answer)
+		if (question.correct_answer == student_answer.id)
 			score = question.points
 		else
 			score = 0

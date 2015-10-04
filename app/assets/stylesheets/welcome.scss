@@ -330,6 +330,13 @@ header {
 		text-align: center;
 	}
 
+	.incorrect {
+		background-color: red;
+		color: white;
+		border-radius: 5px;
+		text-align: center;
+	}
+
 	.selected {
 		background-color: $bgcolor;
 		color: white;
