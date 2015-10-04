@@ -30,19 +30,20 @@ class Unit < ActiveRecord::Base
 	end
 
 	def complete?(assessment)
-		result = true
-		test_questions.each do |question|
-			response_result = false
-			question.responses do |response|
+		i = 0
+		self.test_questions.each do |question|
+			question.responses.each do |response|
 				if (response.assessment == assessment)
-					response_result = true
+					i = i + 1
 				end
 			end
-			if ((question.responses.count == 0) || (response_result == false))
-			 	result = false
-			end
 		end
-		result
+		# returns true also if no questions
+		if (i == self.test_questions.count)  
+			result = true
+		else
+			result = false
+		end
 	end
 
 end

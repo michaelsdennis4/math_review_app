@@ -13,7 +13,6 @@ $('document').ready(function() {
 		var form = event.target.parentElement;
 		var selector = form.querySelector('input[name="image"]');
 		var files = selector.files.length;
-		console.log(files);
 		if (files == 0) {
 			window.alert("Please select a file to upload.");
 			event.preventDefault();
@@ -31,10 +30,21 @@ $('document').ready(function() {
 		};
 	};
 
+	var checkStudentSelected = function(event) {
+		var form = event.target.parentElement;
+		var student = form.querySelector('select[name="student_id"]');
+		if (student.value == 0) {
+			window.alert("Please select a student.");
+			event.preventDefault();
+		};		
+	};
+
 	$(".delete").bind('click', confirmDelete);
 
 	$("input.upload").bind('click', checkFileSelected);
 
 	$("input.reveal").bind('click', revealAnswer);
+
+	$("input#add_assessment").bind('click', checkStudentSelected);
 
 });

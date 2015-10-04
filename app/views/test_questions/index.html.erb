@@ -33,6 +33,12 @@
 			<h4>Total Test Points: <%= @session.total_test_points %></h4>
 		<% end %>
 
+		<hr>
+
+		<% if (@questions.count == 0) %>
+			<h4>There are no test questions for this session!</h4>
+		<% end %>
+
 	<% else %> <!--  unit quiz -->
 
 		<h2>Unit Quiz Questions</h2>
@@ -47,13 +53,15 @@
 			<h4>Total Quiz Points: <%= @unit.total_quiz_points %></h4>
 		<% end %>
 
+		<hr>
+
+		<% if (@questions.count == 0) %>
+			<h4>There are no quiz questions for this unit!</h4>
+		<% end %>
+
 	<% end %>
 
-	<hr>
-
-	<% if (@questions.count == 0) %>
-		<h4>There are no quiz questions for this unit!</h4>
-	<% end %>
+	
 
 	<% i = 1 %>
 
@@ -125,13 +133,13 @@
 
 	<% end %>
 
-	<% if (@session) && ((session[:is_admin] == true) || (session[:teacher_id] == @session.teacher.id)) %>
+	<% if ((@session) && ((session[:is_admin] == true) || (session[:teacher_id] == @session.teacher.id))) %>
 
 		<form action="/review_sessions/<%= @session.id %>/test_questions/new">
 	    <input class="lite" type="submit" value="Add a Test Question">
 		</form>
 
-	<% elsif ((session[:is_admin] == true) || (session[:teacher_id] == @unit.review_session.teacher.id)) %>
+	<% elsif ((@unit) && ((session[:is_admin] == true) || (session[:teacher_id] == @unit.review_session.teacher.id))) %>
 
 		<form action="/units/<%= @unit.id %>/test_questions/new">
 	    <input class="lite" type="submit" value="Add a Quiz Question">

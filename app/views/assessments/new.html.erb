@@ -1,0 +1,40 @@
+<div class="topnav">
+	<form action="/review_sessions/<%= @session.id %>/assessments">
+    <input type="submit" value="Back to Assessments">
+	</form>
+</div>
+
+<% if ((session[:is_admin] == true) || (session[:teacher_id] == @session.teacher.id)) %>
+
+	<div class="mainbox">
+
+		<h2>Add a New Assessment</h2>
+
+		<h4>Course: <%= @session.course.name %></h4>
+		<h4>Review Session: <%= @session.title %></h4>
+		<h4>Teacher: <%= @session.teacher.first_name %> <%= @session.teacher.last_name %></h4>
+
+		<hr>
+
+		<form action="/review_sessions/<%= @session.id %>/assessments" method="post">
+			<label for="student_id">Student:</label><br>
+			<select name="student_id">
+				<option value="0">SELECT A STUDENT</option> 
+				<% @students.each do |student| %>
+			  	<option value="<%= student.id %>"><%= student.last_name %>, <%= student.first_name %></option>
+			  <% end %> 
+			</select>
+			<br><br><hr>
+			<input id="add_assessment" type="submit" value="Create Assessment"/>
+			<input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
+		</form>
+
+	</div>
+	
+<% else %>
+
+	<div class="sorry">
+		<h1>Sorry, you are not authorized to view this page.</h1>
+	</div>
+
+<% end %>

@@ -1,6 +1,6 @@
 <div class="topnav">
 	<% if (@assessment) %>
-		<form action="/review_sessions/<%= @session.id %>/instructions">
+		<form action="/review_sessions/<%= @assessment.id %>/instructions">
 	    <input type="submit" value="Back to Instructions">
 		</form>
 	<% else %>
@@ -44,7 +44,7 @@
 
 					<% if (unit.complete?(@assessment) == true) %>
 						<%= image_tag "http://i.imgur.com/LZTyXAD.png", :class => "icon" %>
-						<h4>QUIZ COMPLETE</h4>
+						<h4>QUIZ COMPLETED</h4>
 					<% else %>
 						<%= image_tag "http://i.imgur.com/5byMYCo.png", :class => "icon" %>
 						<h4>QUIZ NOT COMPLETED</h4>
@@ -89,18 +89,36 @@
 
 		<% if (@assessment) %>
 
-			<!-- test is enabled when quizzes are completed (need method) -->
+			<!-- test is enabled when quizzes are completed -->
 
-			<form action="/review_sessions/<%= @session.id %>/test_questions">
-			  <input class="shaded" type="submit" value="Final Test" disabled>
-			</form>
+			<% if (@session.test_questions.count == 0) %>
 
-			<h5>You must complete the unit quizzes before you can take the test.</h5>
+			  <form action="/assessments/<%= @assessment.id %>/review_sessions/<%= @session.id %>/test_questions">
+				  <input class="shaded" type="submit" value="Take Final Test" disabled/>
+				</form>
 
+				<h5>There are no test questions for this session. Please consult your teacher.</h5>
+
+			<% elsif (@session.quizzes_complete?(@assessment) == true) %>
+
+				<form action="/assessments/<%= @assessment.id %>/review_sessions/<%= @session.id %>/test_questions">
+				  <input type="submit" value="Take Final Test"/>
+				</form>
+
+			<% else %>
+
+			  <form action="/assessments/<%= @assessment.id %>/review_sessions/<%= @session.id %>/test_questions">
+				  <input class="shaded" type="submit" value="Take Final Test" disabled/>
+				</form>
+
+				<h5>You must complete the unit quizzes before you can take the test.</h5>
+		
+			<% end %>
+			
 		<% else %>
 
 			<form action="/review_sessions/<%= @session.id %>/test_questions">
-			  <input type="submit" value="Final Test">
+			  <input type="submit" value="Final Test (<%= @session.test_questions.count %>)">
 			</form>
 
 		<% end %>

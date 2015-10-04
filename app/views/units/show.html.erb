@@ -63,7 +63,7 @@
 	<% else %>
 
 		<form action="/units/<%= @unit.id %>/test_questions">
-		  <input type="submit" value="Unit Quiz">
+		  <input type="submit" value="Unit Quiz (<%= @unit.test_questions.count %>)">
 		</form>
 
 	<% end %>

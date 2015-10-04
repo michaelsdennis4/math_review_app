@@ -29,6 +29,8 @@
 			<h2>All Assessments</h2>
 		<% end %>
 
+		<hr>
+
 		<% @assessments.each do |assessment| %>
 
 			<div class="assessment">
@@ -60,13 +62,15 @@
 
 		<% end %>
 
-		<% if (@session) %>
-			<form action="/review_sessions/assessments/new">
-		<% else %>
-			<form action="/assessments/new">
+		<% if((session[:is_admin] == true) || (session[:teacher_id] == @session.teacher_id)) %>
+
+			<% if (@session) %>
+				<form action="/review_sessions/<%= @session.id %>/assessments/new">
+				  <input class="lite" type="submit" value="Add an Assessment">
+				</form>
+			<% end %>
+
 		<% end %>
-		  <input class="lite" type="submit" value="Add an Assessment">
-		</form>
 
 	</div>
 

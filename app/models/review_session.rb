@@ -32,5 +32,20 @@ class ReviewSession < ActiveRecord::Base
 		end
 		self.save;
 	end
+
+	def quizzes_complete?(assessment)
+		i = 0
+		self.units.each do |unit|
+			if (unit.complete?(assessment) == true)
+				i = i + 1
+			end
+		end
+		if (i == self.units.count)
+			result = true
+		else
+			result = false
+		end
+	end
+
 	
 end

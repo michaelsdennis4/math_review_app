@@ -67,18 +67,7 @@
 	<% @choices.each do |choice| %>
 
 		<div class="container">
-			<% if ((!@assessment) && (session[:teacher_id] != nil) && (choice.id == @question.correct_answer)) %>	
-				<h4 class="correct">Correct Answer</h4>
-				<%= choice.choice_text %><br><br>
-				<%= image_tag choice.image.url if choice.image_stored? %>
-				<div class="edit">
-					<% if (session[:is_admin] == true) || ((@session) && (session[:teacher_id] == @question.review_session.teacher_id)) || (session[:teacher_id] == @question.unit.review_session.teacher_id) %>
-						<form action="/choices/<%= choice.id %>/edit">
-					    <input class="small" type="submit" value="Edit"/>
-						</form>
-					<% end %>
-				</div>
-			<% else %>
+			<% if (@assessment) %>
 				<%= choice.choice_text %><br><br>
 				<%= image_tag choice.image.url if choice.image_stored? %>
 				<div class="edit">
@@ -97,6 +86,19 @@
 						<% elsif (@question.student_answer(@assessment) == choice.id) %>
 							<h4 class="selected">Selected Answer</h4>
 						<% end %>
+					<% end %>
+				</div>
+			<% else %>
+				<% if ((session[:teacher_id] != nil) && (choice.id == @question.correct_answer)) %>	
+					<h4 class="correct">Correct Answer</h4>
+				<% end %>
+				<%= choice.choice_text %><br><br>
+				<%= image_tag choice.image.url if choice.image_stored? %>
+				<div class="edit">
+					<% if (session[:is_admin] == true) || ((@session) && (session[:teacher_id] == @question.review_session.teacher_id)) || (session[:teacher_id] == @question.unit.review_session.teacher_id) %>
+						<form action="/choices/<%= choice.id %>/edit">
+					    <input class="small" type="submit" value="Edit"/>
+						</form>
 					<% end %>
 				</div>
 			<% end %>
@@ -128,13 +130,13 @@
 
 		<% if (@question.review_session_id) %>
 
-			<form action="/assessments/<%= @assessment.id %>/review_sessions/<%= @next_question.review_session.id %>/test_questions">
+			<form action="/assessments/<%= @assessment.id %>/review_sessions/<%= @question.review_session.id %>/test_questions">
 		    <input type="submit" value="Finish">
 			</form>
 
 		<% else %>
 
-			<form action="/assessments/<%= @assessment.id %>/units/<%= @next_question.unit.id %>/test_questions">
+			<form action="/assessments/<%= @assessment.id %>/units/<%= @question.unit.id %>/test_questions">
 		    <input type="submit" value="Finish">
 			</form>
 

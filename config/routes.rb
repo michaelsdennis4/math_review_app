@@ -70,8 +70,10 @@ Rails.application.routes.draw do
 
   resources :choices, except: [:new, :create]
 
-  resources :assessments do
-    resources :review_sessions, only: [:show]
+  resources :assessments, except: [:new, :create] do
+    resources :review_sessions, only: [:show] do
+      resources :test_questions, only: [:index, :show]
+    end
     resources :units, only: [:show] do
       resources :test_questions, only: [:index, :show]
     end
