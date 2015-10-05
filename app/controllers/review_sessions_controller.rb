@@ -14,6 +14,9 @@ class ReviewSessionsController < ApplicationController
 			if (@assessment.student.id != session[:student_id])
 				redirect_to "/error" 
 			end
+			if (@assessment.status == "assigned")
+				@assessment.update({status: "in progress"})
+			end
 		end
 		@session = ReviewSession.find(params[:id])
 		@units = @session.units.all.order(:id)

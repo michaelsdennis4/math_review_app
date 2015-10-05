@@ -56,9 +56,22 @@
 
 	<% if (@assessment) %>
 
-		<form action="/assessments/<%= @assessment.id %>/units/<%= @unit.id %>/test_questions">
-		  <input type="submit" value="Take Unit Quiz">
-		</form>
+		<% if (@unit.test_questions.count > 0) %>
+
+			<form action="/assessments/<%= @assessment.id %>/units/<%= @unit.id %>/test_questions">
+			  <input type="submit" value="Take Unit Quiz">
+			</form>
+
+		<% else %>
+
+			<form action="/assessments/<%= @assessment.id %>/units/<%= @unit.id %>/test_questions">
+			  <input class="shaded" type="submit" value="Take Unit Quiz" disabled/>
+			</form>
+
+			<h5 class="warning">There are no questions for this quiz. Please consult yout teacher.</h5>
+
+
+		<% end %>
 
 	<% else %>
 

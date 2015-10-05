@@ -1,17 +1,11 @@
 Rails.application.routes.draw do
-  # The priority is based upon order of creation: first created -> highest priority.
-  # See how all your routes lay out with "rake routes".
 
-  # You can have the root of your site routed with "root"
   root 'welcome#index'
 
   get '/dashboard' => 'welcome#dashboard'
 
   get '/error' => 'welcome#error'
-  
-  # Example of regular route:
-  #   get 'products/:id' => 'catalog#view'
-
+ 
   get '/sessions/new_teacher' => 'sessions#new_teacher'
   get '/sessions/new_student' => 'sessions#new_student'
 
@@ -82,9 +76,6 @@ Rails.application.routes.draw do
     resources :responses, only: [:create]
   end
 
-  resources :responses
-
-  # add 404 page
   get '/*path' => 'welcome#error'
 
 end

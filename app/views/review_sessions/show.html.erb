@@ -42,9 +42,9 @@
 					
 				<% else %>
 
-					<% if (unit.complete?(@assessment) == true) %>
+					<% if (unit.quiz_complete?(@assessment) == true) %>
 						<%= image_tag "http://i.imgur.com/LZTyXAD.png", :class => "icon" %>
-						<h4>QUIZ COMPLETED (<%= unit.score(@assessment) %>/<%= unit.total_quiz_points %>)</h4>
+						<h4>QUIZ COMPLETED (<%= unit.quiz_score(@assessment) %>/<%= unit.total_quiz_points %>)</h4>
 					<% else %>
 						<%= image_tag "http://i.imgur.com/5byMYCo.png", :class => "icon" %>
 						<h4>QUIZ NOT COMPLETED</h4>
@@ -101,7 +101,7 @@
 
 				<div class="status">
 
-					<h5 class="red">There are no test questions for this session. Please consult your teacher.</h5>
+					<h5 class="problem">There are no test questions for this session. Please consult your teacher.</h5>
 
 				</div>
 
@@ -115,7 +115,13 @@
 				</div>
 
 				<div class="status">
-					<br>
+					<% if (@session.test_complete?(@assessment) == true) %>
+						<%= image_tag "http://i.imgur.com/LZTyXAD.png", :class => "icon" %>
+						<h4>TEST COMPLETED (<%= @session.test_score(@assessment) %>/<%= @session.total_test_points %>)</h4>
+					<% else %>
+						<%= image_tag "http://i.imgur.com/5byMYCo.png", :class => "icon" %>
+						<h4>TEST NOT COMPLETED</h4>
+					<% end %>
 				</div>
 
 			<% else %>
@@ -127,7 +133,9 @@
 				</div>
 
 				<div class="status">
-					<h5>You must complete the unit quizzes before you can take the test.</h5>
+
+					<h5 class="problem">You must complete the unit quizzes before you can take the test.</h5>
+
 				</div>
 		
 			<% end %>

@@ -29,7 +29,7 @@ class Unit < ActiveRecord::Base
 		self.save;
 	end
 
-	def complete?(assessment)
+	def quiz_complete?(assessment)
 		i = 0
 		self.test_questions.each do |question|
 			question.responses.each do |response|
@@ -46,7 +46,7 @@ class Unit < ActiveRecord::Base
 		end
 	end
 
-	def score(assessment)
+	def quiz_score(assessment)
 		score = 0
 		self.test_questions.each do |question|
 			question.responses.each do |response|

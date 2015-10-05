@@ -48,12 +48,21 @@ class AssessmentsController < ApplicationController
 
 	def update
 		assessment = Assessment.find(params[:id])
+		if (assessment.update({status: params[:status], student_test_score: params[:student_test_score]}))
+			redirect_to "/review_sessions/#{assessment.review_session.id}/assessments/#{assessment.id}"
+		else
+			redirect_to "/assessments/#{assessment.id}/edit"
+		end
 	end
 
 	def destroy
+		assessment = Assessment.find(params[:id])
+		if (assessment.responses.count > 0)
+			redirect_to "assessments/#{assessment.id}/edit"
+		else
+			assessment.destroy
+			redirect_to "/review_sessions/#{assessment.review_session.id}/assessments"
+		end
 	end
 
-
-
-	
 end

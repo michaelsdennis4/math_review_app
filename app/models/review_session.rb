@@ -36,7 +36,7 @@ class ReviewSession < ActiveRecord::Base
 	def quizzes_complete?(assessment)
 		i = 0
 		self.units.each do |unit|
-			if (unit.complete?(assessment) == true)
+			if (unit.quiz_complete?(assessment) == true)
 				i = i + 1
 			end
 		end
@@ -45,6 +45,34 @@ class ReviewSession < ActiveRecord::Base
 		else
 			result = false
 		end
+	end
+
+	def test_complete?(assessment)
+		i = 0
+		self.test_questions.each do |question|
+			question.responses.each do |response|
+				if (response.assessment == assessment)
+					i = i + 1
+				end
+			end
+		end
+		if (i == self.test_questions.count)
+			result = true
+		else
+			result = false
+		end
+	end
+
+	def test_score(assessment)
+		score = 0
+		self.test_questions.each do |question|
+			question.responses.each do |response|
+				if (response.assessment == assessment)
+					score = score + response.student_score
+				end
+			end
+		end
+		score
 	end
 
 	

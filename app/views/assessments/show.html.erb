@@ -14,34 +14,7 @@
 		</form>
 	</div>
 
-	<div class="mainbox">
-
-		<h2>Assessment Detail</h2>
-
-		<hr>
-
-		<h4>Student Name: <a href="/students/<%= @assessment.student.id %>"><%= @assessment.student.first_name %> <%= @assessment.student.last_name %></a></h4>
-		<h4>Course: <a href="/courses/<%= @assessment.review_session.course.id %>"><%= @assessment.review_session.course.name %></a></h4>
-		<h4>Review Session: <a href="/review_sessions/<%= @assessment.review_session.course.id %>"><%= @assessment.review_session.title %></a></h4>
-		<h4>Teacher: <%= @assessment.review_session.teacher.first_name %> <%= @assessment.review_session.teacher.last_name %></h4>
-		<h4>Status: <%= @assessment.status.capitalize %></h4>
-
-		<hr>
-
-			<h3>Test Results</h3>
-
-			<h4>No Results Yet</h4>
-
-		<hr>
-
-		<form action="/assessments/<%= @assessment.id %>/edit">
-		  <input class="lite" type="submit" value="Edit Assessment">
-		</form>
-
-	</div>
-
 <% elsif (session[:student_id] == @assessment.student.id) %>	
-<!-- student view -->
 
 	<div class="topnav">
 		<form action="/students/<%= @student.id %>/assessments">
@@ -49,12 +22,29 @@
 		</form>
 	</div>
 
+<% else %>
+
+	<div class="topnav">
+		<form action="/dashboard">
+	    <input type="submit" value="Back to Dashboard">
+		</form>
+	</div>
+
+<% end %>
+
+<% if ((session[:is_admin] == true) || (session[:teacher_id] == @assessment.review_session.teacher_id) || (session[:student_id] == @assessment.student.id)) %>
+
 	<div class="mainbox">
 
-		<h2>Review Session Detail</h2>
+		<% if (session[:student_id] == @assessment.student.id) %>
+			<h2>Review Session Detail</h2>
+		<% else %>
+			<h2>Assessment Detail</h2>
+		<% end %>
 
 		<hr>
 
+		<h4>Student: <%= @assessment.student.first_name %> <%= @assessment.student.last_name %></h4>
 		<h4>Course: <%= @assessment.review_session.course.name %></h4>
 		<h4>Review Session: <%= @assessment.review_session.title %></h4>
 		<h4>Teacher: <%= @assessment.review_session.teacher.first_name %> <%= @assessment.review_session.teacher.last_name %></h4>
@@ -62,30 +52,48 @@
 
 		<hr>
 
-		<h3>Test Scores</h3>
+		<h3>Test & Quiz Scores</h3>
 
-		<% @assessment.review_session.units.each do |unit| %>
+		<% @assessment.review_session.units.order(:id).each do |unit| %>
 
-			<h4>Quiz for <%= unit.title %>: </h4>
+			<% if ((unit.test_questions.count > 0) && (unit.quiz_complete?(@assessment) == true)) %>
+				<% percent = (unit.quiz_score(@assessment) * 100) / unit.total_quiz_points %>
+				<h4>Quiz for <%= unit.title %>: <%= unit.quiz_score(@assessment) %>/<%= unit.total_quiz_points %> (<%= percent %>%)</h4>
+			<% end %>
 
 		<% end %>
 
 		<br>
 
-		<h4>Final Test: </h4>
+		<% session = @assessment.review_session %>
+
+		<% if ((session.test_questions.count > 0) && (session.test_complete?(@assessment) == true)) %>
+			<% percent = (session.test_score(@assessment) * 100) / session.total_test_points %>
+			<h4>Final Test: <%= session.test_score(@assessment) %>/<%= session.total_test_points %> (<%= percent %>%)</h4>
+		<% end %>
 
 		<hr>
 
-		<form action="/review_sessions/<%= @assessment.id %>/instructions">
-			<% if (@assessment.status == 'assigned') %>
-			  <input type="submit" value="Start">
-			<% elsif (@assessment.status == 'in progress') %>
-			  <input type="submit" value="Continue">
-			<% else %>
-			  <input type="submit" value="Review">
-			<% end %>
-		</form>
-	
+		<% if ((session[:is_admin] == true) || (session[:teacher_id] == @assessment.review_session.teacher_id)) %>
+
+			<form action="/assessments/<%= @assessment.id %>/edit">
+			  <input class="lite" type="submit" value="Edit Assessment">
+			</form>
+
+		<% elsif (session[:student_id] == @assessment.student.id) %>
+
+			<form action="/review_sessions/<%= @assessment.id %>/instructions">
+				<% if (@assessment.status == 'assigned') %>
+				  <input type="submit" value="Start">
+				<% elsif (@assessment.status == 'in progress') %>
+				  <input type="submit" value="Continue">
+				<% else %>
+				  <input type="submit" value="Review">
+				<% end %>
+			</form>
+
+		<% end %>
+
 <% else %>
 
 	<div class="sorry">

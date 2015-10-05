@@ -1,0 +1,51 @@
+<div class="topnav">
+	<form action="/review_sessions/<%= @assessment.review_session.id %>/assessments/<%= @assessment.id %>">
+    <input type="submit" value="Back to Assessment">
+	</form>
+</div>
+
+<% if ((session[:is_admin] == true) || (session[:teacher_id] == @session.teacher.id)) %>
+
+	<div class="mainbox">
+
+		<h2>Edit Assessment</h2>
+
+		<hr>
+
+		<h4>Course: <%= @assessment.review_session.course.name %></h4>
+		<h4>Review Session: <%= @assessment.review_session.title %></h4>
+		<h4>Teacher: <%= @assessment.review_session.teacher.first_name %> <%= @assessment.review_session.teacher.last_name %></h4>
+
+		<hr>
+
+		<form action="/assessments/<%= @assessment.id %>" method="post">
+			<label for="status">Status:</label><br>
+			<select name="status">
+				<option value="assigned" <% if (@assessment.status == "assigned") %> selected <% end %>>Assigned</option> 
+				<option value="in progress" <% if (@assessment.status == "in progress") %> selected <% end %>>In Progress</option> 
+				<option value="completed" <% if (@assessment.status == "completed") %> selected <% end %>>Completed</option> 		
+			</select>
+			<br><br>
+			<label for="student_test_score">Test Score:</label><br>
+			<input class="short" type="text" name="student_test_score" value="<%= @assessment.student_test_score %>"/>
+			<hr>
+			<input type="submit" value="Update Assessment"/>
+			<input type="hidden" name="_method" value="patch"/>
+			<input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
+		</form>
+
+		<form action="/assessments/<%= @assessment.id %>" method="post">
+			<input class="delete" id="assessment" type="submit" value="Delete Assessment"/>
+			<input type="hidden" name="_method" value="delete"/>
+			<input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
+		</form>
+
+	</div>
+	
+<% else %>
+
+	<div class="sorry">
+		<h1>Sorry, you are not authorized to view this page.</h1>
+	</div>
+
+<% end %>
