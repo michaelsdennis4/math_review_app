@@ -1,7 +1,13 @@
 <div class="topnav">
-	<form action="/dashboard">
-    <input type="submit" value="Back to Dashboard">
-	</form>
+	<% if (session[:is_admin] == true) %>
+		<form action="/teachers">
+	    <input type="submit" value="Back to Teachers">
+		</form>	
+	<% else %>
+		<form action="/dashboard">
+	    <input type="submit" value="Back to Dashboard">
+		</form>
+	<% end %>
 </div>
 
 <% if ((session[:is_admin] == true) || (session[:teacher_id] == @teacher.id)) %>
@@ -35,7 +41,7 @@
 		<% if (session[:is_admin] == true) %>
 
 			<form action="/teachers/<%= @teacher.id %>/edit">
-		    <input type="submit" value="Edit Profile">
+		    <input class="lite" type="submit" value="Edit Profile">
 			</form>
 
 		<% end %>

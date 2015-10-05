@@ -34,5 +34,14 @@ class StudentsController < ApplicationController
 		end
 	end
 
+	def destroy
+		student = Student.find(params[:id])
+		if (student.assessments.count > 0)
+			redirect_to "/students/#{student.id}/edit"
+		else
+			student.destroy
+			redirect_to "/students"
+		end
+	end
 	
 end

@@ -36,6 +36,26 @@
 			<input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
 		</form>
 
+		<!-- password change form here  -->
+
+		<% if (@student.assessments.count > 0) %>
+
+			<form action="" method="post">
+				<input class="delete shaded" type="submit" value="Delete Student" disabled/>
+			</form>
+
+			<h5 class="warning">You must delete all assessments associated with this student first in order to delete this profile.</h5>
+
+		<% else %>
+
+			<form action="/students/<%= @student.id %>" method="post">
+				<input class="delete" id="student" type="submit" value="Delete Student"/>
+				<input type="hidden" name="_method" value="delete"/>
+				<input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
+			</form>
+
+		<% end %>
+
 	</div>
 	
 <% else %>

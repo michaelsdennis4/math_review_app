@@ -15,6 +15,19 @@
 		<form action="/review_sessions/<%= @session.id %>" method="post">
 			<label for="title">Session Title:</label><br>
 			<input type="text" name="title" value="<%= @session.title %>"/><br>
+			<% if (session[:is_admin] == true) %>
+				<label for="teacher_id">Teacher:</label><br>
+				<select name="teacher_id">
+				<% @teachers.each do |teacher| %>
+					<% if (teacher == @session.teacher) %>
+			  		<option value="<%= teacher.id %>" selected><%= teacher.last_name %>, <%= teacher.first_name %></option>
+			  	<% else %>
+			  		<option value="<%= teacher.id %>"><%= teacher.last_name %>, <%= teacher.first_name %></option>
+			  	<% end %>
+			  <% end %> 
+			</select>
+			<br>
+			<% end %>
 			<br>
 			<label for="test_type">Final Test Type:</label>
 			<% if (@session.test_type == 0) %>
@@ -25,20 +38,35 @@
 				<input type="radio" name="test_type" value="1" checked="checked">Computer
 			<% end %>
 			<br><br>
-			<label for="title">Test URL (for paper test)</label><br>
+			<!-- part below should be visible only when paper test is chosen above -->
+			<label for="test_url">Test URL (for paper test)</label><br>
 			<h5>Enter Dropbox URL for test PDF</h5>
 			<input type="text" name="test_url" value="<%= @session.test_url %>"/><br>
+			<label for="total_test_points">Total Test Points:</label><br>
+			<input class="short" type="text" name="total_test_points" value="<%= @session.total_test_points %>"/><br>
 			<hr>
 			<input type="submit" value="Update Review Session"/>
 			<input type="hidden" name="_method" value="patch"/>
 			<input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
 		</form>
 
-		<form action="/review_sessions/<%= @session.id %>" method="post">
-			<input class="delete" id="review session" type="submit" value="Delete Review Session"/>
-			<input type="hidden" name="_method" value="delete"/>
-			<input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
-		</form>
+		<% if (@session.units.count > 0) %>
+
+			<form action="" method="post">
+				<input class="delete shaded" type="submit" value="Delete Review Session" disabled/>
+			</form>
+
+			<h5 class="warning">You must delete all units associated with this review session first in order to delete it.</h5>
+
+		<% else %>
+
+			<form action="/review_sessions/<%= @session.id %>" method="post">
+				<input class="delete" id="review session" type="submit" value="Delete Review Session"/>
+				<input type="hidden" name="_method" value="delete"/>
+				<input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
+			</form>
+
+		<% end %>
 
 	</div>
 

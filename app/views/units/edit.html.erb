@@ -23,11 +23,23 @@
 			<input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
 		</form>
 
-		<form action="/units/<%= @unit.id %>" method="post">
-			<input class="delete" id="unit" type="submit" value="Delete Unit"/>
-			<input type="hidden" name="_method" value="delete"/>
-			<input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
-		</form>
+		<% if (@unit.topics.count > 0) %>
+
+			<form action="" method="post">
+				<input class="delete shaded" type="submit" value="Delete Unit" disabled/>
+			</form>
+
+			<h5 class="warning">You must delete all topics associated with this unit first in order to delete it.</h5>
+
+		<% else %>
+
+			<form action="/units/<%= @unit.id %>" method="post">
+				<input class="delete" id="unit" type="submit" value="Delete Unit"/>
+				<input type="hidden" name="_method" value="delete"/>
+				<input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
+			</form>
+
+		<% end %>
 
 	</div>
 

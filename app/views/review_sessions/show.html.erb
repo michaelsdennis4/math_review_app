@@ -142,17 +142,10 @@
 			
 		<% else %>
 
-			<div class="button">
-				<form action="/review_sessions/<%= @session.id %>/test_questions">
-				  <input type="submit" value="Final Test (<%= @session.test_questions.count %>)">
-				</form>
-			</div>
-
-			<div class="status">
-				<br>
-			</div>
-
-
+			<form action="/review_sessions/<%= @session.id %>/test_questions">
+			  <input type="submit" value="Final Test (<%= @session.test_questions.count %>)">
+			</form>
+		
 		<% end %>
 
 		<% if((session[:is_admin] == true) || (session[:teacher_id] == @session.teacher_id)) %>

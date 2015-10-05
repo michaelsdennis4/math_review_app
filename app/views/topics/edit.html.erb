@@ -26,11 +26,23 @@
 			<input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
 		</form>
 
-		<form action="/topics/<%= @topic.id %>" method="post">
-			<input class= "delete" id="topic" type="submit" value="Delete Topic"/>
-			<input type="hidden" name="_method" value="delete"/>
-			<input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
-		</form>
+		<% if (@topic.review_questions.count > 0) %>
+
+			<form action="" method="post">
+				<input class="delete shaded" type="submit" value="Delete Topic" disabled/>
+			</form>
+
+			<h5 class="warning">You must delete all review questions associated with this topic first in order to delete it.</h5>
+
+		<% else %>
+
+			<form action="/topics/<%= @topic.id %>" method="post">
+				<input class= "delete" id="topic" type="submit" value="Delete Topic"/>
+				<input type="hidden" name="_method" value="delete"/>
+				<input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
+			</form>
+
+		<% end %>
 
 	</div>
 

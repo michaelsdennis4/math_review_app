@@ -50,6 +50,24 @@
 
 		<!-- need form to change password -->
 
+		<% if (@teacher.review_sessions.count > 0) %>
+
+			<form action="" method="post">
+				<input class="delete shaded" type="submit" value="Delete Teacher" disabled/>
+			</form>
+
+			<h5 class="warning">You must delete or re-assign all review sessions associated with this teacher first in order to delete this profile.</h5>
+
+		<% else %>
+
+			<form action="/teachers/<%= @teacher.id %>" method="post">
+				<input class="delete" id="teacher" type="submit" value="Delete Teacher"/>
+				<input type="hidden" name="_method" value="delete"/>
+				<input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
+			</form>
+
+		<% end %>
+
 	</div>
 	
 <% else %>
