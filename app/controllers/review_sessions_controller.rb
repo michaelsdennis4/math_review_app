@@ -46,7 +46,7 @@ class ReviewSessionsController < ApplicationController
 	def update
 		session = ReviewSession.find(params[:id])
 		teacher = Teacher.find(params[:teacher_id])
-		if (session.update({title: params[:title], test_type: params[:test_type], test_url: params[:test_url], teacher: teacher}))
+		if (session.update({title: params[:title], test_type: params[:test_type], test_url: params[:test_url], total_test_points: params[:total_test_points], teacher: teacher}))
 			redirect_to "/review_sessions/#{session.id}"
 		else
 			redirect_to "/review_sessions/#{session.id}/edit"

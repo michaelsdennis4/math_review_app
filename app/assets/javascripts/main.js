@@ -39,6 +39,11 @@ $('document').ready(function() {
 		};		
 	};
 
+	var changeTestType = function(event) {
+		var section = $('div#paper_test');
+		section.toggleClass('hidden');
+	};
+
 	$(".delete").bind('click', confirmDelete);
 
 	$("input.upload").bind('click', checkFileSelected);
@@ -46,5 +51,7 @@ $('document').ready(function() {
 	$("input.reveal").bind('click', revealAnswer);
 
 	$("input#add_assessment").bind('click', checkStudentSelected);
+
+	$("input[name=test_type]").bind('change', changeTestType);
 
 });

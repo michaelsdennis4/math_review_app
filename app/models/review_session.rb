@@ -9,7 +9,7 @@
 #  total_test_points :integer
 #  created_at        :datetime
 #  updated_at        :datetime
-#  test_type         :integer
+#  test_type         :integer  (paper=0, computer=1)
 #  test_url          :string
 #
 
@@ -24,13 +24,15 @@ class ReviewSession < ActiveRecord::Base
 	has_many :assessments
 
 	def points
-		self.total_test_points = 0;
-		self.test_questions.each do |question|
-			if ((question.is_active == true) && (question.correct_answer) && (question.correct_answer > 0))
-				self.total_test_points = self.total_test_points + question.points
+		if (self.test_type == 1)
+			self.total_test_points = 0;
+			self.test_questions.each do |question|
+				if ((question.is_active == true) && (question.correct_answer) && (question.correct_answer > 0))
+					self.total_test_points = self.total_test_points + question.points
+				end
 			end
+			self.save;
 		end
-		self.save;
 	end
 
 	def quizzes_complete?(assessment)

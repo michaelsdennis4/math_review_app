@@ -65,11 +65,9 @@
 
 		<br>
 
-		<% session = @assessment.review_session %>
-
-		<% if ((session.test_questions.count > 0) && (session.test_complete?(@assessment) == true)) %>
-			<% percent = (session.test_score(@assessment) * 100) / session.total_test_points %>
-			<h4>Final Test: <%= session.test_score(@assessment) %>/<%= session.total_test_points %> (<%= percent %>%)</h4>
+		<% if ((@assessment.review_session.test_questions.count > 0) && (@assessment.review_session.test_complete?(@assessment) == true)) %>
+			<% percent = (@assessment.review_session.test_score(@assessment) * 100) / @assessment.review_session.total_test_points %>
+			<h4>Final Test: <%= @assessment.review_session.test_score(@assessment) %>/<%= @assessment.review_session.total_test_points %> (<%= percent %>%)</h4>
 		<% end %>
 
 		<hr>

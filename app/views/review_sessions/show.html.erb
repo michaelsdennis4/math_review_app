@@ -77,11 +77,24 @@
 	<% if (@session.test_type == 0) %>
 
 		<h4>Final Test Format: paper (teacher graded)</h4>
-		<h4>Test URL: <%= @session.test_url %></h4>
 
-		<% if ((!@session.test_url) || (@session.test_url.length == 0)) %>
-			<h5 class="warning">Warning: there is no test URL entered for this session!</h5><br>
+		<% if (@assessment) %>
+
+		<p>Click on the link below to access and print the paper test. Once you have completed the test, please submit it to your teacher by following the instructions on the test.</p>
+
+		<h4><a href="<%= @session.test_url %>">Final Test</a></h4>
+
+		<% else %>
+
+			<h4>Test URL: <%= @session.test_url %></h4>
+
+			<% if ((!@session.test_url) || (@session.test_url.length == 0)) %>
+				<h5 class="warning">Warning: there is no test URL entered for this session!</h5>
+			<% end %>
+
 		<% end %>
+
+		<h4>Total Test Points: <%= @session.total_test_points %></h4>
 
 	<% else %>
 
@@ -145,6 +158,8 @@
 			<form action="/review_sessions/<%= @session.id %>/test_questions">
 			  <input type="submit" value="Final Test (<%= @session.test_questions.count %>)">
 			</form>
+
+			<h4>Total Test Points: <%= @session.total_test_points %></h4>
 		
 		<% end %>
 

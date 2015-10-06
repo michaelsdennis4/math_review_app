@@ -33,17 +33,20 @@
 			<% if (@session.test_type == 0) %>
 				<input type="radio" name="test_type" value="0" checked="checked">Paper
 				<input type="radio" name="test_type" value="1">Computer
+				<br><br>
+				<div id="paper_test" class="">
 			<% else %>
 				<input type="radio" name="test_type" value="0">Paper
 				<input type="radio" name="test_type" value="1" checked="checked">Computer
+				<br><br>
+				<div id="paper_test" class="hidden">
 			<% end %>
-			<br><br>
-			<!-- part below should be visible only when paper test is chosen above -->
-			<label for="test_url">Test URL (for paper test)</label><br>
-			<h5>Enter Dropbox URL for test PDF</h5>
-			<input type="text" name="test_url" value="<%= @session.test_url %>"/><br>
-			<label for="total_test_points">Total Test Points:</label><br>
-			<input class="short" type="text" name="total_test_points" value="<%= @session.total_test_points %>"/><br>
+				<label for="test_url">Test URL (for paper test)</label><br>
+				<h5>Enter Dropbox URL for test PDF</h5>
+				<input type="text" name="test_url" value="<%= @session.test_url %>"/><br>
+				<label for="total_test_points">Total Test Points:</label><br>
+				<input class="short" type="number" name="total_test_points" min="1" value="<%= @session.total_test_points %>"/><br>
+			</div>
 			<hr>
 			<input type="submit" value="Update Review Session"/>
 			<input type="hidden" name="_method" value="patch"/>
