@@ -34,6 +34,23 @@ class StudentsController < ApplicationController
 		end
 	end
 
+	def password
+		student = Student.find(params[:id])
+		if (session[:is_admin] == true)
+			if (student.update({password: params[:new_password], password_confirmation: params[:password_confirmation]}))
+				redirect_to "/students/#{student.id}"
+			else
+				redirect_to "/students/#{student.id}/edit"
+			end
+		else
+			if ((params[:new_password] == params[:password_confirmation]) && (student.authenticate(params[:old_password])) && (student.update({password: params[:new_password], password_confirmation: params[:password_confirmation]})))
+				redirect_to "/students/#{student.id}"
+			else
+				redirect_to "/students/#{student.id}/edit"
+			end
+		end
+	end
+
 	def destroy
 		student = Student.find(params[:id])
 		if (student.assessments.count > 0)

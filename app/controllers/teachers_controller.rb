@@ -33,6 +33,16 @@ class TeachersController < ApplicationController
 		end
 	end
 
+	def destroy
+		teacher = Teacher.find(params[:id])
+		if (teacher.review_sessions.count > 0)
+			redirect_to "/teachers/#{teacher.id}/edit"
+		else
+			teacher.destroy
+			redirect_to "/teachers"
+		end
+	end
+
 	def password
 		teacher = Teacher.find(params[:id])
 		if (session[:is_admin] == true)

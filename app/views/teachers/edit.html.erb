@@ -4,104 +4,108 @@
 	</form>
 </div>
 
-<div class="mainbox">
+<% if ((session[:is_admin] == true) || (session[:teacher_id] == @teacher.id)) %>
 
-	<% if (session[:is_admin] == true) %>
-
-		<h2>Edit Teacher Profile</h2>
-
-		<hr>
-
-		<form action="/teachers/<%= @teacher.id %>" method="post">
-			<label for="first_name">First Name</label><br>
-			<input type="text" name="first_name" value="<%= @teacher.first_name %>"/><br>
-			<label for="last_name">Last Name</label><br>
-			<input type="text" name="last_name" value="<%= @teacher.last_name %>"/><br>
-			<label for="email">Email</label><br>
-			<input type="text" name="email" value="<%= @teacher.email %>"/><br>
-			<br>
-			<% if ((session[:is_admin] == true) && (session[:teacher_id] != @teacher.id)) %>
-				<label for="is_active">Active?</label>
-				<% if @teacher.is_active == true %>
-					<input type="radio" name="is_active" value="true" checked="checked">Yes
-					<input type="radio" name="is_active" value="false">No
-				<% else %>
-					<input type="radio" name="is_active" value="true">Yes
-					<input type="radio" name="is_active" value="false" checked="checked">No
-				<% end %>
-				<br><br>
-				<label for="is_admin">Admin?</label>
-				<% if @teacher.is_admin == true %>
-					<input type="radio" name="is_admin" value="true" checked="checked">Yes
-					<input type="radio" name="is_admin" value="false">No
-				<% else %>
-					<input type="radio" name="is_admin" value="true">Yes
-					<input type="radio" name="is_admin" value="false" checked="checked">No
-				<% end %>
-				<br><br>
-			<% end %>
-
-			<hr>
-
-			<input type="submit" value="Update Profile"/>
-			<input type="hidden" name="_method" value="patch"/>
-			<input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
-		</form>
+	<div class="mainbox">
 
 		<% if (session[:is_admin] == true) %>
 
-			<% if (@teacher.review_sessions.count > 0) %>
+			<h2>Edit Teacher Profile</h2>
 
-				<form action="" method="post">
-					<input class="delete shaded" type="submit" value="Delete Teacher" disabled/>
-				</form>
+			<hr>
 
-				<h5 class="warning">You must delete or re-assign all review sessions associated with this teacher first in order to delete this profile.</h5>
+			<form action="/teachers/<%= @teacher.id %>" method="post">
+				<label for="first_name">First Name</label><br>
+				<input type="text" name="first_name" value="<%= @teacher.first_name %>"/><br>
+				<label for="last_name">Last Name</label><br>
+				<input type="text" name="last_name" value="<%= @teacher.last_name %>"/><br>
+				<label for="email">Email</label><br>
+				<input type="text" name="email" value="<%= @teacher.email %>"/><br>
+				<br>
+				<% if ((session[:is_admin] == true) && (session[:teacher_id] != @teacher.id)) %>
+					<label for="is_active">Active?</label>
+					<% if @teacher.is_active == true %>
+						<input type="radio" name="is_active" value="true" checked="checked">Yes
+						<input type="radio" name="is_active" value="false">No
+					<% else %>
+						<input type="radio" name="is_active" value="true">Yes
+						<input type="radio" name="is_active" value="false" checked="checked">No
+					<% end %>
+					<br><br>
+					<label for="is_admin">Admin?</label>
+					<% if @teacher.is_admin == true %>
+						<input type="radio" name="is_admin" value="true" checked="checked">Yes
+						<input type="radio" name="is_admin" value="false">No
+					<% else %>
+						<input type="radio" name="is_admin" value="true">Yes
+						<input type="radio" name="is_admin" value="false" checked="checked">No
+					<% end %>
+					<br><br>
+				<% end %>
 
-			<% else %>
+				<hr>
 
-				<form action="/teachers/<%= @teacher.id %>" method="post">
-					<input class="delete" id="teacher" type="submit" value="Delete Teacher"/>
-					<input type="hidden" name="_method" value="delete"/>
-					<input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
-				</form>
+				<input type="submit" value="Update Profile"/>
+				<input type="hidden" name="_method" value="patch"/>
+				<input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
+			</form>
+
+			<% if (session[:is_admin] == true) %>
+
+				<% if (@teacher.review_sessions.count > 0) %>
+
+					<form action="" method="post">
+						<input class="delete shaded" type="submit" value="Delete Teacher" disabled/>
+					</form>
+
+					<h5 class="warning">You must delete or re-assign all review sessions associated with this teacher first in order to delete this profile.</h5>
+
+				<% else %>
+
+					<form action="/teachers/<%= @teacher.id %>" method="post">
+						<input class="delete" id="teacher" type="submit" value="Delete Teacher"/>
+						<input type="hidden" name="_method" value="delete"/>
+						<input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
+					</form>
+
+				<% end %>
 
 			<% end %>
 
-		<% end %>
-
-		<br><hr>
-
-	<% end %>
-
-	<% if ((session[:is_admin] == true) || (session[:teacher_id] == @teacher.id)) %>
-
-		<h3>Change Password</h3>
-
-		<% if (session[:teacher_id] == @teacher.id) %>
-
-			<hr>
-
-			<h4>Teacher: <%= @teacher.first_name %> <%= @teacher.last_name %></h4>
-
-			<hr>
+			<br><hr>
 
 		<% end %>
 
-		<form action="/teachers/<%= @teacher.id %>/password" method="post">
-			<% if (!session[:is_admin]) %>
-				<label for="old_password">Old Password:</label><br>
-				<input type="password" name="old_password" placeholder="Enter existing password..."/><br>
+		<% if ((session[:is_admin] == true) || (session[:teacher_id] == @teacher.id)) %>
+
+			<h3>Change Password</h3>
+
+			<% if (session[:teacher_id] == @teacher.id) %>
+
+				<hr>
+
+				<h4>Teacher: <%= @teacher.first_name %> <%= @teacher.last_name %></h4>
+
+				<hr>
+
 			<% end %>
-			<label for="new_password">New Password:</label><br>
-			<input type="password" name="new_password" placeholder="Enter New Password..."/><br>
-			<label for="password_confirmation">Password Confirmation:</label><br>
-			<input type="password" name="password_confirmation" placeholder="Confirm Password..."/><br><br>
-			<hr>
-			<input type="submit" value="Change Password"/>
-			<input type="hidden" name="_method" value="patch"/>
-			<input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
-		</form>
+
+			<form action="/teachers/<%= @teacher.id %>/password" method="post">
+				<% if (!session[:is_admin]) %>
+					<label for="old_password">Old Password:</label><br>
+					<input type="password" name="old_password" placeholder="Enter existing password..."/><br>
+				<% end %>
+				<label for="new_password">New Password:</label><br>
+				<input type="password" name="new_password" placeholder="Enter New Password..."/><br>
+				<label for="password_confirmation">Password Confirmation:</label><br>
+				<input type="password" name="password_confirmation" placeholder="Confirm Password..."/><br><br>
+				<hr>
+				<input type="submit" value="Change Password"/>
+				<input type="hidden" name="_method" value="patch"/>
+				<input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
+			</form>
+
+		<% end %>
 
 	</div>
 

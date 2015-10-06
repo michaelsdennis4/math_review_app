@@ -49,6 +49,12 @@
 		    <input class="lite" type="submit" value="Edit Profile">
 			</form>
 
+		<% elsif (session[:student_id] == @student.id) %>
+
+			<form action="/students/<%= @student.id %>/edit">
+		    <input class="lite" type="submit" value="Change My Password">
+			</form>
+
 		<% end %>
 
 	</div>

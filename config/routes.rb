@@ -17,9 +17,11 @@ Rails.application.routes.draw do
 
   patch '/teachers/:id/password' => 'teachers#password'
 
-  resources :teachers, except: [:destroy] do
+  resources :teachers do
     resources :assessments
   end
+
+  patch '/students/:id/password' => 'students#password'
 
   resources :students do
     resources :assessments

@@ -4,53 +4,88 @@
 	</form>		
 </div>
 
-<% if (session[:is_admin] == true) %>
+<% if ((session[:is_admin] == true) || (session[:student_id] == @student.id)) %>
 
 	<div class="mainbox">
 
-		<h2>Edit Student Profile</h2>
+		<% if (session[:is_admin] == true) %>
 
-		<hr>
+			<h2>Edit Student Profile</h2>
 
-		<form action="/students/<%= @student.id %>" method="post">
-			<label for="first_name">First Name</label><br>
-			<input type="text" name="first_name" value="<%= @student.first_name %>"/><br>
-			<label for="last_name">Last Name</label><br>
-			<input type="text" name="last_name" value="<%= @student.last_name %>"/><br>
-			<label for="email">Email</label><br>
-			<input type="text" name="email" value="<%= @student.email %>"/><br>	
-			<label for="identification">Student ID</label><br>
-			<input type="text" name="identification" value="<%= @student.identification %>"/>
-			<label for="grad_year">Graduation Year</label><br>
-			<input type="number" name="grad_year" min="2000" value="<%= @student.grad_year %>"/><br>
-			<label for="status">Status</label><br>
-			<select name="status">
-			  <option value="0"<% if (@student.status == 0) %>selected<% end %>>Invited</option> 
-			  <option value="1"<% if (@student.status == 1) %>selected<% end %>>Active</option>
-			  <option value="2"<% if (@student.status == 2) %>selected<% end %>>Inactive</option>
-			</select>
-			<br><br>
 			<hr>
-			<input type="submit" value="Update Student"/>
-			<input type="hidden" name="_method" value="patch"/>
-			<input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
-		</form>
-
-		<!-- password change form here  -->
-
-		<% if (@student.assessments.count > 0) %>
-
-			<form action="" method="post">
-				<input class="delete shaded" type="submit" value="Delete Student" disabled/>
-			</form>
-
-			<h5 class="warning">You must delete all assessments associated with this student first in order to delete this profile.</h5>
-
-		<% else %>
 
 			<form action="/students/<%= @student.id %>" method="post">
-				<input class="delete" id="student" type="submit" value="Delete Student"/>
-				<input type="hidden" name="_method" value="delete"/>
+				<label for="first_name">First Name</label><br>
+				<input type="text" name="first_name" value="<%= @student.first_name %>"/><br>
+				<label for="last_name">Last Name</label><br>
+				<input type="text" name="last_name" value="<%= @student.last_name %>"/><br>
+				<label for="email">Email</label><br>
+				<input type="text" name="email" value="<%= @student.email %>"/><br>	
+				<label for="identification">Student ID</label><br>
+				<input type="text" name="identification" value="<%= @student.identification %>"/>
+				<label for="grad_year">Graduation Year</label><br>
+				<input type="number" name="grad_year" min="2000" value="<%= @student.grad_year %>"/><br>
+				<label for="status">Status</label><br>
+				<select name="status">
+				  <option value="0"<% if (@student.status == 0) %>selected<% end %>>Invited</option> 
+				  <option value="1"<% if (@student.status == 1) %>selected<% end %>>Active</option>
+				  <option value="2"<% if (@student.status == 2) %>selected<% end %>>Inactive</option>
+				</select>
+				<br><br>
+				<hr>
+				<input type="submit" value="Update Student"/>
+				<input type="hidden" name="_method" value="patch"/>
+				<input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
+			</form>
+
+			<% if (@student.assessments.count > 0) %>
+
+				<form action="" method="post">
+					<input class="delete shaded" type="submit" value="Delete Student" disabled/>
+				</form>
+
+				<h5 class="warning">You must delete all assessments associated with this student first in order to delete this profile.</h5>
+
+			<% else %>
+
+				<form action="/students/<%= @student.id %>" method="post">
+					<input class="delete" id="student" type="submit" value="Delete Student"/>
+					<input type="hidden" name="_method" value="delete"/>
+					<input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
+				</form>
+
+			<% end %>
+
+			<br><hr>
+
+		<% end %>
+
+		<% if ((session[:is_admin] == true) || (session[:student_id] == @student.id)) %>
+
+			<h3>Change Password</h3>
+
+			<% if (session[:student_id] == @student.id) %>
+
+				<hr>
+
+				<h4>Student: <%= @student.first_name %> <%= @student.last_name %></h4>
+
+				<hr>
+
+			<% end %>
+
+			<form action="/students/<%= @student.id %>/password" method="post">
+				<% if (!session[:is_admin]) %>
+					<label for="old_password">Old Password:</label><br>
+					<input type="password" name="old_password" placeholder="Enter existing password..."/><br>
+				<% end %>
+				<label for="new_password">New Password:</label><br>
+				<input type="password" name="new_password" placeholder="Enter New Password..."/><br>
+				<label for="password_confirmation">Password Confirmation:</label><br>
+				<input type="password" name="password_confirmation" placeholder="Confirm Password..."/><br><br>
+				<hr>
+				<input type="submit" value="Change Password"/>
+				<input type="hidden" name="_method" value="patch"/>
 				<input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
 			</form>
 
