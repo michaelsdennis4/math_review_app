@@ -26,6 +26,10 @@
 		    <input class="lite" type="submit" value="Add a New Course">
 			</form>
 
+		<% elsif (@courses.count == 0) %>
+
+			<h5>There are no courses.</h5>
+
 		<% end %>
 
 		<hr>
@@ -39,6 +43,3 @@
 	</div>
 
 <% end %>
-
-
-<!-- create, edit, and delete courses from this page -->

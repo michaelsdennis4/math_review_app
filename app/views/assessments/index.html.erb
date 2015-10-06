@@ -61,15 +61,19 @@
 
 		<% end %>
 
-		<% if((session[:is_admin] == true) || (session[:teacher_id] == @session.teacher_id)) %>
+		<% if (@assessments.count == 0) %>
+			<h5>There are no assessments.</h5>
+		<% end %>
 
-			<% if (@session) %>
-				<form action="/review_sessions/<%= @session.id %>/assessments/new">
-				  <input class="lite" type="submit" value="Add an Assessment">
-				</form>
-			<% end %>
+		<% if ((@session) && ((session[:is_admin] == true) || (session[:teacher_id] == @session.teacher.id))) %>
+	
+			<form action="/review_sessions/<%= @session.id %>/assessments/new">
+			  <input class="lite" type="submit" value="Add an Assessment">
+			</form>
 
 		<% end %>
+
+		<hr>
 
 	</div>
 

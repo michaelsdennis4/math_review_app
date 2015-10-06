@@ -26,6 +26,10 @@
 		    <input class="lite" type="submit" value="Add a New Student">
 			</form>
 
+		<% elsif (@students.count == 0) %>
+
+			<h5>There are no students.</h5>
+
 		<% end %>
 
 		<hr>

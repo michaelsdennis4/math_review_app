@@ -22,9 +22,9 @@ t2 = Teacher.create({
 	first_name: 'Michele',
 	last_name: 'Dennis',
 	email: 'michele.dennis@mastersny.org',
-	password: 'pass',
-	password_confirmation: 'pass',
-	is_admin: true
+	password: 'zizu',
+	password_confirmation: 'zizu',
+	is_admin: false
 })
 
 Student.destroy_all
