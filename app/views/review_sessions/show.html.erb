@@ -80,16 +80,35 @@
 
 		<% if (@assessment) %>
 
-		<p>Click on the link below to access and print the paper test. Once you have completed the test, please submit it to your teacher by following the instructions on the test.</p>
+			<% if (@session.quizzes_complete?(@assessment) == true) %>
 
-		<h4><a href="<%= @session.test_url %>">Final Test</a></h4>
+				<p>Click on the link below to access and print the paper test. Once you have completed the test, please submit it to your teacher by following the instructions on the test.</p>
+
+				<% if ((@session.test_url) && (@session.test_url.length > 0)) %>
+
+					<h4><a id="test_link" href="<%= @session.test_url %>">Final Test</a></h4>
+
+				<% else %>
+
+					<h5 class="warning">Test is not available. Please contact your teacher.</h5>
+
+				<% end %>
+
+			<% else %>
+
+				<h5 class="warning">You must complete the unit quizzes before you can take the test.</h5>
+
+			<% end %>
 
 		<% else %>
 
-			<h4>Test URL: <%= @session.test_url %></h4>
-
 			<% if ((!@session.test_url) || (@session.test_url.length == 0)) %>
 				<h5 class="warning">Warning: there is no test URL entered for this session!</h5>
+
+			<% else %>
+
+				<h4>Test URL: <%= @session.test_url %></h4>
+	
 			<% end %>
 
 		<% end %>
@@ -147,7 +166,7 @@
 
 				<div class="status">
 
-					<h5 class="problem">You must complete the unit quizzes before you can take the test.</h5>
+					<h5 class="warning">You must complete the unit quizzes before you can take the test.</h5>
 
 				</div>
 		

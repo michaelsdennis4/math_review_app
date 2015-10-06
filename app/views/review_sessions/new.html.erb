@@ -20,9 +20,13 @@
 			<input type="radio" name="test_type" value="0" checked="checked">Paper
 			<input type="radio" name="test_type" value="1">Computer
 			<br><br>
-			<label for="title">Test URL (for paper test)</label><br>
-			<h5>Enter Dropbox URL for test PDF</h5>
-			<input type="text" name="test_url" placeholder="Enter Test URL..."/><br>
+			<div id="paper_test" class="">
+				<label for="title">Test URL (for paper test)</label><br>
+				<h5>Enter Dropbox URL for test PDF</h5>
+				<input type="text" name="test_url" placeholder="Enter Test URL..."/><br>
+				<label for="total_test_points">Total Test Points:</label><br>
+				<input class="short" type="number" name="total_test_points" min="1" value="1"/><br>
+			</div>
 			<hr>
 			<input type="submit" value="Create Review Session"/>
 			<input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />

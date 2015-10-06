@@ -26,8 +26,8 @@
 				<option value="completed" <% if (@assessment.status == "completed") %> selected <% end %>>Completed</option> 		
 			</select>
 			<br><br>
-			<label for="student_test_score">Test Score:</label><br>
-			<input class="short" type="text" name="student_test_score" value="<%= @assessment.student_test_score %>"/>
+			<label for="student_test_score">Test Score (max points <%= @assessment.review_session.total_test_points %>):</label><br>
+			<input class="short" type="number" name="student_test_score" min="1" max="<%= @assessment.review_session.total_test_points %>" value="<%= @assessment.student_test_score %>"/>
 			<hr>
 			<input type="submit" value="Update Assessment"/>
 			<input type="hidden" name="_method" value="patch"/>

@@ -65,9 +65,18 @@
 
 		<br>
 
-		<% if ((@assessment.review_session.test_questions.count > 0) && (@assessment.review_session.test_complete?(@assessment) == true)) %>
+		<% if ((@assessment.review_session.test_type == 0) && (@assessment.student_test_score)) %>
+
+			<% percent = (@assessment.student_test_score * 100) / @assessment.review_session.total_test_points %>
+
+			<h4>Final Test: <%= @assessment.student_test_score %>/<%= @assessment.review_session.total_test_points %> (<%= percent %>%)</h4>
+
+		<% elsif ((@assessment.review_session.test_questions.count > 0) && (@assessment.review_session.test_complete?(@assessment) == true)) %>
+
 			<% percent = (@assessment.review_session.test_score(@assessment) * 100) / @assessment.review_session.total_test_points %>
+
 			<h4>Final Test: <%= @assessment.review_session.test_score(@assessment) %>/<%= @assessment.review_session.total_test_points %> (<%= percent %>%)</h4>
+	
 		<% end %>
 
 		<hr>

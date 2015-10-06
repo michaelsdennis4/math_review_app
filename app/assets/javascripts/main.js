@@ -44,6 +44,16 @@ $('document').ready(function() {
 		section.toggleClass('hidden');
 	};
 
+	var openTest = function(event) {
+		event.preventDefault();
+		var link = event.target.getAttribute('href');
+		window.open(
+	    link,
+	    "Final Test",
+	    "resizable,scrollbars,status"
+	  );	
+	};
+
 	$(".delete").bind('click', confirmDelete);
 
 	$("input.upload").bind('click', checkFileSelected);
@@ -53,5 +63,7 @@ $('document').ready(function() {
 	$("input#add_assessment").bind('click', checkStudentSelected);
 
 	$("input[name=test_type]").bind('change', changeTestType);
+
+	$('a#test_link').on('click', openTest);
 
 });
