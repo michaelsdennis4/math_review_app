@@ -26,10 +26,27 @@ class TeachersController < ApplicationController
 
 	def update
 		teacher = Teacher.find(params[:id])
-		if (teacher.update({first_name: params[:first_name], last_name: params[:last_name], email: params[:email], is_active: params[:is_active]}))
+		if (teacher.update({first_name: params[:first_name], last_name: params[:last_name], email: params[:email], is_active: params[:is_active], is_admin: params[:is_admin]}))
 			redirect_to "/teachers/#{teacher.id}"
 		else
 			redirect_to "/teachers/#{teacher.id}/edit"
+		end
+	end
+
+	def password
+		teacher = Teacher.find(params[:id])
+		if (session[:is_admin] == true)
+			if (teacher.update({password: params[:new_password], password_confirmation: params[:password_confirmation]}))
+				redirect_to "/teachers/#{teacher.id}"
+			else
+				redirect_to "/teachers/#{teacher.id}/edit"
+			end
+		else
+			if ((params[:new_password] == params[:password_confirmation]) && (teacher.authenticate(params[:old_password])) && (teacher.update({password: params[:new_password], password_confirmation: params[:password_confirmation]})))
+				redirect_to "/teachers/#{teacher.id}"
+			else
+				redirect_to "/teachers/#{teacher.id}/edit"
+			end
 		end
 	end
 

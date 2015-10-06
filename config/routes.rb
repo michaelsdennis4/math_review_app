@@ -15,6 +15,8 @@ Rails.application.routes.draw do
 
   resources :sessions, only: [:new, :destroy]
 
+  patch '/teachers/:id/password' => 'teachers#password'
+
   resources :teachers, except: [:destroy] do
     resources :assessments
   end
