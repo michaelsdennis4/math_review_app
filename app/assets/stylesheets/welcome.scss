@@ -324,24 +324,42 @@ header {
 	}
 
 	.correct {
-		background-color: green;
-		color: white;
-		border-radius: 5px;
-		text-align: center;
-	}
+		width: 90%;
+		margin-left: auto;
+		margin-right: auto;
 
-	.incorrect {
-		background-color: red;
-		color: white;
-		border-radius: 5px;
-		text-align: center;
+		h4 {
+			background-color: green;
+			color: white;
+			border-radius: 10px;
+			text-align: center;
+		}
 	}
 
 	.selected {
-		background-color: $bgcolor;
-		color: white;
-		border-radius: 5px;
-		text-align: center;
+		width: 90%;
+		margin-left: auto;
+		margin-right: auto;
+
+		h4 {
+			background-color: $bgcolor;
+			color: white;
+			border-radius: 10px;
+			text-align: center;
+		}
+	}
+
+	.incorrect {
+		width: 90%;
+		margin-left: auto;
+		margin-right: auto;
+
+		h4 {
+			background-color: red;
+			color: white;
+			border-radius: 10px;
+			text-align: center;
+		}
 	}
 
 	table {
@@ -447,7 +465,7 @@ footer {
 				line-height: 15px;
 				color: red;
 			}
-			
+	
 		}
 
 		input[type=text] {
@@ -470,6 +488,18 @@ footer {
 			width: 90%;
 			margin-left: auto;
 			margin-right: auto;
+		}
+
+		.correct {
+			width: 30%;
+		}
+
+		.incorrect {
+			width: 30%;
+		}
+
+		.selected {
+			width: 30%;
 		}
 
 	}

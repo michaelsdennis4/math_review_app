@@ -30,8 +30,6 @@
 
 		<% if (session[:is_admin] == true) %>
 
-			<hr>
-
 			<form action="/courses/<%= @course.id %>/edit">
 		    <input class="lite" type="submit" value="Edit Course">
 			</form>

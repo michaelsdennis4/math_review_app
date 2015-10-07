@@ -197,7 +197,7 @@
 	<% if(session[:teacher_id] != nil) %>
 
 		<form action="/review_sessions/<%= @session.id %>/assessments">
-		  <input type="submit" value="Assessments">
+		  <input type="submit" value="Assessments (<%= @session.assessments.count %>)">
 		</form>
 
 	<% end %>

@@ -4,7 +4,7 @@
 	</form>
 </div>
 
-<% if((session[:is_admin] == true) || (session[:teacher_id] == @question.review_session.teacher_id)) %>
+<% if ((session[:is_admin] == true) || ((@choice.test_question.review_session) && (session[:teacher_id] == @choice.test_question.review_session.teacher.id)) || (session[:teacher_id] == @choice.test_question.unit.review_session.teacher.id)) %>
 
 	<div class="mainbox">
 

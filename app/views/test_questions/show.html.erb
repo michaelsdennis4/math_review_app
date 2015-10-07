@@ -25,9 +25,9 @@
 		<% score = @question.score(@assessment) %>
 	  <% if (score != nil) %>
 	  	<% if (score > 0) %>
-	  		<h4 class="correct">CORRECT (<%= @question.score(@assessment) %>/<%= @question.points %>)</h4>
+	  		<div class="correct"><h4>CORRECT (<%= @question.score(@assessment) %>/<%= @question.points %>)</h4></div>
 	  	<% else %>  
-	  		<h4 class="incorrect">INCORRECT (0/<%= @question.points %>)</h4>
+	  		<div class="incorrect"><h4>INCORRECT (0/<%= @question.points %>)</h4></div>
 	  	<% end %>
 	  <% end %>
 	<% end %>
@@ -80,22 +80,22 @@
 						</form>
 					<% else %>
 						<% if ((@question.correct_answer == choice.id) && (@question.student_answer(@assessment) == choice.id)) %>
-							<h4 class="correct">Correct Answer (Selected)</h4>
+							<div class="correct"><h4>Correct Answer (Selected)</h4></div>
 						<% elsif (@question.correct_answer == choice.id) %>	
-							<h4 class="correct">Correct Answer</h4>
+							<div class="correct"><h4>Correct Answer</h4></div>
 						<% elsif (@question.student_answer(@assessment) == choice.id) %>
-							<h4 class="selected">Selected Answer</h4>
+							<div class="selected"><h4>Selected Answer</h4></div>
 						<% end %>
 					<% end %>
 				</div>
 			<% else %>
 				<% if ((session[:teacher_id] != nil) && (choice.id == @question.correct_answer)) %>	
-					<h4 class="correct">Correct Answer</h4>
+					<div class="correct"><h4>Correct Answer</h4></div>
 				<% end %>
 				<%= choice.choice_text %><br><br>
 				<%= image_tag choice.image.url if choice.image_stored? %>
 				<div class="edit">
-					<% if (session[:is_admin] == true) || ((@session) && (session[:teacher_id] == @question.review_session.teacher_id)) || (session[:teacher_id] == @question.unit.review_session.teacher_id) %>
+					<% if ((session[:is_admin] == true) || ((@question.review_session) && (session[:teacher_id] == @question.review_session.teacher.id)) || (session[:teacher_id] == @question.unit.review_session.teacher.id)) %>
 						<form action="/choices/<%= choice.id %>/edit">
 					    <input class="small" type="submit" value="Edit"/>
 						</form>
@@ -107,8 +107,6 @@
 		<br>
 
 	<% end %>
-
-	<hr>
 
 	<% if ((@assessment) && (@next_question != nil) && (@next_question.is_active == true) && (@next_question.correct_answer != nil)) %>
 
@@ -142,7 +140,7 @@
 
 		<% end %>
 
-	<% elsif (session[:is_admin] == true) || ((@session) && (session[:teacher_id] == @question.review_session.teacher_id)) || (session[:teacher_id] == @question.unit.review_session.teacher_id) %>
+	<% elsif ((session[:is_admin] == true) || ((@question.review_session) && (session[:teacher_id] == @question.review_session.teacher.id)) || (session[:teacher_id] == @question.unit.review_session.teacher.id)) %>
 
 		<form action="/test_questions/<%= @question.id %>/choices/new">
 	    <input class="lite" type="submit" value="Add a Choice">
