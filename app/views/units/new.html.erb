@@ -10,11 +10,13 @@
 
 		<h2>Add a New Unit</h2>
 
+		<hr>
+
 		<form action="/review_sessions/<%= @session.id %>/units" method="post">
 			<label for="title">Unit Title</label><br>
 			<input type="text" name="title" placeholder="Enter Unit Title..."/><br>
 			<label for="description">Unit Description</label><br>
-			<textarea name="description" placeholder="Enter Unit Description..."></textarea><br>
+			<textarea name="description" placeholder="Enter Unit Description..."></textarea><br><hr>
 			<input type="submit" value="Create Unit"/>
 			<input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
 		</form>

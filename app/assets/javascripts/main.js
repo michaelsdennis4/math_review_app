@@ -54,6 +54,15 @@ $('document').ready(function() {
 	  );	
 	};
 
+	var openHostMath = function(event) {
+		event.preventDefault();
+		window.open(
+			"http://www.hostmath.com/",
+			"Host Math",
+			"resizable,scrollbars,status"
+		);
+	};
+
 	$(".delete").bind('click', confirmDelete);
 
 	$("input.upload").bind('click', checkFileSelected);
@@ -65,5 +74,9 @@ $('document').ready(function() {
 	$("input[name=test_type]").bind('change', changeTestType);
 
 	$('a#test_link').on('click', openTest);
+
+	$('a.host').on('click', openHostMath);
+
+
 
 });

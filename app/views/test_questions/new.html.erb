@@ -18,9 +18,11 @@
 
 		<h2>Add a Test Question</h2>
 
-		<p>Use</p>
-
 		<hr>
+
+		<div class="hostmath">
+			<p>Use HostMath to format complex equations. Copy and paste formatted text into the field below. Once saved, the equation will then format on the screen. You can access the editor <a class="host" href="">here</a>.</p>
+		</div>
 
 		<form action="/review_sessions/<%= @session.id %>/test_questions" method="post">
 			<label for="question_text">Question Text</label><br>
@@ -37,6 +39,10 @@
 		<h2>Add a Quiz Question</h2>
 
 		<hr>
+
+		<div class="hostmath">
+			<p>Use HostMath to format complex equations. Copy and paste formatted text into the field below. Once saved, the equation will then format on the screen. You can access the editor <a class="host" href="">here</a>.</p>
+		</div>
 
 		<form action="/units/<%= @unit.id %>/test_questions" method="post">
 			<label for="question_text">Question Text</label><br>
