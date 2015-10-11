@@ -96,7 +96,7 @@
 
 			<% else %>
 
-				<h5 class="warning">You must complete the unit quizzes before you can take the test.</h5>
+				<p class="warning">You must complete the unit quizzes before you can take the test.</p>
 
 			<% end %>
 
@@ -166,7 +166,7 @@
 
 				<div class="status">
 
-					<h5 class="warning">You must complete the unit quizzes before you can take the test.</h5>
+					<h5 class="problem">You must complete the unit quizzes before you can take the test.</h5>
 
 				</div>
 		
@@ -185,7 +185,7 @@
 		<% if((session[:is_admin] == true) || (session[:teacher_id] == @session.teacher_id)) %>
 
 			<% if (@session.test_questions.count == 0) %>
-				<h5 class="warning">Warning: there are no test questions for this session!</h5><br>
+				<h5 class="problem">Warning: there are no test questions for this session!</h5><br>
 			<% end %>
 
 		<% end %>

@@ -140,7 +140,7 @@
 
 		<% end %>
 
-	<% elsif ((session[:is_admin] == true) || ((@question.review_session) && (session[:teacher_id] == @question.review_session.teacher.id)) || (session[:teacher_id] == @question.unit.review_session.teacher.id)) %>
+	<% elsif ((session[:is_admin] == true) || ((@question.review_session) && (session[:teacher_id] == @question.review_session.teacher.id)) || ((@question.unit) && (session[:teacher_id] == @question.unit.review_session.teacher.id))) %>
 
 		<form action="/test_questions/<%= @question.id %>/choices/new">
 	    <input class="lite" type="submit" value="Add a Choice">
