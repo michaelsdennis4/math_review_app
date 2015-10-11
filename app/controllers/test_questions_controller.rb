@@ -9,10 +9,10 @@ class TestQuestionsController < ApplicationController
 		end	
 		if (params[:review_session_id]) 
 			@session = ReviewSession.find(params[:review_session_id])
-			@questions = @session.test_questions.all.order(:id)
+			@questions = @session.test_questions.all.order('is_active DESC', :id)
 		else
 			@unit = Unit.find(params[:unit_id])
-			@questions = @unit.test_questions.all.order(:id)
+			@questions = @unit.test_questions.all.order('is_active DESC', :id)
 		end
 	end
 
@@ -33,9 +33,9 @@ class TestQuestionsController < ApplicationController
 			end		
 		end	
 		if (@question.review_session)
-			questions = @question.review_session.test_questions.all.order(:id)
+			questions = @question.review_session.test_questions.where({is_active: true}).order(:id)
 		else
-			questions = @question.unit.test_questions.all.order(:id)
+			questions = @question.unit.test_questions.where({is_active: true}).order(:id)
 		end
 		@number = questions.find_index(@question) + 1
 		@choices = @question.choices.all.order(:id)

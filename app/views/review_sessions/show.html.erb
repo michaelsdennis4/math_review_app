@@ -175,7 +175,7 @@
 		<% else %>
 
 			<form action="/review_sessions/<%= @session.id %>/test_questions">
-			  <input type="submit" value="Final Test (<%= @session.test_questions.count %>)">
+			  <input type="submit" value="Final Test (<%= @session.test_questions.where({is_active: true}).count %>)">
 			</form>
 
 			<h4>Total Test Points: <%= @session.total_test_points %></h4>
@@ -184,7 +184,7 @@
 
 		<% if((session[:is_admin] == true) || (session[:teacher_id] == @session.teacher_id)) %>
 
-			<% if (@session.test_questions.count == 0) %>
+			<% if (@session.test_questions.where({is_active: true}).count == 0) %>
 				<h5 class="problem">Warning: there are no test questions for this session!</h5><br>
 			<% end %>
 
