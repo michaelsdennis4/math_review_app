@@ -27,6 +27,15 @@ t2 = Teacher.create({
 	is_admin: false
 })
 
+t3 = Teacher.create({
+	first_name: 'Guest',
+	last_name: 'User',
+	email: 'guest@guest.com',
+	password: 'guest',
+	password_confirmation: 'guest',
+	is_admin: false
+})
+
 Student.destroy_all
 
 s1 = Student.create({
@@ -49,7 +58,7 @@ s2 = Student.create({
 
 Course.destroy_all
 
-# c1 = Course.create({ name: 'Geometry' })
+c1 = Course.create({ name: 'Geometry' })
 
 # c2 = Course.create({ name: 'Algebra' })
 
@@ -74,29 +83,36 @@ Choice.destroy_all
 Response.destroy_all
 
 
-# 4.times do |i|
-# 	rs = ReviewSession.create({course: c1, teacher: t1, title: "Geometry Review #{i+1}"})
-# 	Assessment.create({student: s1, review_session: rs})
-# 	Assessment.create({student: s2, review_session: rs})
-# 	10.times do |j|
-# 		tq = TestQuestion.create({review_session: rs, question_text: "sample question"})
-# 		ch1 = Choice.create({test_question: tq, choice_text: 'choice a'})
-# 		ch2 = Choice.create({test_question: tq, choice_text: 'choice b'})
-# 		ch3 = Choice.create({test_question: tq, choice_text: 'choice c'})
-# 		ch4 = Choice.create({test_question: tq, choice_text: 'choice d'})
-# 		ch5 = Choice.create({test_question: tq, choice_text: 'choice e'})
-# 		tq.update({correct_answer: ch1.id});
-# 	end
-# 	10.times do |j|
-# 		u = Unit.create({review_session: rs, title: "Geometry Unit #{j+1}"})
-# 		10.times do |k|
-# 			t = Topic.create({unit: u, title: "Geometry Unit #{j+1} Topic #{k+1}"})
-# 			10.times do |q|
-# 				rq = ReviewQuestion.create({topic: t, question_text: "Geometry Unit #{j+1} Topic #{k+1} Question #{q+1}"})
-# 			end
-# 		end
-# 	end
-# end
+2.times do |i|
+	rs = ReviewSession.create({course: c1, teacher: t3, title: "Geometry Review #{i+1}"})
+	Assessment.create({student: s1, review_session: rs})
+	Assessment.create({student: s2, review_session: rs})
+	10.times do |j|
+		tq = TestQuestion.create({review_session: rs, question_text: "sample test question"})
+		ch1 = Choice.create({test_question: tq, choice_text: 'choice a'})
+		ch2 = Choice.create({test_question: tq, choice_text: 'choice b'})
+		ch3 = Choice.create({test_question: tq, choice_text: 'choice c'})
+		ch4 = Choice.create({test_question: tq, choice_text: 'choice d'})
+		tq.update({correct_answer: ch2.id});
+	end
+	3.times do |j|
+		u = Unit.create({review_session: rs, title: "Geometry Unit #{j+1}"})
+		5.times do |k|
+			tq = TestQuestion.create({unit: u, question_text: "sample quiz question"})
+			ch1 = Choice.create({test_question: tq, choice_text: 'choice a'})
+			ch2 = Choice.create({test_question: tq, choice_text: 'choice b'})
+			ch3 = Choice.create({test_question: tq, choice_text: 'choice c'})
+			ch4 = Choice.create({test_question: tq, choice_text: 'choice d'})
+			tq.update({correct_answer: ch2.id});
+		end
+		3.times do |k|
+			t = Topic.create({unit: u, title: "Geometry Unit #{j+1} Topic #{k+1}"})
+			5.times do |q|
+				rq = ReviewQuestion.create({topic: t, question_text: "Geometry Unit #{j+1} Topic #{k+1} Question #{q+1}"})
+			end
+		end
+	end
+end
 
 # 4.times do |i|
 # 	rs = ReviewSession.create({course: c2, teacher: t1, title: "Algebra Review #{i+1}"})
