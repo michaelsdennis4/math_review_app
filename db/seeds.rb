@@ -74,6 +74,8 @@ Topic.destroy_all
 
 ReviewQuestion.destroy_all
 
+ReviewAnswer.destroy_all
+
 Assessment.destroy_all
 
 TestQuestion.destroy_all
@@ -109,6 +111,7 @@ Response.destroy_all
 			t = Topic.create({unit: u, title: "Geometry Unit #{j+1} Topic #{k+1}"})
 			5.times do |q|
 				rq = ReviewQuestion.create({topic: t, question_text: "Geometry Unit #{j+1} Topic #{k+1} Question #{q+1}"})
+				ra = ReviewAnswer.create({review_question: rq, answer_text: "this is the answer"})
 			end
 		end
 	end
@@ -133,6 +136,7 @@ end
 # 			t = Topic.create({unit: u, title: "Algebra Unit #{j+1} Topic #{k+1}"})
 # 			10.times do |q|
 # 				rq = ReviewQuestion.create({topic: t, question_text: "Algebra Unit #{j+1} Topic #{k+1} Question #{q+1}"})
+					# ra = ReviewAnswer.create({review_question: rq, answer_text: "this is the answer"})
 # 			end
 # 		end
 # 	end
@@ -157,6 +161,7 @@ end
 # 			t = Topic.create({unit: u, title: "Calculus Unit #{j+1} Topic #{k+1}"})
 # 			10.times do |q|
 # 				rq = ReviewQuestion.create({topic: t, question_text: "Calculus Unit #{j+1} Topic #{k+1} Question #{q+1}"})
+					# ra = ReviewAnswer.create({review_question: rq, answer_text: "this is the answer"})
 # 			end
 # 		end
 # 	end
@@ -181,6 +186,7 @@ end
 # 			t = Topic.create({unit: u, title: "Trigonometry Unit #{j+1} Topic #{k+1}"})
 # 			10.times do |q|
 # 				rq = ReviewQuestion.create({topic: t, question_text: "Trigonometry Unit #{j+1} Topic #{k+1} Question #{q+1}"})
+					# ra = ReviewAnswer.create({review_question: rq, answer_text: "this is the answer"})
 # 			end
 # 		end
 # 	end
